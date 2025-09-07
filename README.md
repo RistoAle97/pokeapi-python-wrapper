@@ -14,13 +14,20 @@
 
 ## :notebook: Documentation
 >[!WARNING]
->Work in progress
+>The documentation is still work in progress.
+
+**Main features:**
+- Covers all the PokéAPI endpoints.
+- Uses Pydantic for data validation. 
+- Can choose between synchronous and asynchronous clients.
+- Can employ a local cache system for faster responses and to respect PokéAPI Fair Use policy.
 
 ---
 
 ## :package: Installation
 >[!IMPORTANT]
->The package will published on PyPI as soon as it is ready.
+>- This package requires python >= 3.12.
+>- The package will published on PyPI as soon as it is ready.
 
 ```bash
 # It is highly recommended to use uv
@@ -55,7 +62,7 @@ from pypokeclient import AsyncClient
 async def fetch_data():
   # Simple usage
   client = AsyncClient()
-  pokemon = client.get_pokemon("fuecoco")
+  pokemon = await client.get_pokemon("fuecoco")
 
   # With context manager
   async with AsyncClient() as client:
