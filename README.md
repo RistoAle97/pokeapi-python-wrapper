@@ -58,8 +58,8 @@ async def fetch_data():
   pokemon = client.get_pokemon("fuecoco")
 
   # With context manager
-  with AsyncClient() as client:
-    pokemon = client.get_pokemon("fuecoco")
+  async with AsyncClient() as client:
+    pokemon = await client.get_pokemon("fuecoco")
 
 asyncio.run(fetch_data())
 ```
@@ -87,8 +87,8 @@ logger.addHandler(console_handler)
 
 # Fetch data
 with Client(cached_session=CachedSession("pypokeclient-sync")) as sync_client:
-    test = sync_client.get_pokemon("fuecoco")
-    test = sync_client.get_pokemon("fuecoco")
+    pokemon = sync_client.get_pokemon("fuecoco")
+    pokemon = sync_client.get_pokemon("fuecoco")
 ```
 The output will be the following
 ```
