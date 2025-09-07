@@ -1,0 +1,55 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "pypokeclient"
+version = "1.0.0"
+description = "Synchronous and asynchronous clients to interact with PokeAPI"
+readme = "README.md"
+license = {file = "LICENSE"}
+authors = [
+    { name = "Alessandro Ristori", email = "aleristori97@gmail.com" }
+]
+requires-python = ">=3.12"
+keywords = ["pokeapi", "pokemon-api"]
+dependencies = [
+    "aiohttp>=3.12.15",
+    "aiohttp-client-cache[all]>=0.13.0",
+    "pydantic>=2.11.7",
+    "requests>=2.32.4",
+    "requests-cache>=1.2.1",
+]
+
+[dependency-groups]
+dev = [
+    "pre-commit>=4.3.0",
+    "ruff>=0.12.9",
+]
+
+[tool.ruff]
+line-length = 120
+output-format = "grouped"
+target-version = "py312"
+
+[tool.ruff.lint]
+select = [
+    "ARG", # Flake8 unused arguments
+    "D", # Pydocstyle errors
+    "E", # PEP8 errors
+    "F", # PEP8 formatting
+    "I", # Import sorting
+    "N", # PEP8 naming
+    "RUF", # Ruff specific rules
+    "UP", # Pyupgrade upgrades
+]
+
+[tool.ruff.lint.isort]
+force-single-line = false
+lines-after-imports = 2
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
+
+[tool.ruff.format]
+docstring-code-format = true
