@@ -9,6 +9,5 @@ from ..common_models import Name, NamedAPIResource
 class EncounterConditionValue:
     id: int
     name: str
-    order: int
     condition: NamedAPIResource
     names: list[Name]

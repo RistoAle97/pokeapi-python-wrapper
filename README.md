@@ -18,7 +18,7 @@
 
 **Main features:**
 - Covers all the PokéAPI endpoints.
-- Uses Pydantic for data validation. 
+- Uses Pydantic for data validation.
 - Can choose between synchronous and asynchronous clients.
 - Can employ a local cache system for faster responses and to respect PokéAPI Fair Use policy.
 
@@ -99,8 +99,8 @@ with Client(cached_session=CachedSession("pypokeclient-sync")) as sync_client:
 ```
 The output will be the following
 ```
-pypokeclient - INFO - Synchronous client is up and ready using CachedSession.                                   
-pypokeclient - INFO - [200] Request to https://pokeapi.co/api/v2/pokemon/fuecoco.                               
+pypokeclient - INFO - Synchronous client is up and ready using CachedSession.
+pypokeclient - INFO - [200] Request to https://pokeapi.co/api/v2/pokemon/fuecoco.
 pypokeclient - INFO - [200] Cached request to https://pokeapi.co/api/v2/pokemon/fuecoco.
 pypokeclient - INFO - Closed session for synchronous client.
 ```

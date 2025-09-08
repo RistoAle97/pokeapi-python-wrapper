@@ -9,7 +9,7 @@ from ..common_models import Description, Name, NamedAPIResource
 
 @dataclass(frozen=True)
 class Pokedex:
-    id: Name
+    id: int
     name: str
     is_main_series: bool
     descriptions: list[Description]

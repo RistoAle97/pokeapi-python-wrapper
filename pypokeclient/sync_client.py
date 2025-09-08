@@ -25,7 +25,6 @@ class Client(BaseClient):
 
         Args:
             api_url (str): the API base url. Defaults to "https://pokeapi.co/api/v2/".
-            verbose (bool): whether to log infos about the client's work. Defaults to False.
             cached_session (requests_cache.CachedSession | None): the cached session that will store the response
                 locally, if None then a requests.Session will be used instead. Defaults to None.
         """
@@ -75,7 +74,7 @@ class Client(BaseClient):
                 response.raise_for_status()
             except HTTPError as e:
                 raise e
-            
+
             log_msg = f"[{response.status_code}] Request to {url}."
             if isinstance(response, CachedResponse):
                 log_msg = f"[{response.status_code}] Cached request to {url}."

@@ -29,7 +29,7 @@ class Item:
     game_indices: list[GenerationGameIndex]
     names: list[Name]
     sprites: ItemSprites | None
-    held_by_pokemon: ItemHolderPokemon
+    held_by_pokemon: list[ItemHolderPokemon]
     baby_trigger_for: APIResource | None
     machines: list[MachineVersionDetail]
 

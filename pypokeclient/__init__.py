@@ -1,4 +1,4 @@
-"""Wrapper for PokeAPI."""
+"""Wrapper for PokéAPI."""
 
 from .async_client import AsyncClient
 from .base_client import ENDPOINTS

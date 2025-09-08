@@ -31,7 +31,7 @@ class Move:
     names: list[Name]
     past_values: list[PastMoveStatValues]
     stat_changes: list[MoveStatChange]
-    super_contest_effect: NamedAPIResource | None
+    super_contest_effect: APIResource | None
     target: NamedAPIResource
     type: NamedAPIResource
 

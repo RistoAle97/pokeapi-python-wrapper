@@ -67,7 +67,6 @@ class BaseClient(ABC):
 
         Args:
             api_url (str): the API base url. Defaults to "https://pokeapi.co/api/v2/".
-            verbose (bool): whether to log infos about the client's work. Defaults to False.
         """
         self.api_url = api_url
 
