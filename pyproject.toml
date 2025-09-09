@@ -26,6 +26,12 @@ dev = [
     "pre-commit>=4.3.0",
     "ruff>=0.12.9",
 ]
+docs = [
+    "griffe-typingdoc",
+    "griffe-inherited-docstrings",
+    "mkdocs-material",
+    "mkdocstrings-python",
+]
 
 [tool.ruff]
 line-length = 120

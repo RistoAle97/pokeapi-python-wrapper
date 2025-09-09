@@ -28,9 +28,11 @@ from .pokemon import (
     Stat,
     Type,
 )
+from .resource_lists import APIResourceList, NamedAPIResourceList
 
 
 __all__ = [
+    "APIResourceList",
     "Ability",
     "Berry",
     "BerryFirmness",
@@ -64,6 +66,7 @@ __all__ = [
     "MoveDamageClass",
     "MoveLearnMethod",
     "MoveTarget",
+    "NamedAPIResourceList",
     "Nature",
     "PalParkArea",
     "PokeathlonStat",

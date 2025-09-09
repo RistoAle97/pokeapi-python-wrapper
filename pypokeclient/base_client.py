@@ -5,7 +5,7 @@ import re
 from abc import ABC, abstractmethod
 from typing import Any
 
-from pydantic import dataclasses, validate_call
+from pydantic import validate_call
 
 from . import _api
 
@@ -14,43 +14,15 @@ logger = logging.getLogger(__name__.split(".")[0])
 
 
 # Define the set of named and unnamed endpoints
-ENDPOINTS = set([re.sub(r"(\w)([A-Z])", r"\1-\2", endpoint).lower() for endpoint in _api.__all__])
+ENDPOINTS = set(
+    [
+        re.sub(r"(\w)([A-Z])", r"\1-\2", endpoint).lower()
+        for endpoint in _api.__all__
+        if endpoint not in ["APIResourceList", "LocationAreaEncounter", "NamedAPIResourceList"]
+    ]
+)
 _UNNAMED_ENDPOINTS = {"characteristic", "contest-effect", "evolution-chain", "machine", "super-contest-effect"}
 _NAMED_ENDPOINTS = ENDPOINTS - _UNNAMED_ENDPOINTS
-
-
-@dataclasses.dataclass(frozen=True)
-class NamedAPIResourceList:
-    """Paginated list of available resources for a named endpoint.
-
-    Args:
-        count (int): the total number of resources available from this API.
-        next (str | None): the URL for the next page in the list.
-        previous (str | None): the URL for the previous page in the list.
-        results (list[NamedAPIResource]): list of named API resources.
-    """
-
-    count: int
-    next: str | None
-    previous: str | None
-    results: list[_api.common_models.NamedAPIResource]
-
-
-@dataclasses.dataclass(frozen=True)
-class APIResourceList:
-    """Paginated list of available resources for an unnamed endpoint.
-
-    Args:
-        count (int): the total number of resources available from this API.
-        next (str | None): the URL for the next page in the list.
-        previous (str | None): the URL for the previous page in the list.
-        results (list[NamedAPIResource]): list of named API resources.
-    """
-
-    count: int
-    next: str | None
-    previous: str | None
-    results: list[_api.common_models.APIResource]
 
 
 class BaseClient(ABC):
@@ -91,7 +63,7 @@ class BaseClient(ABC):
     @validate_call
     def get_resource_list(
         self, endpoint: str, limit: int = 20, offset: int = 0
-    ) -> NamedAPIResourceList | APIResourceList | None:
+    ) -> _api.NamedAPIResourceList | _api.APIResourceList | None:
         """Get a list of resource data.
 
         Args:
@@ -104,9 +76,9 @@ class BaseClient(ABC):
                 among the list of available endpoints.
         """
         if endpoint in _UNNAMED_ENDPOINTS:
-            model = APIResourceList
+            model = _api.APIResourceList
         elif endpoint in _NAMED_ENDPOINTS:
-            model = NamedAPIResourceList
+            model = _api.NamedAPIResourceList
         else:
             logger.error(f"{endpoint} is not among the list of available endpoints.")
             return None

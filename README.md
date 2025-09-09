@@ -16,11 +16,11 @@
 >[!WARNING]
 >The documentation is still work in progress.
 
-**Main features:**
-- Covers all the PokéAPI endpoints.
-- Uses Pydantic for data validation.
-- Can choose between synchronous and asynchronous clients.
-- Can employ a local cache system for faster responses and to respect PokéAPI Fair Use policy.
+**Main features**:
+- **Coverage:** all PokéAPI endpoints are covered.
+- **Data validation:** uses Pydantic dataclasses for the API implementation.
+- **Flexibility:** can choose between synchronous and asynchronous clients.
+- **Caching:** can employ a local cache system for faster responses and to respect PokéAPI Fair Use policy.
 
 ---
 
