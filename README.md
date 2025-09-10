@@ -1,7 +1,7 @@
 <div align="center">
 
 # PyPokéClient
-<img src="https://github.com/RistoAle97/pokeapi-python-wrapper/blob/main/assets/logo.png" width=300/>
+<img src="https://github.com/RistoAle97/pokeapi-python-wrapper/blob/main/assets/logo.png" width=35% />
 
 **Synchronous and asynchronous clients to fetch data from PokéAPI.**
 
