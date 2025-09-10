@@ -12,15 +12,13 @@
 
 ---
 
-## :notebook: Documentation
->[!WARNING]
->The documentation is still work in progress.
-
-**Main features**:
+## :notebook: Features
 - **Coverage:** all PokéAPI endpoints are covered.
 - **Data validation:** uses Pydantic dataclasses for the API implementation.
 - **Flexibility:** can choose between synchronous and asynchronous clients.
 - **Caching:** can employ a local cache system for faster responses and to respect PokéAPI Fair Use policy.
+
+Please have a look at the [documentation](https://ristoale97.github.io/pokeapi-python-wrapper/) for more insights into the package.
 
 ---
 
