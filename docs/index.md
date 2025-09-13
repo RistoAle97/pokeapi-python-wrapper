@@ -2,14 +2,24 @@
     <h1>PyPokéClient</h1>
     <img src="logo.png" width=35% /><br>
     <strong>Synchronous and asynchronous clients to fetch data from PokéAPI</strong><br><br>
-    <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white">
-    <img src="https://img.shields.io/badge/Pydantic-E92063?style=for-the-badge&logo=pydantic&logoColor=white">
+    <a href="https://github.com/python/cpython">
+        <img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white" />
+    </a>
+    <a href="https://github.com/pydantic/pydantic">
+        <img src="https://img.shields.io/badge/Pydantic-E92063?style=for-the-badge&logo=pydantic&logoColor=white" />
+    </a><br>
+    <a href="https://pypi.org/project/pypokeclient/">
+        <img src="https://img.shields.io/pypi/v/pypokeclient.svg?style=for-the-badge&logo=pypi&logoColor=white" />
+    </a>
+    <a href="https://pypi.org/project/pypokeclient/">
+        <img src="https://img.shields.io/pypi/pyversions/pypokeclient.svg?style=for-the-badge&logo=python&logoColor=white" />
+    </a>
 </div>
 
 
 ---
 
-## Features
+## :material-notebook: Features
 **PyPokéClient** is a Python wrapper for fetching data from PokéAPI, its main features are:
 
 - **Coverage:** all PokéAPI endpoints are covered.
@@ -19,7 +29,7 @@
 
 ---
 
-## Installation
+## :material-package: Installation
 !!! warning "Requirements"
     This package requires :simple-python: >= 3.12.
 

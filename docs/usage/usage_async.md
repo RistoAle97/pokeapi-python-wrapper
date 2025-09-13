@@ -1,4 +1,4 @@
-## Simple usage
+## :material-hammer-wrench: Simple usage
 The asynchronous client is represented by the `AsyncClient` class which uses aiohttp under the hood for performing every request to PokéAPI. Using the client is straightforward and simple
 ```python
 import asyncio
@@ -34,7 +34,7 @@ pokemon = asyncio.run(fetch_data())
 
 ---
 
-## Caching
+## :material-content-save: Caching
 Caching is done by leveraging the [aiohttp-client-cache](https://aiohttp-client-cache.readthedocs.io/en/stable/index.html) package, as such it is highly advised to take a look its documentation. Using the context is manager is preferred as the cache is automatically cleared of the expired responses during the setup.
 
 ```python

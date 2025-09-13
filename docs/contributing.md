@@ -19,7 +19,7 @@ You're now ready to apply your desired changes, follow the next two subsections 
 
 ---
 
-## Source code
+## :material-git: Source code
 Install the package in editable mode with development dependencies
 === ":simple-uv: uv"
     ```console
@@ -37,7 +37,7 @@ $ pre-commit install
 
 ---
 
-## Docs
+## :material-archive: Docs
 Install the package in editable mode with docs dependencies
 === ":simple-uv: uv"
     ```console

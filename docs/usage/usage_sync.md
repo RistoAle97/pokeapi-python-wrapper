@@ -1,4 +1,4 @@
-## Simple usage
+## :material-hammer-wrench: Simple usage
 The synchronous client is represented by the `Client` class which uses requests under the hood for performing every request to PokéAPI. Using the client is straightforward and simple
 ```python
 from pypokeclient import Client
@@ -19,7 +19,7 @@ with Client() as sync_client:
 
 ---
 
-## Caching
+## :material-content-save: Caching
 Caching is done by leveraging the [requests-cache](https://requests-cache.readthedocs.io/en/stable/index.html) package, as such it is highly advised to take a look its documentation. Using the context is manager is preferred as the cache is automatically cleared of the expired responses during the setup.
 
 ```python

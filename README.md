@@ -10,7 +10,7 @@
 [![Pydantic](https://img.shields.io/badge/Pydantic-E92063?style=for-the-badge&logo=pydantic&logoColor=white)](https://github.com/pydantic/pydantic)
 
 [![PyPI](https://img.shields.io/pypi/v/pypokeclient.svg?style=for-the-badge&logo=pypi&logoColor=white)](https://pypi.org/project/pypokeclient/)
-[![PyPI](https://img.shields.io/pypi/pyversions/pypokeclient.svg?style=for-the-badge&logo=python&logoColor=white)](https://pypi.org/project/pypokeclient/)
+[![Python versions](https://img.shields.io/pypi/pyversions/pypokeclient.svg?style=for-the-badge&logo=python&logoColor=white)](https://pypi.org/project/pypokeclient/)
 
 </div>
 
