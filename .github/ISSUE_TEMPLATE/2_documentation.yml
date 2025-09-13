@@ -1,0 +1,17 @@
+name: 🗃️ Documentation
+description: Report an issue related to https://ristoale97.github.io/pokeapi-python-wrapper/
+assignees: ["RistoAle97"]
+labels: ["documentation"]
+
+body:
+  - type: textarea
+    attributes:
+      label: The doc issue
+      description: A clear and concise description of the issue.
+      placeholder: For typos please go ahead and send a pull request without opening an issue.
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Suggest a potential fix
+      description: Tell us a potential fix for the documentation.
