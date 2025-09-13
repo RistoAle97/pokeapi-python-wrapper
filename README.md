@@ -7,6 +7,7 @@
 
 [![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://github.com/python/cpython)
 [![Pydantic](https://img.shields.io/badge/Pydantic-E92063?style=for-the-badge&logo=pydantic&logoColor=white)](https://github.com/pydantic/pydantic)
+[![PyPI](https://img.shields.io/pypi/v/pypokeclient.svg?style=for-the-badge&logo=pypi&logoColor=white)](https://pypi.org/project/pypokeclient/)
 
 </div>
 
@@ -18,21 +19,20 @@
 - **Flexibility:** can choose between synchronous and asynchronous clients.
 - **Caching:** can employ a local cache system for faster responses and to respect PokéAPI Fair Use policy.
 
-Please have a look at the [documentation](https://ristoale97.github.io/pokeapi-python-wrapper/) for more insights into the package.
+Please have a look at the [documentation](https://ristoale97.github.io/pokeapi-python-wrapper/) for more details about the package.
 
 ---
 
 ## :package: Installation
 >[!IMPORTANT]
->- This package requires python >= 3.12.
->- The package will published on PyPI as soon as it is ready.
+>This package requires python >= 3.12.
 
 ```bash
 # It is highly recommended to use uv
-uv pip install git+https://github.com/RistoAle97/pokeapi-python-wrapper
+uv pip install pypokeclient
 
 # But you can also install the package simply with pip
-pip install git+https://github.com/RistoAle97/pokeapi-python-wrapper
+pip install pypokeclient
 ```
 
 ---
@@ -102,3 +102,8 @@ pypokeclient - INFO - [200] Request to https://pokeapi.co/api/v2/pokemon/fuecoco
 pypokeclient - INFO - [200] Cached request to https://pokeapi.co/api/v2/pokemon/fuecoco.
 pypokeclient - INFO - Closed session for synchronous client.
 ```
+
+---
+
+## :memo: License
+This project is [MIT licensed](https://github.com/RistoAle97/pokeapi-python-wrapper/blob/main/LICENSE).

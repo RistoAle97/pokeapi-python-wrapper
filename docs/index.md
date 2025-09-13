@@ -10,9 +10,6 @@
 ---
 
 ## Features
-!!! info "PyPI"
-    The package is not present on PyPI at the moment, please follow the installation instrunctions in the respective section.
-
 **PyPokéClient** is a Python wrapper for fetching data from PokéAPI, its main features are:
 
 - **Coverage:** all PokéAPI endpoints are covered.
@@ -56,9 +53,9 @@ Then, activate the virtual environment
 You can now install the package by simply
 === ":simple-uv: uv"
     ```console
-    $ uv pip install git+https://github.com/RistoAle97/pokeapi-python-wrapper
+    $ uv pip pypokeclient
     ```
 === ":simple-python: pip"
     ```console
-    $ pip install git+https://github.com/RistoAle97/pokeapi-python-wrapper
+    $ pip install pypokeclient
     ```
