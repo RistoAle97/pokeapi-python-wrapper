@@ -16,7 +16,7 @@
 
 ---
 
-## :notebook: Features
+## 📌 Features
 
 - **Coverage:** all PokéAPI endpoints are covered.
 - **Data validation:** uses Pydantic dataclasses for the API implementation.
@@ -27,7 +27,7 @@ Please have a look at the [documentation](https://ristoale97.github.io/pokeapi-p
 
 ---
 
-## :package: Installation
+## 📦 Installation
 
 ```bash
 # It is highly recommended to use uv
@@ -39,7 +39,7 @@ pip install pypokeclient
 
 ---
 
-## :hammer_and_wrench: How to use
+## 🛠️ How to use
 
 You can choose whether to use the synchronous client
 ```python
@@ -74,7 +74,7 @@ asyncio.run(fetch_data())
 
 ---
 
-## :floppy_disk: Caching the results
+## 💾 Caching the results
 
 >[!IMPORTANT]
 >- Please refer to the [requests-cache](https://requests-cache.readthedocs.io/en/stable/index.html) and [aiohttp-client-cache](https://aiohttp-client-cache.readthedocs.io/en/stable/index.html) documentations for more details about the caching system.
@@ -109,6 +109,6 @@ pypokeclient - INFO - Closed session for synchronous client.
 
 ---
 
-## :memo: License
+## 📝 License
 
 This project is [MIT licensed](https://github.com/RistoAle97/pokeapi-python-wrapper/blob/main/LICENSE).
