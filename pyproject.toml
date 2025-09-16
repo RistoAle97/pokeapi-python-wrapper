@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "pypokeclient"
-version = "1.0.0"
+version = "1.0.0.post1"
 description = "Synchronous and asynchronous clients to interact with PokéAPI"
 readme = "README.md"
 license = {file = "LICENSE"}
