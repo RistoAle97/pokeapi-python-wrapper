@@ -681,6 +681,6 @@ class BaseClient(ABC):
             key (int | str): id or name of the pokémon
 
         Returns:
-            Pokemon: the parsed response from the API.
+            Language: the parsed response from the API.
         """
         return self._get_resource("language", key, _api.Language)

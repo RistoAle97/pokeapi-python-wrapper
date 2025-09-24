@@ -2,7 +2,7 @@
 
 # PyPokéClient
 
-<img src="https://raw.githubusercontent.com/RistoAle97/pokeapi-python-wrapper/main/assets/logo.png" width=35% />
+<img src="https://raw.githubusercontent.com/RistoAle97/pokeapi-python-wrapper/main/docs/logo.png" width=35% />
 
 **Synchronous and asynchronous clients to fetch data from PokéAPI.**
 
@@ -33,7 +33,7 @@ Please have a look at the [documentation](https://ristoale97.github.io/pokeapi-p
 # It is highly recommended to use uv
 uv pip install pypokeclient
 
-# But you can also install the package simply with pip
+# But you can also install the package via pip
 pip install pypokeclient
 ```
 
