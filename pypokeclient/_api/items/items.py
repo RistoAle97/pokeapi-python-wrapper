@@ -42,7 +42,7 @@ class ItemSprites:
 @dataclass(frozen=True)
 class ItemHolderPokemon:
     pokemon: NamedAPIResource
-    version_details: ItemHolderPokemonVersionDetail
+    version_details: list[ItemHolderPokemonVersionDetail]
 
 
 @dataclass(frozen=True)
