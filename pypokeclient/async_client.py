@@ -9,7 +9,6 @@ from requests import HTTPError
 
 from .base_client import BaseClient
 
-
 logger = logging.getLogger(__name__.split(".")[0])
 
 

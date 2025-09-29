@@ -4,8 +4,8 @@ from __future__ import annotations
 
 from pydantic.dataclasses import dataclass
 
-from ..common_models import APIResource, MachineVersionDetail, Name, NamedAPIResource, VerboseEffect
-from ..pokemon.abilities import AbilityEffectChange
+from pypokeclient._api.common_models import APIResource, MachineVersionDetail, Name, NamedAPIResource, VerboseEffect
+from pypokeclient._api.pokemon.abilities import AbilityEffectChange
 
 
 @dataclass(frozen=True)

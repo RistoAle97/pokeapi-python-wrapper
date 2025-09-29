@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from pydantic.dataclasses import dataclass
 
-from ..common_models import Effect, Name, NamedAPIResource, VerboseEffect
+from pypokeclient._api.common_models import Effect, Name, NamedAPIResource, VerboseEffect
 
 
 @dataclass(frozen=True)

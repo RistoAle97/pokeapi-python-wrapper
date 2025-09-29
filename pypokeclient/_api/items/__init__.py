@@ -6,5 +6,4 @@ from .item_fling_effects import ItemFlingEffect
 from .item_pockets import ItemPocket
 from .items import Item
 
-
 __all__ = ["Item", "ItemAttribute", "ItemCategory", "ItemFlingEffect", "ItemPocket"]

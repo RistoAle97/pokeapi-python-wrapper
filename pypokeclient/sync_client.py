@@ -9,7 +9,6 @@ from requests_cache import CachedResponse, CachedSession, OriginalResponse
 
 from .base_client import BaseClient
 
-
 logger = logging.getLogger(__name__.split(".")[0])
 
 

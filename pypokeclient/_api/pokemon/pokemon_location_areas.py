@@ -2,7 +2,7 @@
 
 from pydantic.dataclasses import dataclass
 
-from ..common_models import NamedAPIResource, VersionEncounterDetail
+from pypokeclient._api.common_models import NamedAPIResource, VersionEncounterDetail
 
 
 @dataclass(frozen=True)

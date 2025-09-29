@@ -2,7 +2,7 @@
 
 from pydantic.dataclasses import dataclass
 
-from ..common_models import FlavorText, NamedAPIResource
+from pypokeclient._api.common_models import FlavorText, NamedAPIResource
 
 
 @dataclass(frozen=True)

@@ -17,7 +17,6 @@ from .pokemon_species import PokemonSpecies
 from .stats import Stat
 from .types import Type
 
-
 __all__ = [
     "Ability",
     "Characteristic",

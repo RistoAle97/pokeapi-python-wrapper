@@ -9,18 +9,14 @@ from pydantic import validate_call
 
 from . import _api
 
-
 logger = logging.getLogger(__name__.split(".")[0])
 
-
 # Define the set of named and unnamed endpoints
-ENDPOINTS = set(
-    [
-        re.sub(r"(\w)([A-Z])", r"\1-\2", endpoint).lower()
-        for endpoint in _api.__all__
-        if endpoint not in ["APIResourceList", "LocationAreaEncounter", "NamedAPIResourceList"]
-    ]
-)
+ENDPOINTS = {
+    re.sub(r"(\w)([A-Z])", r"\1-\2", endpoint).lower()
+    for endpoint in _api.__all__
+    if endpoint not in ["APIResourceList", "LocationAreaEncounter", "NamedAPIResourceList"]
+}
 _UNNAMED_ENDPOINTS = {"characteristic", "contest-effect", "evolution-chain", "machine", "super-contest-effect"}
 _NAMED_ENDPOINTS = ENDPOINTS - _UNNAMED_ENDPOINTS
 

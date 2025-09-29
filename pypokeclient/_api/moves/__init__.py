@@ -8,5 +8,4 @@ from .move_learn_methods import MoveLearnMethod
 from .move_targets import MoveTarget
 from .moves import Move
 
-
 __all__ = ["Move", "MoveAilment", "MoveBattleStyle", "MoveCategory", "MoveDamageClass", "MoveLearnMethod", "MoveTarget"]

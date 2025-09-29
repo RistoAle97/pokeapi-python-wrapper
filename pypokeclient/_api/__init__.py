@@ -30,7 +30,6 @@ from .pokemon import (
 )
 from .resource_lists import APIResourceList, NamedAPIResourceList
 
-
 __all__ = [
     "APIResourceList",
     "Ability",

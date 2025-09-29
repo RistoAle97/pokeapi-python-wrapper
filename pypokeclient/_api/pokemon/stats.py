@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from pydantic.dataclasses import dataclass
 
-from ..common_models import APIResource, Name, NamedAPIResource
+from pypokeclient._api.common_models import APIResource, Name, NamedAPIResource
 
 
 @dataclass(frozen=True)
