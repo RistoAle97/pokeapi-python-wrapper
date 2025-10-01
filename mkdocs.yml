@@ -7,7 +7,6 @@ theme:
     - content.code.copy
     - content.footnote.tooltips
     - content.tabs.link
-    - navigation.footer
     - navigation.indexes
     - navigation.path
     - navigation.tabs
@@ -45,9 +44,11 @@ theme:
         icon: material/weather-night
         name: Switch to system preference
 
-copyright: Copyright &copy; 2025 @RistoAle97
 extra:
   social:
+    - icon: fontawesome/brands/python
+      link: https://pypi.org/project/pypokeclient/
+      name: PyPI page
     - icon: fontawesome/brands/github
       link: https://github.com/RistoAle97
       name: Author's GitHub profile
