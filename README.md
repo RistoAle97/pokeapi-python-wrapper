@@ -86,7 +86,6 @@ import logging
 from requests_cache import CachedSession
 from pypokeclient import Client
 
-
 # Set up the logger
 logger = logging.getLogger("pypokeclient")
 logger.setLevel(logging.INFO)

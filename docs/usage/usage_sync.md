@@ -3,15 +3,12 @@ The synchronous client is represented by the `Client` class which uses requests 
 ```python
 from pypokeclient import Client
 
-
 client = Client()
 pokemon = client.get_pokemon("fuecoco")
-
 ```
 Alternatively, you can use the client via context manager and requests session will be closed automatically once the context is exited
 ```python
 from pypokeclient import Client
-
 
 with Client() as sync_client:
     pokemon = client.get_pokemon("fuecoco")
@@ -27,7 +24,6 @@ import logging
 
 from pypokeclient import Client
 from requests_cache import CachedSession
-
 
 # Set up the logger
 logger = logging.getLogger("pypokeclient")

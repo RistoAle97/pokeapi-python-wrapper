@@ -58,6 +58,7 @@ async def fetch_data():
 
     return pokemon
 
+
 # Set up the logger
 logger = logging.getLogger("pypokeclient")
 logger.setLevel(logging.INFO)
