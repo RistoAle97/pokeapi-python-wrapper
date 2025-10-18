@@ -5,9 +5,11 @@ from types import TracebackType
 
 from aiohttp import ClientResponse, ClientSession
 from aiohttp_client_cache import CachedResponse, CachedSession
+from pydantic import validate_call
 from requests import HTTPError
 
 from .base_client import BaseClient
+from .sprite import Sprite
 
 logger = logging.getLogger(__name__.split(".")[0])
 
@@ -68,22 +70,39 @@ class AsyncClient(BaseClient):
         Returns:
             ClientResponse | CachedResponse: the non-parsed response from the API.
         """
-        async with self._session.get(url) as response:
-            try:
-                response.raise_for_status()
-            except HTTPError as e:
-                raise e
+        response = await self._session.get(url)
+        try:
+            response.raise_for_status()
+        except HTTPError as e:
+            raise e
 
-            log_msg = f"[{response.status}] Request to {url}."
-            if isinstance(response, CachedResponse):
-                log_msg = f"[{response.status}] Cached request to {url}."
+        log_msg = f"[{response.status}] Request to {url}."
+        if isinstance(response, CachedResponse):
+            log_msg = f"[{response.status}] Cached request to {url}."
 
-            logger.info(log_msg)
-            return response
+        logger.info(log_msg)
+        return response
 
     async def _get_resource[T](self, endpoint: str, key: int | str, model: type[T]) -> T:
         response = await self._api_request(f"{self.api_url}{endpoint}/{key}")
         return model(**await response.json())
+
+    async def _get_resources[T](self, endpoint: str, key: int | str, model: type[T]) -> list[T]:
+        response = await self._api_request(f"{self.api_url}{endpoint}/{key}")
+        return [model(**data) for data in await response.json()]
+
+    @validate_call
+    async def get_sprite(self, url: str) -> Sprite:
+        """Get a sprite from an url.
+
+        Args:
+            url (str): the url to the sprite.
+
+        Returns:
+            Sprite: a Sprite object useful to save the image.
+        """
+        response = await self._api_request(url)
+        return Sprite(url, await response.content.read())
 
     async def clear_cache(self) -> None:
         """Clears the local cache."""

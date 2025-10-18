@@ -15,7 +15,7 @@ logger = logging.getLogger(__name__.split(".")[0])
 ENDPOINTS = {
     re.sub(r"(\w)([A-Z])", r"\1-\2", endpoint).lower()
     for endpoint in _api.__all__
-    if endpoint not in ["APIResourceList", "LocationAreaEncounter", "NamedAPIResourceList"]
+    if endpoint not in {"APIResourceList", "LocationAreaEncounter", "NamedAPIResourceList"}
 }
 _UNNAMED_ENDPOINTS = {"characteristic", "contest-effect", "evolution-chain", "machine", "super-contest-effect"}
 _NAMED_ENDPOINTS = ENDPOINTS - _UNNAMED_ENDPOINTS
@@ -56,6 +56,20 @@ class BaseClient(ABC):
         """
         pass
 
+    @abstractmethod
+    def _get_resources[T](self, endpoint: str, key: int | str, model: type[T]) -> list[T]:
+        """Function to fetch a list API resources and parse them into Pydantic dataclasses.
+
+        Args:
+            endpoint (str): the endpoint (e.g. "pokemon", "berry", "item").
+            key (int | str): id or name of the resource.
+            model (type[T]): model class to parse the response.
+
+        Returns:
+            list[T]: parsed response as the given list of Pydantic dataclasses.
+        """
+        pass
+
     @validate_call
     def get_resource_list(
         self, endpoint: str, limit: int = 20, offset: int = 0
@@ -72,14 +86,12 @@ class BaseClient(ABC):
                 among the list of available endpoints.
         """
         if endpoint in _UNNAMED_ENDPOINTS:
-            model = _api.APIResourceList
+            return self._get_resource(endpoint, f"?limit={limit}&offset={offset}", _api.APIResourceList)
         elif endpoint in _NAMED_ENDPOINTS:
-            model = _api.NamedAPIResourceList
+            return self._get_resource(endpoint, f"?limit={limit}&offset={offset}", _api.NamedAPIResourceList)
         else:
             logger.error(f"{endpoint} is not among the list of available endpoints.")
             return None
-
-        return self._get_resource(endpoint, f"?limit={limit}&offset={offset}", model)
 
     # Berries group
     @validate_call
@@ -581,8 +593,7 @@ class BaseClient(ABC):
         Returns:
             LocationAreaEncounter: the parsed response from the API.
         """
-        response = self._api_request(f"{self.api_url}pokemon/{key}/encounters")
-        return [_api.LocationAreaEncounter(**encounter) for encounter in response.json()]
+        return self._get_resources(f"pokemon/{key}/encounters", "", _api.LocationAreaEncounter)
 
     @validate_call
     def get_pokemon_color(self, key: int | str) -> _api.PokemonColor:

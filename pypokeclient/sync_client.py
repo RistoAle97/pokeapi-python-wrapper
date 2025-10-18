@@ -3,11 +3,13 @@
 import logging
 from types import TracebackType
 
+from pydantic import validate_call
 from requests import HTTPError, Response
 from requests.sessions import Session
 from requests_cache import CachedResponse, CachedSession, OriginalResponse
 
 from .base_client import BaseClient
+from .sprite import Sprite
 
 logger = logging.getLogger(__name__.split(".")[0])
 
@@ -84,6 +86,23 @@ class Client(BaseClient):
     def _get_resource[T](self, endpoint: str, key: int | str, model: type[T]) -> T:
         response = self._api_request(f"{self.api_url}{endpoint}/{key}")
         return model(**response.json())
+
+    def _get_resources[T](self, endpoint: str, key: int | str, model: type[T]) -> list[T]:
+        response = self._api_request(f"{self.api_url}{endpoint}/{key}")
+        return [model(**unparsed_data) for unparsed_data in response.json()]
+
+    @validate_call
+    def get_sprite(self, url: str) -> Sprite:
+        """Get a sprite from an url.
+
+        Args:
+            url (str): the url to the sprite.
+
+        Returns:
+            Sprite: a Sprite object useful to save the image.
+        """
+        response = self._api_request(url)
+        return Sprite(url, response.content)
 
     def clear_cache(self) -> None:
         """Clears the local cache."""
