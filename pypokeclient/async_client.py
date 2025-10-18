@@ -81,7 +81,7 @@ class AsyncClient(BaseClient):
             logger.info(log_msg)
             return response
 
-    async def _get_resource[T](self, endpoint: str, key: int | str, model: T) -> T:
+    async def _get_resource[T](self, endpoint: str, key: int | str, model: type[T]) -> T:
         response = await self._api_request(f"{self.api_url}{endpoint}/{key}")
         return model(**await response.json())
 

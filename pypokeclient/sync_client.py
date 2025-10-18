@@ -81,7 +81,7 @@ class Client(BaseClient):
             logger.info(log_msg)
             return response
 
-    def _get_resource[T](self, endpoint: str, key: int | str, model: T) -> T:
+    def _get_resource[T](self, endpoint: str, key: int | str, model: type[T]) -> T:
         response = self._api_request(f"{self.api_url}{endpoint}/{key}")
         return model(**response.json())
 

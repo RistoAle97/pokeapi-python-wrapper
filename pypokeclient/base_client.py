@@ -43,13 +43,13 @@ class BaseClient(ABC):
         pass
 
     @abstractmethod
-    def _get_resource[T](self, endpoint: str, key: int | str, model: T) -> T:
+    def _get_resource[T](self, endpoint: str, key: int | str, model: type[T]) -> T:
         """Function to fetch an API resource and parse it into a Pydantic dataclass.
 
         Args:
             endpoint (str): the endpoint (e.g. "pokemon", "berry", "item").
             key (int | str): id or name of the resource.
-            model (Type[T]): model class to parse the response.
+            model (type[T]): model class to parse the response.
 
         Returns:
             T: parsed response as the given Pydantic dataclass.
