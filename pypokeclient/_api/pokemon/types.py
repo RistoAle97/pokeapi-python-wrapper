@@ -19,6 +19,7 @@ class Type:
     names: list[Name]
     pokemon: list[TypePokemon]
     moves: list[NamedAPIResource]
+    sprites: dict | None = None  # undocumented in PokéAPI docs
 
 
 @dataclass(frozen=True)

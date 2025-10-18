@@ -99,8 +99,8 @@ class PokemonSprite:
     back_shiny: str | None
     back_female: str | None
     back_shiny_female: str | None
-    other: dict | None = None
-    versions: dict | None = None
+    other: dict | None = None  # undocumented in PokéAPI docs
+    versions: dict | None = None  # undocumented in PokéAPI docs
 
 
 @dataclass(frozen=True)
