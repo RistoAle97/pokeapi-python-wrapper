@@ -32,7 +32,7 @@ Install the package in editable mode with development dependencies
 
 It is advised to also install the pre-commit hooks in order to stop your commit if some check does not pass
 ```console
-$ pre-commit install
+$ prek install
 ```
 
 ---

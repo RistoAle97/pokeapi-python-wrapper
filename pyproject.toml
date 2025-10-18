@@ -19,6 +19,7 @@ classifiers = [
     "Programming Language :: Python :: 3 :: Only",
     "Programming Language :: Python :: 3.12",
     "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
 ]
 dependencies = [
     "aiohttp>=3.12.15",
@@ -36,7 +37,7 @@ Issues = "https://github.com/RistoAle97/pokeapi-python-wrapper/issues"
 
 [dependency-groups]
 dev = [
-    "pre-commit>=4.3.0",
+    "prek>=0.2.9",
     "ruff>=0.13.0",
 ]
 docs = [
