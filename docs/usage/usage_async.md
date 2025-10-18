@@ -48,8 +48,7 @@ async def fetch_data():
     # You can choose between many different backends
     cache_backend = SQLiteBackend("pypokeclient-async")
     session = CachedSession(cache=cache_backend)
-
-    async with AsyncClient(session=session) as client:
+    async with AsyncClient(cached_session=session) as client:
         # Not in the cache, the response will be saved inside of it
         pokemon = await client.get_pokemon("fuecoco")
 

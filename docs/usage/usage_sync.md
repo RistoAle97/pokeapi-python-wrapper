@@ -35,7 +35,7 @@ console_handler.setFormatter(
 logger.addHandler(console_handler)
 
 # By default, a .sqlite db will be created
-with Client(session=CachedSession("pypokeclient-sync")) as client:
+with Client(cached_session=CachedSession("pypokeclient-sync")) as client:
     # Not in the cache, the response will be saved inside of it
     pokemon = client.get_pokemon("fuecoco")
 

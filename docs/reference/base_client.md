@@ -6,4 +6,4 @@ You should not import the `BaseClient` class from `pypokeclient` since it is an 
 
 ---
 
-::: pypokeclient.sync_client.BaseClient
+::: pypokeclient.base_client.BaseClient

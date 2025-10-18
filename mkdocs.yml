@@ -126,6 +126,7 @@ nav:
     - BaseClient: reference/base_client.md
     - Client: reference/sync_client.md
     - AsyncClient: reference/async_client.md
+    - Sprite: reference/sprite.md
     - API:
       - Resource Lists/Pagination: reference/api/resource_lists.md
       - Berries:
