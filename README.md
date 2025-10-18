@@ -93,16 +93,28 @@ console_handler = logging.StreamHandler()
 console_handler.setFormatter(logging.Formatter("%(name)s - %(levelname)s - %(message)s"))
 logger.addHandler(console_handler)
 
+# Set up a cached session
+session = CachedSession("pypokeclient-sync")  # by default it will use a sqlite db
+
 # Fetch data
-with Client(cached_session=CachedSession("pypokeclient-sync")) as sync_client:
+with Client(cached_session=session) as sync_client:
     pokemon = sync_client.get_pokemon("fuecoco")
     pokemon = sync_client.get_pokemon("fuecoco")
+
+    # The sprites are cached too
+    sprite = sync_client.get_sprite(pokemon.sprites.front_default)
+    sprite = sync_client.get_sprite(pokemon.sprites.front_default)
+
+    # You can also save the sprites locally if needed
+    sprite.save("fuecoco.png")
 ```
 The output will be the following
 ```
 pypokeclient - INFO - Synchronous client is up and ready using CachedSession.
 pypokeclient - INFO - [200] Request to https://pokeapi.co/api/v2/pokemon/fuecoco.
 pypokeclient - INFO - [200] Cached request to https://pokeapi.co/api/v2/pokemon/fuecoco.
+pypokeclient - INFO - [200] Request to https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/909.png.
+pypokeclient - INFO - [200] Cached request to https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/909.png.
 pypokeclient - INFO - Closed session for synchronous client.
 ```
 
