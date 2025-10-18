@@ -15,33 +15,40 @@ If you want to contribute to the source code or the docs:
 
 1. Create a virtual environment and activate it.
 
-You're now ready to apply your desired changes, follow the next two subsections for more details. Feel free to open a pull request after you have commited your changes :heart:.
+You're now ready to apply your desired changes, follow the next two subsections for more details. Feel free to open a pull request after you have committed your changes :heart:.
 
 ---
 
 ## :material-git: Source code
-Install the package in editable mode with development dependencies
+Install the package in editable mode with `dev` dependencies
 === ":simple-uv: uv"
     ```console
-    $ uv pip install -e .  --group dev
+    $ uv pip install -e . --group dev
     ```
 === ":simple-python: pip"
     ```console
     $ pip install -e . --group dev
     ```
 
-It is advised to also install the pre-commit hooks in order to stop your commit if some check does not pass
+Then, install the pre-commit hooks in order to stop your commit if some check does not pass
 ```console
 $ prek install
+```
+
+It is advised to run the type checker before committing
+!!! warning
+    Please note that `ty` is not production ready yet, so this passage is not mandatory
+```console
+$ ty check pypokeclient
 ```
 
 ---
 
 ## :material-archive: Docs
-Install the package in editable mode with docs dependencies
+Install the package in editable mode with `docs` dependencies
 === ":simple-uv: uv"
     ```console
-    $ uv pip install -e .  --group docs
+    $ uv pip install -e . --group docs
     ```
 === ":simple-python: pip"
     ```console
