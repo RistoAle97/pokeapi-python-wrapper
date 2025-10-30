@@ -77,13 +77,12 @@ asyncio.run(fetch_data())
 ## 💾 Caching the results
 
 >[!IMPORTANT]
->- Please refer to the [requests-cache](https://requests-cache.readthedocs.io/en/stable/index.html) and [aiohttp-client-cache](https://aiohttp-client-cache.readthedocs.io/en/stable/index.html) documentations for more details about the caching system.
->- It is not advised to use the same cache for both versions of the client as the two aforementioned packages work differently.
->- Using the context manager is the preferred way when using a cache as the client will delete the expired responses from the cache on setup and will automatically close the session at the end.
+>Please refer to the [hishel](https://hishel.com/dev/) documentation for more details about the caching system.
 ```python
 import logging
 
-from requests_cache import CachedSession
+from hishel import SyncSqliteStorage
+from hishel.httpx import SyncCacheClient
 from pypokeclient import Client
 
 # Set up the logger
@@ -93,11 +92,13 @@ console_handler = logging.StreamHandler()
 console_handler.setFormatter(logging.Formatter("%(name)s - %(levelname)s - %(message)s"))
 logger.addHandler(console_handler)
 
-# Set up a cached session
-session = CachedSession("pypokeclient-sync")  # by default it will use a sqlite db
+# Set up the underlying HTTP client
+http_client = SyncCacheClient(
+    storage=SyncSqliteStorage(database_path="pypokeclient_cache.db")
+)
 
 # Fetch data
-with Client(cached_session=session) as sync_client:
+with Client(http_client) as sync_client:
     pokemon = sync_client.get_pokemon("fuecoco")
     pokemon = sync_client.get_pokemon("fuecoco")
 
@@ -110,12 +111,12 @@ with Client(cached_session=session) as sync_client:
 ```
 The output will be the following
 ```
-pypokeclient - INFO - Synchronous client is up and ready using CachedSession.
+pypokeclient - INFO - The synchronous client is ready and using the cache at .cache\hishel\pypokeclient_cache.db'.
 pypokeclient - INFO - [200] Request to https://pokeapi.co/api/v2/pokemon/fuecoco.
 pypokeclient - INFO - [200] Cached request to https://pokeapi.co/api/v2/pokemon/fuecoco.
 pypokeclient - INFO - [200] Request to https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/909.png.
 pypokeclient - INFO - [200] Cached request to https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/909.png.
-pypokeclient - INFO - Closed session for synchronous client.
+pypokeclient - INFO - Closed session for the synchronous client.
 ```
 
 ---

@@ -65,7 +65,7 @@ plugins:
           extensions:
           - griffe_typingdoc
           - griffe_inherited_docstrings
-          annotations_path: brief
+          annotations_path: source
           docstring_options:
             ignore_init_summary: true
           docstring_style: google
@@ -123,10 +123,8 @@ nav:
     - Asynchronous: usage/usage_async.md
   - Reference:
     - Reference: reference/index.md
-    - BaseClient: reference/base_client.md
     - Client: reference/sync_client.md
     - AsyncClient: reference/async_client.md
-    - Sprite: reference/sprite.md
     - API:
       - Resource Lists/Pagination: reference/api/resource_lists.md
       - Berries:
@@ -189,5 +187,6 @@ nav:
         - Types: reference/api/pokemon/types.md
       - Utility:
         - Languages: reference/api/languages.md
+        - Sprites: reference/api/sprites.md
         - Common Models: reference/api/common_models.md
   - Contributing: contributing.md

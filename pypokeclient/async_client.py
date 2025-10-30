@@ -33,10 +33,11 @@ class AsyncClient:
 
         if isinstance(self._http_client, AsyncCacheClient):
             logger.info(
-                f"Asynchronous client is ready using cache at {self._http_client._transport.storage.database_path}"
+                f"The asynchronous client is ready and using the cache at "
+                f"'{self._http_client._transport.storage.database_path}'."
             )
         else:
-            logger.info("Asynchronous client is ready not using any cache.")
+            logger.info("The asynchronous client is ready without using any cache.")
 
     # ===========================================
     # Context manager methods
@@ -64,7 +65,7 @@ class AsyncClient:
         """
         del exc_type, exc_val, exc_tb
         await self._http_client.aclose()
-        logger.info("Closed session for asynchronous client.")
+        logger.info("Closed session for the asynchronous client.")
 
     # ===========================================
     # HTTP request methods

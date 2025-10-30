@@ -7,14 +7,13 @@ from pypokeclient import AsyncClient
 
 
 async def fetch_data():
-    client = AsyncClient()
-    pokemon = await client.get_pokemon("fuecoco")
+    async_client = AsyncClient()
+    pokemon = await async_client.get_pokemon("fuecoco")
     return pokemon
 
 
 pokemon = asyncio.run(fetch_data())
 ```
-
 Alternatively, you can use the client via context manager and requests session will be closed automatically once the context is exited
 ```python
 import asyncio
@@ -23,37 +22,48 @@ from pypokeclient import AsyncClient
 
 
 async def fetch_data():
-    async with AsyncClient() as client:
-        pokemon = await client.get_pokemon("fuecoco")
+    async with AsyncClient() as async_client:
+        pokemon = await async_client.get_pokemon("fuecoco")
 
     return pokemon
 
 
 pokemon = asyncio.run(fetch_data())
 ```
+Behind the scenes, the client uses an `httpx.AsyncClient` object to perform the requests, as such you can define your own custom HTTP client
+```python
+import httpx
+from pypokeclient import AsyncClient
+
+# Let's say I want to use HTTP/2
+http_client = httpx.AsyncClient(http2=True)
+with AsyncClient(http_client) as async_client:
+    pokemon = await async_client.get_pokemon("fuecoco")
+```
 
 ---
 
 ## :material-content-save: Caching
-Caching is done by leveraging the [aiohttp-client-cache](https://aiohttp-client-cache.readthedocs.io/en/stable/index.html) package, as such it is highly advised to take a look its documentation. Using the context is manager is preferred as the cache is automatically cleared of the expired responses during the setup.
+Caching is done by leveraging the [hishel](https://hishel.com/dev/) package, as such it is highly advised to take a look its documentation.
 
 ```python
 import logging
 
+from hishel import AsyncSqliteStorage
+from hishel.httpx import AsyncCacheClient
 from pypokeclient import AsyncClient
-from aiohttp_client_cache import CachedSession, SQLiteBackend
 
 
 async def fetch_data():
-    # You can choose between many different backends
-    cache_backend = SQLiteBackend("pypokeclient-async")
-    session = CachedSession(cache=cache_backend)
-    async with AsyncClient(cached_session=session) as client:
+    http_client = AsyncCacheClient(
+        storage=AsyncSqliteStorage(database_path="pypokeclient_cache.db")
+    )
+    async with AsyncClient(http_client) as async_client:
         # Not in the cache, the response will be saved inside of it
-        pokemon = await client.get_pokemon("fuecoco")
+        pokemon = await async_client.get_pokemon("fuecoco")
 
         # This time the response is taken from the cache if not expired
-        pokemon = await client.get_pokemon("fuecoco")
+        pokemon = await async_client.get_pokemon("fuecoco")
 
     return pokemon
 
@@ -73,14 +83,8 @@ pokemon = asyncio.run(fetch_data())
 
 In the logs you can clearly see that the second response was cached
 ```
-INFO - Asynchronous client is up and ready using CachedSession.
+INFO - The asynchronous client is ready and using the cache at '.cache\hishel\pypokeclient_cache.db'.
 INFO - [200] Request to https://pokeapi.co/api/v2/pokemon/fuecoco.
 INFO - [200] Cached request to https://pokeapi.co/api/v2/pokemon/fuecoco.
-INFO - Closed session for asynchronous client.
-```
-
-If needed, you can clear the cache by
-```python
-# Assuming that you've already created a Client object
-client.clear_cache()  # will log an error if no cache is used
+INFO - Closed session for the asynchronous client.
 ```

@@ -33,10 +33,11 @@ class Client:
 
         if isinstance(self._http_client, SyncCacheClient):
             logger.info(
-                f"Synchronous client is ready using cache at {self._http_client._transport.storage.database_path}"
+                f"The synchronous client is ready and using the cache at "
+                f"'{self._http_client._transport.storage.database_path}'."
             )
         else:
-            logger.info("Synchronous client is ready not using any cache.")
+            logger.info("The synchronous client is ready without using any cache.")
 
     # ===========================================
     # Context manager methods
@@ -64,7 +65,7 @@ class Client:
         """
         del exc_type, exc_val, exc_tb
         self._http_client.close()
-        logger.info("Closed session for synchronous client.")
+        logger.info("Closed session for the synchronous client.")
 
     # ===========================================
     # HTTP request methods
