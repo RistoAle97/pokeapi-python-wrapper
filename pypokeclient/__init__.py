@@ -7,7 +7,7 @@
 #            |___/
 
 from .async_client import AsyncClient
-from .base_client import ENDPOINTS
 from .sync_client import Client
+from .utils import ENDPOINTS
 
 __all__ = ["ENDPOINTS", "AsyncClient", "Client"]
