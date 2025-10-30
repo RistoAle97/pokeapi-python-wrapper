@@ -8,7 +8,7 @@ from hishel.httpx import SyncCacheClient
 from pydantic import validate_call
 
 from . import _api
-from .utils import NAMED_ENDPOINTS, UNNAMED_ENDPOINTS, Sprite
+from ._api import NAMED_ENDPOINTS, UNNAMED_ENDPOINTS
 
 logger = logging.getLogger(__name__.split(".")[0])
 
@@ -750,7 +750,7 @@ class Client:
     # Sprites
     # ===========================================
     @validate_call
-    def get_sprite(self, url: str) -> Sprite:
+    def get_sprite(self, url: str) -> _api.Sprite:
         """Get a sprite from an url.
 
         Args:
@@ -760,4 +760,4 @@ class Client:
             Sprite: a Sprite object useful to save the image.
         """
         response = self._api_request(url)
-        return Sprite(url, response.content)
+        return _api.Sprite(url, response.content)

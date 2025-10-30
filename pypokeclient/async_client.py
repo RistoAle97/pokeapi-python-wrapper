@@ -8,7 +8,7 @@ from hishel.httpx import AsyncCacheClient
 from pydantic import validate_call
 
 from . import _api
-from .utils import NAMED_ENDPOINTS, UNNAMED_ENDPOINTS, Sprite
+from ._api import NAMED_ENDPOINTS, UNNAMED_ENDPOINTS
 
 logger = logging.getLogger(__name__.split(".")[0])
 
@@ -750,7 +750,7 @@ class AsyncClient:
     # Sprites
     # ===========================================
     @validate_call
-    async def get_sprite(self, url: str) -> Sprite:
+    async def get_sprite(self, url: str) -> _api.Sprite:
         """Get a sprite from an url.
 
         Args:
@@ -760,4 +760,4 @@ class AsyncClient:
             Sprite: a Sprite object useful to save the image.
         """
         response = await self._api_request(url)
-        return Sprite(url, response.content)
+        return _api.Sprite(url, response.content)

@@ -1,5 +1,7 @@
 """Module that represents the api endpoints."""
 
+import re
+
 from .berries import Berry, BerryFirmness, BerryFlavor
 from .contests import ContestEffect, ContestType, SuperContestEffect
 from .encounters import EncounterCondition, EncounterConditionValue, EncounterMethod
@@ -29,6 +31,7 @@ from .pokemon import (
     Type,
 )
 from .resource_lists import APIResourceList, NamedAPIResourceList
+from .sprites import Sprite
 
 __all__ = [
     "APIResourceList",
@@ -77,9 +80,18 @@ __all__ = [
     "PokemonShape",
     "PokemonSpecies",
     "Region",
+    "Sprite",
     "Stat",
     "SuperContestEffect",
     "Type",
     "Version",
     "VersionGroup",
 ]
+
+ENDPOINTS = {
+    re.sub(r"(\w)([A-Z])", r"\1-\2", endpoint).lower()
+    for endpoint in __all__
+    if endpoint not in {"APIResourceList", "LocationAreaEncounter", "NamedAPIResourceList", "Sprite"}
+}
+UNNAMED_ENDPOINTS = {"characteristic", "contest-effect", "evolution-chain", "machine", "super-contest-effect"}
+NAMED_ENDPOINTS = ENDPOINTS - UNNAMED_ENDPOINTS

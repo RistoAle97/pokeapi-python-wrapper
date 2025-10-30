@@ -6,8 +6,8 @@
 #     |_|    \__, |_|   \___/|_|\_\___|\____|_|_|\___|_| |_|\__|
 #            |___/
 
+from ._api import ENDPOINTS
 from .async_client import AsyncClient
 from .sync_client import Client
-from .utils import ENDPOINTS
 
 __all__ = ["ENDPOINTS", "AsyncClient", "Client"]
