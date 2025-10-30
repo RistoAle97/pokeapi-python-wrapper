@@ -22,11 +22,9 @@ classifiers = [
     "Programming Language :: Python :: 3.14",
 ]
 dependencies = [
-    "aiohttp>=3.12.15",
-    "aiohttp-client-cache[all]>=0.13.0",
+    "hishel[httpx]>=1.0.0",
+    "httpx[http2]>=0.28.1",
     "pydantic>=2.11.7",
-    "requests>=2.32.4",
-    "requests-cache>=1.2.1",
 ]
 
 [project.urls]
