@@ -8,7 +8,6 @@ from hishel.httpx import AsyncCacheClient
 from pydantic import validate_call
 
 from . import _api
-from ._api import NAMED_ENDPOINTS, UNNAMED_ENDPOINTS
 
 logger = logging.getLogger(__name__.split(".")[0])
 
@@ -16,7 +15,7 @@ logger = logging.getLogger(__name__.split(".")[0])
 class AsyncClient:
     """Asynchronous version of the client."""
 
-    def __init__(self, http_client: httpx.AsyncClient) -> None:
+    def __init__(self, http_client: httpx.AsyncClient | None = None) -> None:
         """Initializes an `AsyncClient` object.
 
         Args:
@@ -118,9 +117,9 @@ class AsyncClient:
             NamedAPIResourceList | APIResourceList | None: the parsed response from the API if the passed endpoint is
                 among the list of available endpoints.
         """
-        if endpoint in UNNAMED_ENDPOINTS:
+        if endpoint in _api.UNNAMED_ENDPOINTS:
             return await self._get_resource(endpoint, f"?limit={limit}&offset={offset}", _api.APIResourceList)
-        elif endpoint in NAMED_ENDPOINTS:
+        elif endpoint in _api.NAMED_ENDPOINTS:
             return await self._get_resource(endpoint, f"?limit={limit}&offset={offset}", _api.NamedAPIResourceList)
         else:
             logger.error(f"{endpoint} is not among the list of available endpoints.")
