@@ -60,10 +60,10 @@ Then, activate the virtual environment
     > .\.venv\Scripts\Activate.ps1
     ```
 
-You can now install the package by simply
+You can now install the package
 === ":simple-uv: uv"
     ```console
-    $ uv pip pypokeclient
+    $ uv pip install pypokeclient
     ```
 === ":simple-python: pip"
     ```console
