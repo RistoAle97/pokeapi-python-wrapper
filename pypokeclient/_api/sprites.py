@@ -19,7 +19,7 @@ class Sprite:
         """Save the sprite at the specified path.
 
         Args:
-            path (str | Path): the path where the sprint will be saved.
+            path (str | Path): the path where the sprite will be saved.
         """
         with open(path, "wb") as img:
             img.write(self.content)
