@@ -33,7 +33,7 @@ class PokemonFormType:
 
 @dataclass(frozen=True)
 class PokemonFormSprites:
-    front_default: str
-    front_shiny: str
-    back_default: str
-    back_shiny: str
+    front_default: str | None
+    front_shiny: str | None
+    back_default: str | None
+    back_shiny: str | None

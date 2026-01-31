@@ -37,7 +37,7 @@ Issues = "https://github.com/RistoAle97/pokeapi-python-wrapper/issues"
 dev = [
     "prek>=0.2.9",
     "ruff>=0.13.0",
-    "ty>=0.0.1a23",
+    "ty>=0.0.2",
     "typos>=1.38.1",
 ]
 docs = [
