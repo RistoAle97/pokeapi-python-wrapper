@@ -35,7 +35,7 @@ Issues = "https://github.com/RistoAle97/pokeapi-python-wrapper/issues"
 
 [dependency-groups]
 dev = [
-    "prek>=0.2.9",
+    "prek>=0.3.2",
     "ruff>=0.13.0",
     "ty>=0.0.2",
     "typos>=1.38.1",
@@ -43,8 +43,8 @@ dev = [
 docs = [
     "griffe-typingdoc",
     "griffe-inherited-docstrings",
-    "mkdocs-material",
     "mkdocstrings-python",
+    "zensical>=0.0.24",
 ]
 
 [tool.ruff]

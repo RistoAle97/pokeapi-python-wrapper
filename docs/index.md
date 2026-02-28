@@ -1,3 +1,8 @@
+---
+title: Home
+icon: material/home
+---
+
 <div align="center">
     <h1>PyPokéClient</h1>
     <img src="logo.png" width=35% /><br>

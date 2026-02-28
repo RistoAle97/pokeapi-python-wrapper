@@ -1,3 +1,8 @@
+---
+title: Usage
+icon: material/hammer-wrench
+---
+
 This documentation briefly explains how to work with both the synchronous and asynchronous clients, and describes how the caching mechanism works.
 
 !!! warning "Caching"
