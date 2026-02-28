@@ -6,7 +6,7 @@ on:
       - main
     paths:
       - 'docs/*'
-      - 'mkdocs.yml'
+      - 'zensical.toml'
   release:
     types: [published]
 permissions:

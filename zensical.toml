@@ -200,7 +200,7 @@ custom_checkbox = true
 
 [project.plugins.mkdocstrings.handlers.python]
 inventories = ["https://docs.python.org/3/objects.inv"]
-paths = ["pypokeclient"]
+paths = ["."]
 
 [project.plugins.mkdocstrings.handlers.python.options]
 # annotations_path = "source"
