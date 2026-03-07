@@ -24,6 +24,7 @@ class Pokemon:
     moves: list[PokemonMove]
     past_types: list[PokemonTypePast]
     past_abilities: list[PokemonAbilityPast]
+    past_stats: list[PokemonStatPast]
     sprites: PokemonSprite
     cries: PokemonCries
     species: NamedAPIResource
@@ -54,6 +55,12 @@ class PokemonTypePast:
 class PokemonAbilityPast:
     generation: NamedAPIResource
     abilities: list[PokemonAbility]
+
+
+@dataclass(frozen=True)
+class PokemonStatPast:
+    generation: NamedAPIResource
+    stats: list[PokemonStat]
 
 
 @dataclass(frozen=True)

@@ -13,6 +13,7 @@ class Stat:
     name: str
     game_index: int
     is_battle_only: bool
+    affecting_items: list[NamedAPIResource]
     affecting_moves: MoveStatAffectSets
     affecting_natures: NatureStatAffectSets
     characteristics: list[APIResource]
