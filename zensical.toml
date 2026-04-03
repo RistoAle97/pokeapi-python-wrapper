@@ -6,97 +6,97 @@ repo_name = "pokeapi-python-wrapper"
 repo_url = "https://github.com/RistoAle97/pokeapi-python-wrapper"
 copyright = "&copy; 2025 Alessandro Ristori"
 nav = [
-    {"PyPokéClient" = [{"Home" = "index.md"}]},
-    {"Usage" = [
-        "usage/index.md",
-        {"Synchronous" = "usage/usage_sync.md"},
-        {"Asynchronous" = "usage/usage_async.md"},
-    ]},
-    {"Reference" = [
-        "reference/index.md",
-        {"Client" = "reference/sync_client.md"},
-        {"AsyncClient" = "reference/async_client.md"},
-        {"API" = [
-            "reference/api/index.md",
-            # {"Resource Lists" = "reference/api/resource_lists.md"},
-            # {"Berries" = [
-            #     {"Berries" = "reference/api/berries/berries.md"},
-            #     {"Berry Firmnesses" = "reference/api/berries/berry_firmnesses.md"},
-            #     {"Berry Flavors" = "reference/api/berries/berry_flavors.md"},
-            # ]},
-            # {"Contests" = [
-            #     {"Contest Types" = "reference/api/contests/contest_types.md"},
-            #     {"Contest Effects" = "reference/api/contests/contest_effects.md"},
-            #     {"Super Contest Effects" = "reference/api/contests/super_contest_effects.md"},
-            # ]},
-            # {"Encounters" = [
-            #     {"Encounter Methods" = "reference/api/encounters/encounter_methods.md"},
-            #     {"Encounter Condition" = "reference/api/encounters/encounter_conditions.md"},
-            #     {"Encounter Condition Values" = "reference/api/encounters/encounter_condition_values.md"},
-            # ]},
-            # {"Evolution" = [
-            #     {"Evolution Chains" = "reference/api/evolution/evolution_chains.md"},
-            #     {"Evolution Triggers" = "reference/api/evolution/evolution_triggers.md"},
-            # ]},
-            # {"Games" = [
-            #     {"Generations" = "reference/api/games/generations.md"},
-            #     {"Pokedexes" = "reference/api/games/pokedexes.md"},
-            #     {"Version" = "reference/api/games/version.md"},
-            #     {"Version Groups" = "reference/api/games/version_groups.md"},
-            # ]},
-            # {"Items" = [
-            #     {"Items" = "reference/api/items/items.md"},
-            #     {"Item Attributes" = "reference/api/items/item_attributes.md"},
-            #     {"Item Categories" = "reference/api/items/item_categories.md"},
-            #     {"Item Fling Effects" = "reference/api/items/item_fling_effects.md"},
-            #     {"Item Pockets" = "reference/api/items/item_pockets.md"},
-            # ]},
-            # {"Locations" = [
-            #     {"Locations" = "reference/api/locations/locations.md"},
-            #     {"Location Areas" = "reference/api/locations/location_areas.md"},
-            #     {"Pal Park Areas" = "reference/api/locations/pal_park_areas.md"},
-            #     {"Regions" = "reference/api/locations/regions.md"},
-            # ]},
-            # {"Machines" = [
-            #     {"Machines" = "reference/api/machines/machines.md"}
-            # ]},
-            # {"Moves" = [
-            #     {"Moves" = "reference/api/moves/moves.md"},
-            #     {"Move Ailments" = "reference/api/moves/move_ailments.md"},
-            #     {"Move Battle Styles" = "reference/api/moves/move_battle_styles.md"},
-            #     {"Move Categories" = "reference/api/moves/move_categories.md"},
-            #     {"Move Damage Classes" = "reference/api/moves/move_damage_classes.md"},
-            #     {"Move Learn Methods" = "reference/api/moves/move_learn_methods.md"},
-            #     {"Move Targets" = "reference/api/moves/move_targets.md"},
-            # ]},
-            # {"Pokémon" = [
-            #     {"Abilities" = "reference/api/pokemon/abilities.md"},
-            #     {"Characteristics" = "reference/api/pokemon/characteristics.md"},
-            #     {"Egg Groups" = "reference/api/pokemon/egg_groups.md"},
-            #     {"Genders" = "reference/api/pokemon/genders.md"},
-            #     {"Growth Rates" = "reference/api/pokemon/growth_rates.md"},
-            #     {"Natures" = "reference/api/pokemon/natures.md"},
-            #     {"Pokeathlon Stats" = "reference/api/pokemon/pokeathlon_stats.md"},
-            #     {"Pokemon" = "reference/api/pokemon/pokemon.md"},
-            #     {"Pokemon Location Areas" = "reference/api/pokemon/pokemon_location_areas.md"},
-            #     {"Pokemon Colors" = "reference/api/pokemon/pokemon_colors.md"},
-            #     {"Pokemon Forms" = "reference/api/pokemon/pokemon_forms.md"},
-            #     {"Pokemon Habitats" = "reference/api/pokemon/pokemon_habitats.md"},
-            #     {"Pokemon Shapes" = "reference/api/pokemon/pokemon_shapes.md"},
-            #     {"Pokemon Species" = "reference/api/pokemon/pokemon_species.md"},
-            #     {"Stats" = "reference/api/pokemon/stats.md"},
-            #     {"Types" = "reference/api/pokemon/types.md"},
-            # ]},
-            # {"Utility" = [
-            #     {"Languages" = "reference/api/languages.md"},
-            #     {"Sprites" = "reference/api/sprites.md"},
-            #     {"Common Models" = "reference/api/common_models.md"},
-            # ]},
-        ]},
-    ]},
-    {"Community" = [
-        {"Contributing" = "community/contributing.md"},
-    ]},
+  { "PyPokéClient" = [{ "Home" = "index.md" }] },
+  { "Usage" = [
+    "usage/index.md",
+    { "Synchronous" = "usage/usage_sync.md" },
+    { "Asynchronous" = "usage/usage_async.md" },
+  ] },
+  { "Reference" = [
+    "reference/index.md",
+    { "Client" = "reference/sync_client.md" },
+    { "AsyncClient" = "reference/async_client.md" },
+    { "API" = [
+      "reference/api/index.md",
+      # {"Resource Lists" = "reference/api/resource_lists.md"},
+      # {"Berries" = [
+      #     {"Berries" = "reference/api/berries/berries.md"},
+      #     {"Berry Firmnesses" = "reference/api/berries/berry_firmnesses.md"},
+      #     {"Berry Flavors" = "reference/api/berries/berry_flavors.md"},
+      # ]},
+      # {"Contests" = [
+      #     {"Contest Types" = "reference/api/contests/contest_types.md"},
+      #     {"Contest Effects" = "reference/api/contests/contest_effects.md"},
+      #     {"Super Contest Effects" = "reference/api/contests/super_contest_effects.md"},
+      # ]},
+      # {"Encounters" = [
+      #     {"Encounter Methods" = "reference/api/encounters/encounter_methods.md"},
+      #     {"Encounter Condition" = "reference/api/encounters/encounter_conditions.md"},
+      #     {"Encounter Condition Values" = "reference/api/encounters/encounter_condition_values.md"},
+      # ]},
+      # {"Evolution" = [
+      #     {"Evolution Chains" = "reference/api/evolution/evolution_chains.md"},
+      #     {"Evolution Triggers" = "reference/api/evolution/evolution_triggers.md"},
+      # ]},
+      # {"Games" = [
+      #     {"Generations" = "reference/api/games/generations.md"},
+      #     {"Pokedexes" = "reference/api/games/pokedexes.md"},
+      #     {"Version" = "reference/api/games/version.md"},
+      #     {"Version Groups" = "reference/api/games/version_groups.md"},
+      # ]},
+      # {"Items" = [
+      #     {"Items" = "reference/api/items/items.md"},
+      #     {"Item Attributes" = "reference/api/items/item_attributes.md"},
+      #     {"Item Categories" = "reference/api/items/item_categories.md"},
+      #     {"Item Fling Effects" = "reference/api/items/item_fling_effects.md"},
+      #     {"Item Pockets" = "reference/api/items/item_pockets.md"},
+      # ]},
+      # {"Locations" = [
+      #     {"Locations" = "reference/api/locations/locations.md"},
+      #     {"Location Areas" = "reference/api/locations/location_areas.md"},
+      #     {"Pal Park Areas" = "reference/api/locations/pal_park_areas.md"},
+      #     {"Regions" = "reference/api/locations/regions.md"},
+      # ]},
+      # {"Machines" = [
+      #     {"Machines" = "reference/api/machines/machines.md"}
+      # ]},
+      # {"Moves" = [
+      #     {"Moves" = "reference/api/moves/moves.md"},
+      #     {"Move Ailments" = "reference/api/moves/move_ailments.md"},
+      #     {"Move Battle Styles" = "reference/api/moves/move_battle_styles.md"},
+      #     {"Move Categories" = "reference/api/moves/move_categories.md"},
+      #     {"Move Damage Classes" = "reference/api/moves/move_damage_classes.md"},
+      #     {"Move Learn Methods" = "reference/api/moves/move_learn_methods.md"},
+      #     {"Move Targets" = "reference/api/moves/move_targets.md"},
+      # ]},
+      # {"Pokémon" = [
+      #     {"Abilities" = "reference/api/pokemon/abilities.md"},
+      #     {"Characteristics" = "reference/api/pokemon/characteristics.md"},
+      #     {"Egg Groups" = "reference/api/pokemon/egg_groups.md"},
+      #     {"Genders" = "reference/api/pokemon/genders.md"},
+      #     {"Growth Rates" = "reference/api/pokemon/growth_rates.md"},
+      #     {"Natures" = "reference/api/pokemon/natures.md"},
+      #     {"Pokeathlon Stats" = "reference/api/pokemon/pokeathlon_stats.md"},
+      #     {"Pokemon" = "reference/api/pokemon/pokemon.md"},
+      #     {"Pokemon Location Areas" = "reference/api/pokemon/pokemon_location_areas.md"},
+      #     {"Pokemon Colors" = "reference/api/pokemon/pokemon_colors.md"},
+      #     {"Pokemon Forms" = "reference/api/pokemon/pokemon_forms.md"},
+      #     {"Pokemon Habitats" = "reference/api/pokemon/pokemon_habitats.md"},
+      #     {"Pokemon Shapes" = "reference/api/pokemon/pokemon_shapes.md"},
+      #     {"Pokemon Species" = "reference/api/pokemon/pokemon_species.md"},
+      #     {"Stats" = "reference/api/pokemon/stats.md"},
+      #     {"Types" = "reference/api/pokemon/types.md"},
+      # ]},
+      # {"Utility" = [
+      #     {"Languages" = "reference/api/languages.md"},
+      #     {"Sprites" = "reference/api/sprites.md"},
+      #     {"Common Models" = "reference/api/common_models.md"},
+      # ]},
+    ] },
+  ] },
+  { "Community" = [
+    { "Contributing" = "community/contributing.md" },
+  ] },
 ]
 
 [project.theme]
@@ -105,17 +105,17 @@ nav = [
 favicon = "logo.png"
 logo = "logo.png"
 features = [
-    "content.code.annotate",
-    "content.code.copy",
-    "content.footnote.tooltips",
-    "content.tabs.link",
-    "navigation.indexes",
-    # "navigation.path",
-    "navigation.sections",
-    # "navigation.tabs",
-    # "navigation.tabs.sticky",
-    "navigation.top",
-    "toc.follow",
+  "content.code.annotate",
+  "content.code.copy",
+  "content.footnote.tooltips",
+  "content.tabs.link",
+  "navigation.indexes",
+  # "navigation.path",
+  "navigation.sections",
+  # "navigation.tabs",
+  # "navigation.tabs.sticky",
+  "navigation.top",
+  "toc.follow",
 ]
 
 [project.theme.icon]
@@ -170,32 +170,52 @@ Reference = "ref"
 API = "api"
 
 [project.markdown_extensions.abbr]
+
 [project.markdown_extensions.admonition]
+
 [project.markdown_extensions.attr_list]
+
 [project.markdown_extensions.def_list]
+
 [project.markdown_extensions.footnotes]
+
 [project.markdown_extensions.md_in_html]
+
 [project.markdown_extensions.toc]
 permalink = true
+
 [project.markdown_extensions.pymdownx.arithmatex]
 generic = true
+
 [project.markdown_extensions.pymdownx.betterem]
 smart_enable = "all"
+
 [project.markdown_extensions.pymdownx.caret]
+
 [project.markdown_extensions.pymdownx.details]
+
 [project.markdown_extensions.pymdownx.emoji]
 emoji_generator = "zensical.extensions.emoji.to_svg"
 emoji_index = "zensical.extensions.emoji.twemoji"
+
 [project.markdown_extensions.pymdownx.highlight]
+
 [project.markdown_extensions.pymdownx.inlinehilite]
+
 [project.markdown_extensions.pymdownx.keys]
+
 [project.markdown_extensions.pymdownx.mark]
+
 [project.markdown_extensions.pymdownx.smartsymbols]
+
 [project.markdown_extensions.pymdownx.superfences]
+
 [project.markdown_extensions.pymdownx.tabbed]
 alternate_style = true
+
 [project.markdown_extensions.pymdownx.tasklist]
 custom_checkbox = true
+
 [project.markdown_extensions.pymdownx.tilde]
 
 [project.plugins.mkdocstrings.handlers.python]

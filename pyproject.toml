@@ -1,51 +1,51 @@
-[build-system]
-requires = ["hatchling"]
-build-backend = "hatchling.build"
-
 [project]
 name = "pypokeclient"
-version = "2.0.1"
+version = "2.0.2"
 description = "Synchronous and asynchronous clients to interact with PokéAPI"
 readme = "README.md"
-license = {file = "LICENSE"}
-authors = [
-    { name = "Alessandro Ristori", email = "aleristori97@gmail.com" }
-]
 requires-python = ">=3.12"
+license = "MIT"
+license-files = ["LICENSE"]
+authors = [{ name = "Alessandro Ristori", email = "aleristori97@gmail.com" }]
 keywords = ["pokeapi", "pokemon-api"]
 classifiers = [
-    "Development Status :: 5 - Production/Stable",
-    "License :: OSI Approved :: MIT License",
-    "Programming Language :: Python :: 3 :: Only",
-    "Programming Language :: Python :: 3.12",
-    "Programming Language :: Python :: 3.13",
-    "Programming Language :: Python :: 3.14",
+  "Development Status :: 5 - Production/Stable",
+  "License :: OSI Approved :: MIT License",
+  "Programming Language :: Python :: 3 :: Only",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Programming Language :: Python :: 3.14",
 ]
 dependencies = [
-    "hishel[httpx]>=1.0.0",
-    "httpx[http2]>=0.28.1",
-    "pydantic>=2.11.7",
+  "hishel[httpx]>=1.0.0",
+  "httpx[http2]>=0.28.1",
+  "pydantic>=2.11.7",
 ]
 
 [project.urls]
-Homepage = "https://github.com/RistoAle97/pokeapi-python-wrapper"
 Documentation = "https://ristoale97.github.io/pokeapi-python-wrapper/"
-Repository = "https://github.com/RistoAle97/pokeapi-python-wrapper"
+Homepage = "https://github.com/RistoAle97/pokeapi-python-wrapper"
 Issues = "https://github.com/RistoAle97/pokeapi-python-wrapper/issues"
+Repository = "https://github.com/RistoAle97/pokeapi-python-wrapper"
 
 [dependency-groups]
 dev = [
-    "prek>=0.3.2",
-    "ruff>=0.13.0",
-    "ty>=0.0.2",
-    "typos>=1.38.1",
+  "prek>=0.3.8",
+  "ruff>=0.15.0",
+  "tombi>=0.9.13",
+  "ty>=0.0.28",
+  "typos>=1.38.1",
 ]
 docs = [
-    "griffe-typingdoc",
-    "griffe-inherited-docstrings",
-    "mkdocstrings-python",
-    "zensical>=0.0.24",
+  "griffe-inherited-docstrings",
+  "griffe-typingdoc",
+  "mkdocstrings-python",
+  "zensical>=0.0.24",
 ]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
 
 [tool.ruff]
 line-length = 120
@@ -54,18 +54,18 @@ target-version = "py312"
 
 [tool.ruff.lint]
 select = [
-    "ARG", # flake8-unused-arguments
-    "B", # flake8-bugbear
-    "C4", # flake8-comprehensions
-    "D", # pydocstyle errors
-    "E", # pycodestyle errors
-    "F", # pyflakes
-    "I", # isort
-    "N", # pep8-naming
-    "RUF", # ruff-specific rules
-    "SIM", # flake8-simplify
-    "TID",  # flake8-tidy-imports
-    "UP", # pyupgrade
+  "ARG",  # flake8-unused-arguments
+  "B",  # flake8-bugbear
+  "C4",  # flake8-comprehensions
+  "D",  # pydocstyle errors
+  "E",  # pycodestyle errors
+  "F",  # pyflakes
+  "I",  # isort
+  "N",  # pep8-naming
+  "RUF",  # ruff-specific rules
+  "SIM",  # flake8-simplify
+  "TID",  # flake8-tidy-imports
+  "UP",  # pyupgrade
 ]
 
 [tool.ruff.lint.pydocstyle]

@@ -42,6 +42,12 @@ It is advised to run the type checker before committing
 $ ty check pypokeclient
 ```
 
+You can also use tombi to lint and format the toml files if necessary
+```console
+$ tombi lint
+$ tombi format
+```
+
 ---
 
 ## :material-archive: Docs
@@ -57,5 +63,5 @@ Install the package in editable mode with `docs` dependencies
 
 Start mkdocs to see a preview of the docs
 ```console
-$ mkdocs serve
+$ zensical serve
 ```
