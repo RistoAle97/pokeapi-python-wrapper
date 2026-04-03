@@ -61,7 +61,7 @@ Install the package in editable mode with `docs` dependencies
     $ pip install -e . --group docs
     ```
 
-Start mkdocs to see a preview of the docs
+You can edit the files inside the `docs` directory and `zensical.toml` in order to update the documentation. Start zensical to see a preview of the docs
 ```console
 $ zensical serve
 ```
