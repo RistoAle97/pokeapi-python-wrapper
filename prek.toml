@@ -17,3 +17,8 @@ hooks = [{ id = "ruff-check", args = ["--fix", "--show-fixes"] }, { id = "ruff-f
 repo = "https://github.com/crate-ci/typos"
 rev = "v1.45.0"
 hooks = [{ id = "typos" }]
+
+[[repos]]
+repo = "https://github.com/tombi-toml/tombi-pre-commit"
+rev = "v0.9.13"
+hooks = [{ id = "tombi-format", args = ["--offline"] }]
