@@ -49,7 +49,7 @@ It is highly advised to create a new virtual environment.
     ```
 
 !!! note
-    When using the default virtual environment name (i.e.: _.venv_), uv will automatically find and use the virtual environment during subsequent invocations.
+    When using the default virtual environment name (i.e.: _.venv_), uv will automatically find and use it during subsequent invocations.
 
 Then, activate the virtual environment
 === ":material-linux: Linux"

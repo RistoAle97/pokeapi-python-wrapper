@@ -1,11 +1,11 @@
-name: ci
+name: Publish docs
 on:
   push:
     branches:
       - master
       - main
     paths:
-      - 'docs/*'
+      - 'docs/**'
       - 'zensical.toml'
 permissions:
   contents: read
