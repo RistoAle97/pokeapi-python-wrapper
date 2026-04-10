@@ -31,7 +31,7 @@ Please have a look at the [documentation](https://ristoale97.github.io/pokeapi-p
 
 ```bash
 # It is highly recommended to use uv
-uv pip install pypokeclient
+uv add pypokeclient
 
 # But you can also install the package via pip
 pip install pypokeclient
