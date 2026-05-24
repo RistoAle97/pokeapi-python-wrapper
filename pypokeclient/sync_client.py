@@ -3,7 +3,7 @@
 import logging
 from types import TracebackType
 
-import httpx
+import httpx2
 from hishel.httpx import SyncCacheClient
 from pydantic import validate_call
 
@@ -15,16 +15,16 @@ logger = logging.getLogger(__name__.split(".")[0])
 class Client:
     """Synchronous version of the client."""
 
-    def __init__(self, http_client: httpx.Client | None = None) -> None:
+    def __init__(self, http_client: httpx2.Client | None = None) -> None:
         """Initializes a `Client` object.
 
         Args:
-            http_client (httpx.Client): an `httpx.Client` used to send request to the API. Please note that
+            http_client (httpx2.Client): an `httpx2.Client` used to send request to the API. Please note that
                 `hishel.SyncCacheClient` is a subclass of `httpx.Client` so you can pass an instance of that class
                 if you want to cache the responses.
         """
         if http_client is None:
-            self._http_client = httpx.Client(base_url="https://pokeapi.co/api/v2/")
+            self._http_client = httpx2.Client(base_url="https://pokeapi.co/api/v2/")
         else:
             self._http_client = http_client
             if self._http_client.base_url == "":
@@ -69,19 +69,19 @@ class Client:
     # ===========================================
     # HTTP request methods
     # ===========================================
-    def _api_request(self, url: str) -> httpx.Response:
+    def _api_request(self, url: str) -> httpx2.Response:
         """Sends an API request.
 
         Args:
             url (str): the url to which the request will be sent.
 
         Returns:
-            httpx.Response: the non-parsed response from the API.
+            httpx2.Response: the non-parsed response from the API.
         """
         try:
             response = self._http_client.get(url)
             response.raise_for_status()
-        except httpx.HTTPError as e:
+        except httpx2.HTTPError as e:
             raise e
 
         log_msg = f"[{response.status_code}] Request to {response.url}."

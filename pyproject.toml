@@ -1,6 +1,6 @@
 [project]
 name = "pypokeclient"
-version = "2.0.2"
+version = "2.1.0"
 description = "Synchronous and asynchronous clients to interact with PokéAPI"
 readme = "README.md"
 requires-python = ">=3.12"
@@ -18,7 +18,7 @@ classifiers = [
 ]
 dependencies = [
   "hishel[httpx]>=1.0.0",
-  "httpx[http2]>=0.28.1",
+  "httpx2[http2]>=2.2.0",
   "pydantic>=2.11.7",
 ]
 
@@ -39,8 +39,8 @@ dev = [
 docs = [
   "griffe-inherited-docstrings",
   "griffe-typingdoc",
-  "mkdocstrings-python",
-  "zensical>=0.0.24",
+  "mkdocstrings-python>=2.0.3",
+  "zensical>=0.0.38",
 ]
 
 [build-system]

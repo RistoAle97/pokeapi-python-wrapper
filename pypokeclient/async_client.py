@@ -3,7 +3,7 @@
 import logging
 from types import TracebackType
 
-import httpx
+import httpx2
 from hishel.httpx import AsyncCacheClient
 from pydantic import validate_call
 
@@ -15,16 +15,16 @@ logger = logging.getLogger(__name__.split(".")[0])
 class AsyncClient:
     """Asynchronous version of the client."""
 
-    def __init__(self, http_client: httpx.AsyncClient | None = None) -> None:
+    def __init__(self, http_client: httpx2.AsyncClient | None = None) -> None:
         """Initializes an `AsyncClient` object.
 
         Args:
-            http_client (httpx.AsyncClient): an `httpx.AsyncClient` used to send request to the API. Please note that
+            http_client (httpx2.AsyncClient): an `httpx2.AsyncClient` used to send request to the API. Please note that
                 `hishel.AsyncCacheClient` is a subclass of `httpx.AsyncClient` so you can pass an instance of that
                 class if you want to cache the responses.
         """
         if http_client is None:
-            self._http_client = httpx.AsyncClient(base_url="https://pokeapi.co/api/v2/")
+            self._http_client = httpx2.AsyncClient(base_url="https://pokeapi.co/api/v2/")
         else:
             self._http_client = http_client
             if self._http_client.base_url == "":
@@ -69,7 +69,7 @@ class AsyncClient:
     # ===========================================
     # HTTP request methods
     # ===========================================
-    async def _api_request(self, url: str) -> httpx.Response:
+    async def _api_request(self, url: str) -> httpx2.Response:
         """Sends an API request.
 
         Args:
@@ -81,7 +81,7 @@ class AsyncClient:
         try:
             response = await self._http_client.get(url)
             response.raise_for_status()
-        except httpx.HTTPError as e:
+        except httpx2.HTTPError as e:
             raise e
 
         log_msg = f"[{response.status_code}] Request to {response.url}."

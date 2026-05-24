@@ -10,15 +10,15 @@ hooks = [
 
 [[repos]]
 repo = "https://github.com/astral-sh/ruff-pre-commit"
-rev = "v0.15.9"
+rev = "v0.15.14"
 hooks = [{ id = "ruff-check", args = ["--fix", "--show-fixes"] }, { id = "ruff-format" }]
 
 [[repos]]
 repo = "https://github.com/crate-ci/typos"
-rev = "v1.45.0"
+rev = "v1.46.3"
 hooks = [{ id = "typos" }]
 
 [[repos]]
 repo = "https://github.com/tombi-toml/tombi-pre-commit"
-rev = "v0.9.13"
+rev = "v0.11.7"
 hooks = [{ id = "tombi-format", args = ["--offline"] }]
