@@ -35,6 +35,7 @@ class EvolutionDetail:
     min_happiness: int | None
     min_beauty: int | None
     min_affection: int | None
+    near_special_rock: bool
     needs_multiplayer: bool
     needs_overworld_rain: bool
     party_species: NamedAPIResource | None
@@ -43,8 +44,8 @@ class EvolutionDetail:
     time_of_day: str
     trade_species: NamedAPIResource | None
     turn_upside_down: bool
-    region_id: NamedAPIResource | None
-    base_form_id: NamedAPIResource | None
+    region: NamedAPIResource | None
+    base_form: NamedAPIResource | None
     used_move: NamedAPIResource | None
     min_move_count: int | None
     min_steps: int | None
