@@ -1,6 +1,6 @@
 [project]
 name = "pypokeclient"
-version = "2.1.0"
+version = "2.1.1"
 description = "Synchronous and asynchronous clients to interact with PokéAPI"
 readme = "README.md"
 requires-python = ">=3.12"
