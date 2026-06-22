@@ -423,7 +423,7 @@ class AsyncClient:
         return await self._get_resource("pal-park-area", key, _api.PalParkArea)
 
     @validate_call
-    async def get_regions(self, key: int | str) -> _api.Region:
+    async def get_region(self, key: int | str) -> _api.Region:
         """Get data about a region.
 
         Args:

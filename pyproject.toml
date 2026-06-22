@@ -30,17 +30,21 @@ Repository = "https://github.com/RistoAle97/pokeapi-python-wrapper"
 
 [dependency-groups]
 dev = [
-  "prek>=0.3.8",
-  "ruff>=0.15.0",
+  "prek>=0.4.5",
+  "ruff>=0.15.18",
   "tombi>=0.9.13",
-  "ty>=0.0.28",
+  "ty>=0.0.51",
   "typos>=1.38.1",
 ]
 docs = [
   "griffe-inherited-docstrings",
   "griffe-typingdoc",
   "mkdocstrings-python>=2.0.3",
-  "zensical>=0.0.38",
+  "zensical>=0.0.46",
+]
+test = [
+  "pytest>=9.1.1",
+  "pytest-asyncio>=1.4.0",
 ]
 
 [build-system]
@@ -48,6 +52,7 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [tool.ruff]
+extend-exclude = ["tests"]
 line-length = 120
 output-format = "grouped"
 target-version = "py312"

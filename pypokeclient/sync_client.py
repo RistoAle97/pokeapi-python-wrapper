@@ -423,7 +423,7 @@ class Client:
         return self._get_resource("pal-park-area", key, _api.PalParkArea)
 
     @validate_call
-    def get_regions(self, key: int | str) -> _api.Region:
+    def get_region(self, key: int | str) -> _api.Region:
         """Get data about a region.
 
         Args:
