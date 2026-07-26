@@ -24,6 +24,8 @@ class ChainLink:
 
 @dataclass(frozen=True)
 class EvolutionDetail:
+    version_group: NamedAPIResource | None
+    is_default: bool
     item: NamedAPIResource | None
     trigger: NamedAPIResource
     gender: int | None
@@ -46,6 +48,7 @@ class EvolutionDetail:
     turn_upside_down: bool
     region: NamedAPIResource | None
     base_form: NamedAPIResource | None
+    evolved_form: NamedAPIResource | None
     used_move: NamedAPIResource | None
     min_move_count: int | None
     min_steps: int | None
