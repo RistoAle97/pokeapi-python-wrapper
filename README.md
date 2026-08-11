@@ -77,7 +77,7 @@ asyncio.run(fetch_data())
 ## 💾 Caching the results
 
 >[!IMPORTANT]
->Please refer to the [hishel](https://hishel.com/dev/) documentation for more details about the caching system.
+>Please refer to the [hishel](https://hishel.com/) documentation for more details about the caching system.
 ```python
 import logging
 

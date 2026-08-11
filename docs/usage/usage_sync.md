@@ -27,7 +27,7 @@ with Client(http_client) as sync_client:
 ---
 
 ## :material-content-save: Caching
-Caching is done by leveraging the [hishel](https://hishel.com/dev/) package, as such it is highly advised to take a look its documentation.
+Caching is done by leveraging the [hishel](https://hishel.com/) package, as such it is highly advised to take a look its documentation.
 
 ```python
 import logging
