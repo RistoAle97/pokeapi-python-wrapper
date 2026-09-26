@@ -204,6 +204,21 @@ class Client:
         return self._get_resource("super-contest-effect", key, _api.SuperContestEffect)
 
     # ===========================================
+    # Currencies group
+    # ===========================================
+    @validate_call
+    def get_currency(self, key: int | str) -> _api.Currency:
+        """Get data about a currency.
+
+        Args:
+            key (int | str): id or name of the currency.
+
+        Returns:
+            Currency: the parsed response from the API.
+        """
+        return self._get_resource("currency", key, _api.Currency)
+
+    # ===========================================
     # Encounters group
     # ===========================================
     @validate_call
@@ -268,6 +283,18 @@ class Client:
             EvolutionTrigger: the parsed response from the API.
         """
         return self._get_resource("evolution-trigger", key, _api.EvolutionTrigger)
+
+    @validate_call
+    def get_evolution_variable(self, key: int | str) -> _api.EvolutionVariable:
+        """Get data about an evolution variable.
+
+        Args:
+            key (int | str): id or name of the evolution variable.
+
+        Returns:
+            EvolutionVariable: the parsed response from the API.
+        """
+        return self._get_resource("evolution-variable", key, _api.EvolutionVariable)
 
     # ===========================================
     # Games group

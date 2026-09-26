@@ -47,9 +47,18 @@ class EvolutionDetail:
     trade_species: NamedAPIResource | None
     turn_upside_down: bool
     region: NamedAPIResource | None
-    base_form: NamedAPIResource | None
-    evolved_form: NamedAPIResource | None
+    required_pokemon_form: NamedAPIResource | None
+    evolved_pokemon_form: NamedAPIResource | None
     used_move: NamedAPIResource | None
     min_move_count: int | None
     min_steps: int | None
     min_damage_taken: int | None
+    allowed_natures: NamedAPIResource | None
+    condition_expression: EvolutionConditionExpression | None
+
+
+@dataclass(frozen=True)
+class EvolutionConditionExpression:
+    expression: str
+    percentage_chance: int | None
+    variables: list[NamedAPIResource]

@@ -4,8 +4,9 @@ import re
 
 from .berries import Berry, BerryFirmness, BerryFlavor
 from .contests import ContestEffect, ContestType, SuperContestEffect
+from .currencies import Currency
 from .encounters import EncounterCondition, EncounterConditionValue, EncounterMethod
-from .evolution import EvolutionChain, EvolutionTrigger
+from .evolution import EvolutionChain, EvolutionTrigger, EvolutionVariable
 from .games import Generation, Pokedex, Version, VersionGroup
 from .items import Item, ItemAttribute, ItemCategory, ItemFlingEffect, ItemPocket
 from .languages import Language
@@ -42,12 +43,14 @@ __all__ = [
     "Characteristic",
     "ContestEffect",
     "ContestType",
+    "Currency",
     "EggGroup",
     "EncounterCondition",
     "EncounterConditionValue",
     "EncounterMethod",
     "EvolutionChain",
     "EvolutionTrigger",
+    "EvolutionVariable",
     "Gender",
     "Generation",
     "GrowthRate",
