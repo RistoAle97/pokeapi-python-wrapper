@@ -19,7 +19,7 @@ from pypokeclient._api.common_models import (
 class Item:
     id: int
     name: str
-    cost: int
+    prices: list[ItemPrice]
     fling_power: int | None
     fling_effect: NamedAPIResource | None
     attributes: list[NamedAPIResource]
@@ -49,3 +49,11 @@ class ItemHolderPokemon:
 class ItemHolderPokemonVersionDetail:
     rarity: int
     version: NamedAPIResource
+
+
+@dataclass(frozen=True)
+class ItemPrice:
+    currency: NamedAPIResource
+    purchase_price: int | None
+    sell_price: int | None
+    version_group: NamedAPIResource
