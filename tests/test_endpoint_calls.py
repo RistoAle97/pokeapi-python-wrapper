@@ -13,6 +13,9 @@ ENDPOINT_CASES = [
     ("get_contest_effect", 1),
     ("get_super_contest_effect", 1),
 
+    # Currencies
+    ("get_currency", 1),
+
     # Encounters
     ("get_encounter_method", 1),
     ("get_encounter_condition", 1),
@@ -21,6 +24,7 @@ ENDPOINT_CASES = [
     # Evolution
     ("get_evolution_chain", 1),
     ("get_evolution_trigger", 1),
+    ("get_evolution_variable", 1),
 
     # Games
     ("get_generation", 1),
