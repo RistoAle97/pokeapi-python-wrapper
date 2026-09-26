@@ -112,5 +112,5 @@ class PokemonSprite:
 
 @dataclass(frozen=True)
 class PokemonCries:
-    latest: str
+    latest: str | None
     legacy: str | None

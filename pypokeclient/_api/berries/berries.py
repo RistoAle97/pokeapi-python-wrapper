@@ -11,12 +11,12 @@ from pypokeclient._api.common_models import NamedAPIResource
 class Berry:
     id: int
     name: str
-    growth_time: int
-    max_harvest: int
-    natural_gift_power: int
-    size: int
-    smoothness: int
-    soil_dryness: int
+    growth_time: int | None
+    max_harvest: int | None
+    natural_gift_power: int | None
+    size: int | None
+    smoothness: int | None
+    soil_dryness: int | None
     firmness: NamedAPIResource
     flavors: list[BerryFlavorMap]
     item: NamedAPIResource

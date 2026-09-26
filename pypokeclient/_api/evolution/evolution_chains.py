@@ -60,5 +60,5 @@ class EvolutionDetail:
 @dataclass(frozen=True)
 class EvolutionConditionExpression:
     expression: str
-    percentage_chance: int | None
+    percentage_chance: float | None
     variables: list[NamedAPIResource]
