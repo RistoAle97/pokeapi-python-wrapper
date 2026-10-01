@@ -4,7 +4,7 @@
 
 <img src="https://raw.githubusercontent.com/RistoAle97/pokeapi-python-wrapper/main/docs/logo.png" width=25% />
 
-**Synchronous and asynchronous clients to fetch data from PokéAPI.**
+**Synchronous and asynchronous clients for fetching data from PokéAPI.**
 
 [![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://github.com/python/cpython)
 [![Pydantic](https://img.shields.io/badge/Pydantic-E92063?style=for-the-badge&logo=pydantic&logoColor=white)](https://github.com/pydantic/pydantic)
@@ -14,18 +14,14 @@
 
 </div>
 
----
-
 ## 📌 Features
 
-- **Coverage:** all PokéAPI endpoints are covered.
-- **Data validation:** uses Pydantic dataclasses for the API implementation.
-- **Flexibility:** can choose between synchronous and asynchronous clients.
-- **Caching:** can employ a local cache system for faster responses and to respect PokéAPI Fair Use policy.
+- **Coverage:** covers all PokéAPI endpoints.
+- **Data validation:** uses Pydantic dataclasses to model and validate API responses.
+- **Flexibility:** provides both synchronous and asynchronous clients.
+- **Caching:** supports an optional local caching system for faster responses and to help comply with PokéAPI's Fair Use Policy.
 
-Please have a look at the [documentation](https://ristoale97.github.io/pokeapi-python-wrapper/) for more details about the package.
-
----
+Please refer to the [documentation](https://ristoale97.github.io/pokeapi-python-wrapper/) for more details about the package.
 
 ## 📦 Installation
 
@@ -33,15 +29,14 @@ Please have a look at the [documentation](https://ristoale97.github.io/pokeapi-p
 # It is highly recommended to use uv
 uv add pypokeclient
 
-# But you can also install the package via pip
+# You can also install the package with pip
 pip install pypokeclient
 ```
 
----
-
 ## 🛠️ How to use
+You can choose between the synchronous and asynchronous clients.
 
-You can choose whether to use the synchronous client
+### Sync
 ```python
 from pypokeclient import Client
 
@@ -53,7 +48,8 @@ pokemon = client.get_pokemon("fuecoco")
 with Client() as client:
     pokemon = client.get_pokemon("fuecoco")
 ```
-or the asynchronous one
+
+### Async
 ```python
 import asyncio
 
@@ -73,7 +69,15 @@ async def fetch_data():
 asyncio.run(fetch_data())
 ```
 
----
+### No client
+If you want to build your own client, including the caching mechanism, while still benefiting from Pydantic dataclasses, you can use the data models directly.
+```python
+import requests
+from pypokeclient._api import Pokemon
+
+resp = requests.get("https://pokeapi.co/api/v2/pokemon/fuecoco")
+pokemon = Pokemon(**resp.json())
+```
 
 ## 💾 Caching the results
 
@@ -108,7 +112,7 @@ with Client(http_client) as sync_client:
     # You can also save the sprites locally if needed
     sprite.save("fuecoco.png")
 ```
-The output will be the following
+The output will be
 ```
 pypokeclient - INFO - The synchronous client is ready and using the cache at .cache\hishel\pypokeclient_cache.db'.
 pypokeclient - INFO - [200] Request to https://pokeapi.co/api/v2/pokemon/fuecoco.
@@ -117,8 +121,6 @@ pypokeclient - INFO - [200] Request to https://raw.githubusercontent.com/PokeAPI
 pypokeclient - INFO - [200] Cached request to https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/909.png.
 pypokeclient - INFO - Closed session for the synchronous client.
 ```
-
----
 
 ## 📝 License
 
