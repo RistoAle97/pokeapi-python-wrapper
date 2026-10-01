@@ -7,6 +7,6 @@ hide:
 https://pokeapi.co/api/v2/berry-firmness/{id or name}/
 ```
 
-::: pypokeclient._api.berries.berry_firmnesses
+::: pypokeclient._api.berries.berry_firmnesses.BerryFirmness
     options:
         separate_signature: false

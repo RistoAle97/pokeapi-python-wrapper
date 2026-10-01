@@ -31,6 +31,9 @@ nav = [
         { "Contest Effects" = "reference/api/contests/contest_effects.md" },
         { "Super Contest Effects" = "reference/api/contests/super_contest_effects.md" },
       ] },
+      { "Currencies" = [
+        { "Currencies" = "reference/api/currencies/currencies.md" },
+      ] },
       { "Encounters" = [
         { "Encounter Methods" = "reference/api/encounters/encounter_methods.md" },
         { "Encounter Condition" = "reference/api/encounters/encounter_conditions.md" },
@@ -222,15 +225,20 @@ custom_checkbox = true
 [project.markdown_extensions.pymdownx.tilde]
 
 [project.plugins.mkdocstrings.handlers.python]
-inventories = ["https://docs.python.org/3/objects.inv"]
+# inventories = ["https://docs.python.org/3/objects.inv"]
 paths = ["src"]
 
 [project.plugins.mkdocstrings.handlers.python.options]
 # annotations_path = "source"
+docstring_options = { "ignore_init_summary" = true }
 docstring_style = "google"
 extensions = ["griffe_typingdoc", "griffe_inherited_docstrings"]
+line_length = 120
 members_order = "source"
 merge_init_into_class = true
 inherited_members = true
-show_source = true
+show_docstring_attributes = true
 show_if_no_docstring = true
+show_source = true
+show_root_full_path = true
+show_root_heading = true

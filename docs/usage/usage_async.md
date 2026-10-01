@@ -55,9 +55,7 @@ from pypokeclient import AsyncClient
 
 
 async def fetch_data():
-    http_client = AsyncCacheClient(
-        storage=AsyncSqliteStorage(database_path="pypokeclient_cache.db")
-    )
+    http_client = AsyncCacheClient(storage=AsyncSqliteStorage(database_path="pypokeclient_cache.db"))
     async with AsyncClient(http_client) as async_client:
         # Not in the cache, the response will be saved inside of it
         pokemon = await async_client.get_pokemon("fuecoco")
@@ -72,9 +70,7 @@ async def fetch_data():
 logger = logging.getLogger("pypokeclient")
 logger.setLevel(logging.INFO)
 console_handler = logging.StreamHandler()
-console_handler.setFormatter(
-    logging.Formatter("%(levelname)s - %(message)s")
-)
+console_handler.setFormatter(logging.Formatter("%(levelname)s - %(message)s"))
 logger.addHandler(console_handler)
 
 # Run the async method

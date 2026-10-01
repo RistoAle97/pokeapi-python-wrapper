@@ -51,7 +51,7 @@ pokemon = client.get_pokemon("fuecoco")
 
 # Or with context manager
 with Client() as client:
-  pokemon = client.get_pokemon("fuecoco")
+    pokemon = client.get_pokemon("fuecoco")
 ```
 or the asynchronous one
 ```python
@@ -61,13 +61,14 @@ from pypokeclient import AsyncClient
 
 
 async def fetch_data():
-  # Simple usage
-  client = AsyncClient()
-  pokemon = await client.get_pokemon("fuecoco")
-
-  # With context manager
-  async with AsyncClient() as client:
+    # Simple usage
+    client = AsyncClient()
     pokemon = await client.get_pokemon("fuecoco")
+
+    # With context manager
+    async with AsyncClient() as client:
+        pokemon = await client.get_pokemon("fuecoco")
+
 
 asyncio.run(fetch_data())
 ```
@@ -93,9 +94,7 @@ console_handler.setFormatter(logging.Formatter("%(name)s - %(levelname)s - %(mes
 logger.addHandler(console_handler)
 
 # Set up the underlying HTTP client
-http_client = SyncCacheClient(
-    storage=SyncSqliteStorage(database_path="pypokeclient_cache.db")
-)
+http_client = SyncCacheClient(storage=SyncSqliteStorage(database_path="pypokeclient_cache.db"))
 
 # Fetch data
 with Client(http_client) as sync_client:
