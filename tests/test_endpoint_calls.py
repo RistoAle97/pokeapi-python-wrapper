@@ -95,6 +95,25 @@ def test_get_pokemon_location_area():
     assert isinstance(result, list)
 
 
+@pytest.mark.parametrize(
+    "move_name",
+    ["swift", "aerial-ace", "growl", "thunder-wave", "tackle"],
+)
+def test_get_move_with_nullable_stats(move_name):
+    with Client() as client:
+        result = client.get_move(move_name)
+
+    assert result is not None
+
+
+def test_get_move_past_values_allow_null_stats():
+    with Client() as client:
+        result = client.get_move("tackle")
+
+    assert any(pv.accuracy is None for pv in result.past_values)
+    assert any(pv.pp is None for pv in result.past_values)
+
+
 @pytest.mark.asyncio
 @pytest.mark.parametrize(("method_name", "key"), ENDPOINT_CASES)
 async def test_sync_async_same_response(method_name, key):
