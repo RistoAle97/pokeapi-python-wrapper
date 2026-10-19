@@ -12,11 +12,11 @@ from pypokeclient._api.pokemon.abilities import AbilityEffectChange
 class Move:
     id: int
     name: str
-    accuracy: int
+    accuracy: int | None
     effect_chance: int | None
     pp: int
     priority: int
-    power: int
+    power: int | None
     contest_combos: ContestComboSets | None
     contest_type: NamedAPIResource | None
     contest_effect: APIResource | None
@@ -79,10 +79,10 @@ class MoveStatChange:
 
 @dataclass(frozen=True)
 class PastMoveStatValues:
-    accuracy: int
-    effect_chance: int
-    power: int
-    pp: int
+    accuracy: int | None
+    effect_chance: int | None
+    power: int | None
+    pp: int | None
     effect_entries: list[VerboseEffect]
     type: NamedAPIResource | None
     version_group: NamedAPIResource
