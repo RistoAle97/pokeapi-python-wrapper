@@ -23,26 +23,26 @@ class AsyncClient:
                 `hishel.AsyncCacheClient` is a subclass of `httpx.AsyncClient` so you can pass an instance of that
                 class if you want to cache the responses.
         """
+        self._owns_http_client = False
         if http_client is None:
             self._http_client = httpx2.AsyncClient(base_url="https://pokeapi.co/api/v2/")
+            self._owns_http_client = True
         else:
             self._http_client = http_client
-            if self._http_client.base_url == "":
-                self._http_client.base_url = "https://pokeapi.co/api/v2/"
 
         if isinstance(self._http_client, AsyncCacheClient):
-            logger.info(
+            logger.debug(
                 f"The asynchronous client is ready and using the cache at "
                 f"'{self._http_client._transport.storage.database_path}'."
             )
         else:
-            logger.info("The asynchronous client is ready without using any cache.")
+            logger.debug("The asynchronous client is ready without using any cache.")
 
     # ===========================================
     # Context manager methods
     # ===========================================
     async def __aenter__(self) -> "AsyncClient":
-        """Creates the client and deletes all the expired responses from the cache.
+        """Returns this client for use as a context manager.
 
         Returns:
             AsyncClient: an instance of the asynchronous client.
@@ -63,8 +63,11 @@ class AsyncClient:
             exc_tb (TracebackType | None): exception traceback. Defaults to None.
         """
         del exc_type, exc_val, exc_tb
-        await self._http_client.aclose()
-        logger.info("Closed session for the asynchronous client.")
+        if self._owns_http_client:
+            await self._http_client.aclose()
+            logger.debug("Closed internally owned HTTP client.")
+        else:
+            logger.debug("Released wrapper, caller-owned HTTP client remains open.")
 
     # ===========================================
     # HTTP request methods
@@ -78,17 +81,11 @@ class AsyncClient:
         Returns:
             httpx.Response: the non-parsed response from the API.
         """
-        try:
-            response = await self._http_client.get(url)
-            response.raise_for_status()
-        except httpx2.HTTPError as e:
-            raise e
-
-        log_msg = f"[{response.status_code}] Request to {response.url}."
-        if response.extensions.get("hishel_from_cache", False):
-            log_msg = f"[{response.status_code}] Cached request to {response.url}."
-
-        logger.info(log_msg)
+        response = await self._http_client.get(url)
+        response.raise_for_status()
+        is_cached = response.extensions.get("hishel_from_cache", False)
+        request_type = "Cached request" if is_cached else "Request"
+        logger.debug("[%s] %s to %s", response.status_code, request_type, response.url)
         return response
 
     async def _get_resource[T](self, endpoint: str, key: int | str, model: type[T]) -> T:
@@ -105,25 +102,33 @@ class AsyncClient:
     @validate_call
     async def get_resource_list(
         self, endpoint: str, limit: int = 20, offset: int = 0
-    ) -> _api.NamedAPIResourceList | _api.APIResourceList | None:
+    ) -> _api.NamedAPIResourceList | _api.APIResourceList:
         """Get a list of resource data.
 
         Args:
             endpoint (str): the endpoint (e.g. "pokemon", "berry", "item").
-            limit (int, optional): limits the number of elements to fetch. Defaults to 20.
-            offset (int, optional): offset needed to move to next page. Defaults to 0.
+            limit (int): limits the number of elements to fetch. Defaults to 20.
+            offset (int): offset needed to move to next page. Defaults to 0.
 
         Returns:
-            NamedAPIResourceList | APIResourceList | None: the parsed response from the API if the passed endpoint is
-                among the list of available endpoints.
+            NamedAPIResourceList | APIResourceList: the parsed response from the API if the passed endpoint is among
+                the list of available endpoints.
         """
+        if limit < 0:
+            raise ValueError("limit must be non-negative")
+
+        if offset < 0:
+            raise ValueError("offset must be non-negative")
+
         if endpoint in _api.UNNAMED_ENDPOINTS:
             return await self._get_resource(endpoint, f"?limit={limit}&offset={offset}", _api.APIResourceList)
         elif endpoint in _api.NAMED_ENDPOINTS:
             return await self._get_resource(endpoint, f"?limit={limit}&offset={offset}", _api.NamedAPIResourceList)
         else:
-            logger.error(f"{endpoint} is not among the list of available endpoints.")
-            return None
+            raise ValueError(
+                f"Unknown endpoint: {endpoint!r}.\n"
+                f"Supported endpoints: {', '.join(sorted(_api.UNNAMED_ENDPOINTS | _api.NAMED_ENDPOINTS))}"
+            )
 
     # ===========================================
     # Berries group
@@ -663,14 +668,14 @@ class AsyncClient:
         return await self._get_resource("pokemon", key, _api.Pokemon)
 
     @validate_call
-    async def get_pokemon_location_area(self, key: int | str) -> list[_api.LocationAreaEncounter]:
+    async def get_pokemon_location_area_encounters(self, key: int | str) -> list[_api.LocationAreaEncounter]:
         """Get data about a Pokémon's encounters in a location area.
 
         Args:
             key (int | str): id or name of the Pokémon.
 
         Returns:
-            LocationAreaEncounter: the parsed response from the API.
+            list[LocationAreaEncounter]: the parsed response from the API.
         """
         return await self._get_resources(f"pokemon/{key}/encounters", "", _api.LocationAreaEncounter)
 
@@ -763,7 +768,7 @@ class AsyncClient:
     # ===========================================
     @validate_call
     async def get_language(self, key: int | str) -> _api.Language:
-        """Get infos about a language.
+        """Get info about a language.
 
         Args:
             key (int | str): id or name of the pokémon

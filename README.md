@@ -92,13 +92,16 @@ from pypokeclient import Client
 
 # Set up the logger
 logger = logging.getLogger("pypokeclient")
-logger.setLevel(logging.INFO)
+logger.setLevel(logging.DEBUG)
 console_handler = logging.StreamHandler()
 console_handler.setFormatter(logging.Formatter("%(name)s - %(levelname)s - %(message)s"))
 logger.addHandler(console_handler)
 
 # Set up the underlying HTTP client
-http_client = SyncCacheClient(storage=SyncSqliteStorage(database_path="pypokeclient_cache.db"))
+http_client = SyncCacheClient(
+    storage=SyncSqliteStorage(database_path="pypokeclient_cache.db"),
+    base_url="https://pokeapi.co/api/v2/",
+)
 
 # Fetch data
 with Client(http_client) as sync_client:
