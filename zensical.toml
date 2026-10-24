@@ -42,6 +42,7 @@ nav = [
       { "Evolution" = [
         { "Evolution Chains" = "reference/models/evolution/evolution_chains.md" },
         { "Evolution Triggers" = "reference/models/evolution/evolution_triggers.md" },
+        { "Evolution Variables" = "reference/models/evolution/evolution_variables.md" },
       ] },
       { "Games" = [
         { "Generations" = "reference/models/games/generations.md" },

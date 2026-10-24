@@ -3,10 +3,14 @@ hide:
     - toc
 ---
 
-```console
-https://pokeapi.co/api/v2/evolution-trigger/{id or name}/
-```
+# Evolution triggers
 
-::: pypokeclient.models.evolution.evolution_triggers
+**`GET https://pokeapi.co/api/v2/evolution-trigger/{id or name}/`**
+
+**[Official PokéAPI documentation](https://pokeapi.co/docs/v2#evolution-triggers)**
+
+---
+
+::: pypokeclient.models.evolution.evolution_triggers.EvolutionTrigger
     options:
-        separate_signature: false
+        members: false
