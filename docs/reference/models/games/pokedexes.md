@@ -15,6 +15,6 @@ hide:
     options:
         members: false
 
-::: pypokeclient.models.games.pokedexes._PokemonEntry
+::: pypokeclient.models.games.pokedexes.PokemonEntry
     options:
         members: false

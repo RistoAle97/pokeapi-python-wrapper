@@ -29,7 +29,7 @@ class Berry:
         soil_dryness (int | None): The rate at which the berry tree dries out the soil as it grows. Higher values
             indicate faster drying.
         firmness (NamedAPIResource): A reference to the firmness category of the berry.
-        flavors (list[_BerryFlavorMap]): The flavors associated with the berry and their respective potencies.
+        flavors (list[BerryFlavorMap]): The flavors associated with the berry and their respective potencies.
         item (NamedAPIResource): A reference to the item associated with the berry.
         natural_gift_type (NamedAPIResource): A reference to the type of the move Natural Gift when used with this
             berry.
@@ -44,13 +44,13 @@ class Berry:
     smoothness: int | None
     soil_dryness: int | None
     firmness: NamedAPIResource
-    flavors: list[_BerryFlavorMap]
+    flavors: list[BerryFlavorMap]
     item: NamedAPIResource
     natural_gift_type: NamedAPIResource
 
 
 @dataclass(frozen=True)
-class _BerryFlavorMap:
+class BerryFlavorMap:
     """Represent a flavor and its potency for a berry.
 
     Attributes:

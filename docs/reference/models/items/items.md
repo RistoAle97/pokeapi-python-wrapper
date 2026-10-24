@@ -15,18 +15,18 @@ hide:
     options:
         members: false
 
-::: pypokeclient.models.items.items._ItemSprites
+::: pypokeclient.models.items.items.ItemSprites
     options:
         members: false
 
-::: pypokeclient.models.items.items._ItemHolderPokemon
+::: pypokeclient.models.items.items.ItemHolderPokemon
     options:
         members: false
 
-::: pypokeclient.models.items.items._ItemHolderPokemonVersionDetail
+::: pypokeclient.models.items.items.ItemHolderPokemonVersionDetail
     options:
         members: false
 
-::: pypokeclient.models.items.items._ItemPrice
+::: pypokeclient.models.items.items.ItemPrice
     options:
         members: false

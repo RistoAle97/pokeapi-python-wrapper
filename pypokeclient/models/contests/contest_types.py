@@ -20,18 +20,18 @@ class ContestType:
         id (int): The unique identifier of the contest type.
         name (str): The name of the contest type.
         berry_flavor (NamedAPIResource): The berry flavor associated with this contest type.
-        names (list[_ContestName]): The localized names of this contest type, including their associated colors and
+        names (list[ContestName]): The localized names of this contest type, including their associated colors and
             languages.
     """
 
     id: int
     name: str
     berry_flavor: NamedAPIResource
-    names: list[_ContestName]
+    names: list[ContestName]
 
 
 @dataclass(frozen=True)
-class _ContestName:
+class ContestName:
     """Represent a localized name for a contest type.
 
     Attributes:

@@ -15,6 +15,6 @@ hide:
     options:
         members: false
 
-::: pypokeclient.models.contests.contest_types._ContestName
+::: pypokeclient.models.contests.contest_types.ContestName
     options:
         members: false

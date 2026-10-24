@@ -27,7 +27,7 @@ class Move:
         pp (int): The base number of times the move can be used before its PP must be restored.
         priority (int): The priority used to determine the move's execution order relative to other moves.
         power (int | None): The base power of the move, or `None` if no base power is specified.
-        contest_combos (_ContestComboSets | None): The combinations of moves that can be used before or after this move
+        contest_combos (ContestComboSets | None): The combinations of moves that can be used before or after this move
             in Contests and Super Contests, or `None` if no combinations are defined.
         contest_type (NamedAPIResource | None): The Contest category associated with this move, or `None` if none is
             defined.
@@ -36,16 +36,16 @@ class Move:
         effect_entries (list[VerboseEffect]): The localized descriptions of the move's effects.
         effect_changes (list[AbilityEffectChange]): The changes to the move's effects across different version groups.
         learned_by_pokemon (list[NamedAPIResource]): The Pokémon that can learn this move.
-        flavor_text_entries (list[_MoveFlavorText]): The flavor text descriptions of this move across different game
+        flavor_text_entries (list[MoveFlavorText]): The flavor text descriptions of this move across different game
             versions.
         generation (NamedAPIResource): The generation in which the move was introduced.
         machines (list[MachineVersionDetail]): The machines that teach this move in different version groups.
-        meta (_MoveMetaData | None): Additional metadata describing the move's effects and battle mechanics, or `None`
+        meta (MoveMetaData | None): Additional metadata describing the move's effects and battle mechanics, or `None`
             if unavailable.
         names (list[Name]): The localized names of this move in different languages.
-        past_values (list[_PastMoveStatValues]): The historical values of the move's properties across different version
+        past_values (list[PastMoveStatValues]): The historical values of the move's properties across different version
             groups.
-        stat_changes (list[_MoveStatChange]): The stat changes caused by the move.
+        stat_changes (list[MoveStatChange]): The stat changes caused by the move.
         super_contest_effect (APIResource | None): The effect of this move in Super Contests, or `None` if no effect is
             defined.
         target (NamedAPIResource): The type of target affected by this move.
@@ -59,27 +59,27 @@ class Move:
     pp: int
     priority: int
     power: int | None
-    contest_combos: _ContestComboSets | None
+    contest_combos: ContestComboSets | None
     contest_type: NamedAPIResource | None
     contest_effect: APIResource | None
     damage_class: NamedAPIResource
     effect_entries: list[VerboseEffect]
     effect_changes: list[AbilityEffectChange]
     learned_by_pokemon: list[NamedAPIResource]
-    flavor_text_entries: list[_MoveFlavorText]
+    flavor_text_entries: list[MoveFlavorText]
     generation: NamedAPIResource
     machines: list[MachineVersionDetail]
-    meta: _MoveMetaData | None
+    meta: MoveMetaData | None
     names: list[Name]
-    past_values: list[_PastMoveStatValues]
-    stat_changes: list[_MoveStatChange]
+    past_values: list[PastMoveStatValues]
+    stat_changes: list[MoveStatChange]
     super_contest_effect: APIResource | None
     target: NamedAPIResource
     type: NamedAPIResource
 
 
 @dataclass(frozen=True)
-class _ContestComboSets:
+class ContestComboSets:
     """Represent the contest combinations associated with a move.
 
     Attributes:
@@ -89,12 +89,12 @@ class _ContestComboSets:
             are defined.
     """
 
-    normal: _ContestComboDetail | None
-    super: _ContestComboDetail | None
+    normal: ContestComboDetail | None
+    super: ContestComboDetail | None
 
 
 @dataclass(frozen=True)
-class _ContestComboDetail:
+class ContestComboDetail:
     """Represent the moves that can be combined with another move in a contest.
 
     Attributes:
@@ -109,7 +109,7 @@ class _ContestComboDetail:
 
 
 @dataclass(frozen=True)
-class _MoveFlavorText:
+class MoveFlavorText:
     """Represent a localized flavor text entry for a move.
 
     Attributes:
@@ -124,7 +124,7 @@ class _MoveFlavorText:
 
 
 @dataclass(frozen=True)
-class _MoveMetaData:
+class MoveMetaData:
     """Represent additional battle metadata for a move.
 
     Attributes:
@@ -160,7 +160,7 @@ class _MoveMetaData:
 
 
 @dataclass(frozen=True)
-class _MoveStatChange:
+class MoveStatChange:
     """Represent a stat change caused by a move.
 
     Attributes:
@@ -174,7 +174,7 @@ class _MoveStatChange:
 
 
 @dataclass(frozen=True)
-class _PastMoveStatValues:
+class PastMoveStatValues:
     """Represent historical move properties for a particular version group.
 
     Attributes:

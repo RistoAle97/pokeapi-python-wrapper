@@ -15,14 +15,14 @@ hide:
     options:
         members: false
 
-::: pypokeclient.models.evolution.evolution_chains._ChainLink
+::: pypokeclient.models.evolution.evolution_chains.ChainLink
     options:
         members: false
 
-::: pypokeclient.models.evolution.evolution_chains._EvolutionDetail
+::: pypokeclient.models.evolution.evolution_chains.EvolutionDetail
     options:
         members: false
 
-::: pypokeclient.models.evolution.evolution_chains._EvolutionConditionExpression
+::: pypokeclient.models.evolution.evolution_chains.EvolutionConditionExpression
     options:
         members: false

@@ -15,14 +15,14 @@ hide:
     options:
         members: false
 
-::: pypokeclient.models.locations.location_areas._EncounterMethodRate
+::: pypokeclient.models.locations.location_areas.EncounterMethodRate
     options:
         members: false
 
-::: pypokeclient.models.locations.location_areas._EncounterVersionDetails
+::: pypokeclient.models.locations.location_areas.EncounterVersionDetails
     options:
         members: false
 
-::: pypokeclient.models.locations.location_areas._PokemonEncounter
+::: pypokeclient.models.locations.location_areas.PokemonEncounter
     options:
         members: false

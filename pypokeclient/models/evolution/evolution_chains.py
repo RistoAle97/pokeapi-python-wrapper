@@ -20,17 +20,17 @@ class EvolutionChain:
         id (int): The unique identifier of the evolution chain.
         baby_trigger_item (NamedAPIResource | None): The item associated with hatching a baby Pokémon instead of its
             non-baby form.
-        chain (_ChainLink): The base link of the evolution chain, containing the first species and all subsequent
+        chain (ChainLink): The base link of the evolution chain, containing the first species and all subsequent
             evolutionary branches.
     """
 
     id: int
     baby_trigger_item: NamedAPIResource | None
-    chain: _ChainLink
+    chain: ChainLink
 
 
 @dataclass(frozen=True)
-class _ChainLink:
+class ChainLink:
     """Represent a link in an evolution chain.
 
     Each link describes a Pokémon species and its position in the evolution chain, including the conditions associated
@@ -39,19 +39,19 @@ class _ChainLink:
     Attributes:
         is_baby (bool): Whether this link represents a baby Pokémon.
         species (NamedAPIResource): The Pokémon species represented by this link.
-        evolution_details (list[_EvolutionDetail]): The conditions associated with this species' evolution from the
+        evolution_details (list[EvolutionDetail]): The conditions associated with this species' evolution from the
             preceding stage.
-        evolves_to (list[_ChainLink]): The links representing the species this Pokémon can evolve into.
+        evolves_to (list[ChainLink]): The links representing the species this Pokémon can evolve into.
     """
 
     is_baby: bool
     species: NamedAPIResource
-    evolution_details: list[_EvolutionDetail]
-    evolves_to: list[_ChainLink]
+    evolution_details: list[EvolutionDetail]
+    evolves_to: list[ChainLink]
 
 
 @dataclass(frozen=True)
-class _EvolutionDetail:
+class EvolutionDetail:
     """Represent the conditions required for an evolution.
 
     This model describes the requirements and circumstances under which a Pokémon species evolves into another species
@@ -92,7 +92,7 @@ class _EvolutionDetail:
         min_damage_taken (int | None): The minimum amount of damage that must be taken during the evolution trigger
             event.
         allowed_natures (list[NamedAPIResource] | None): The natures permitted for the evolving Pokémon.
-        condition_expression (_EvolutionConditionExpression | None): An expression describing additional
+        condition_expression (EvolutionConditionExpression | None): An expression describing additional
             variable-dependent evolution requirements.
     """
 
@@ -126,11 +126,11 @@ class _EvolutionDetail:
     min_steps: int | None
     min_damage_taken: int | None
     allowed_natures: list[NamedAPIResource] | None
-    condition_expression: _EvolutionConditionExpression | None
+    condition_expression: EvolutionConditionExpression | None
 
 
 @dataclass(frozen=True)
-class _EvolutionConditionExpression:
+class EvolutionConditionExpression:
     """Represent a variable-dependent evolution condition.
 
     The expression uses Reverse Polish Notation (RPN) to evaluate conditions involving evolution variables, such as a

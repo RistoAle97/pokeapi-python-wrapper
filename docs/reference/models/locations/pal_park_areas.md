@@ -19,6 +19,6 @@ https://pokeapi.co/api/v2/pal-park-area/{id or name}/
     options:
         members: false
 
-::: pypokeclient.models.locations.pal_park_areas._PalParkEncounterSpecies
+::: pypokeclient.models.locations.pal_park_areas.PalParkEncounterSpecies
     options:
         members: false

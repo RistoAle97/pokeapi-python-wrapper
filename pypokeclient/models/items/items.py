@@ -27,7 +27,7 @@ class Item:
     Attributes:
         id (int): The unique identifier of the item.
         name (str): The name of the item.
-        prices (list[_ItemPrice]): The purchase and sell prices of this item across different version groups and
+        prices (list[ItemPrice]): The purchase and sell prices of this item across different version groups and
             currencies.
         fling_power (int | None): The power of the move Fling when used with this item, or `None` if no power is
             defined.
@@ -40,9 +40,9 @@ class Item:
             game versions.
         game_indices (list[GenerationGameIndex]): The indices identifying this item in different generations.
         names (list[Name]): The localized names of this item in different languages.
-        sprites (_ItemSprites | None): The sprites used to depict this item in the games, or `None` if no sprite data
+        sprites (ItemSprites | None): The sprites used to depict this item in the games, or `None` if no sprite data
             is available.
-        held_by_pokemon (list[_ItemHolderPokemon]): The Pokémon that may be found holding this item, including their
+        held_by_pokemon (list[ItemHolderPokemon]): The Pokémon that may be found holding this item, including their
             version-specific details.
         baby_trigger_for (APIResource | None): The evolution chain associated with producing a baby Pokémon during
             breeding using this item, or `None` if no such chain is defined.
@@ -51,7 +51,7 @@ class Item:
 
     id: int
     name: str
-    prices: list[_ItemPrice]
+    prices: list[ItemPrice]
     fling_power: int | None
     fling_effect: NamedAPIResource | None
     attributes: list[NamedAPIResource]
@@ -60,14 +60,14 @@ class Item:
     flavor_text_entries: list[VersionGroupFlavorText]
     game_indices: list[GenerationGameIndex]
     names: list[Name]
-    sprites: _ItemSprites | None
-    held_by_pokemon: list[_ItemHolderPokemon]
+    sprites: ItemSprites | None
+    held_by_pokemon: list[ItemHolderPokemon]
     baby_trigger_for: APIResource | None
     machines: list[MachineVersionDetail]
 
 
 @dataclass(frozen=True)
-class _ItemSprites:
+class ItemSprites:
     """Represent the sprite data associated with an item.
 
     Attributes:
@@ -78,21 +78,21 @@ class _ItemSprites:
 
 
 @dataclass(frozen=True)
-class _ItemHolderPokemon:
+class ItemHolderPokemon:
     """Represent a Pokémon that may hold an item.
 
     Attributes:
         pokemon (NamedAPIResource): A reference to the Pokémon species that may hold this item.
-        version_details (list[_ItemHolderPokemonVersionDetail]): The version-specific details describing this
+        version_details (list[ItemHolderPokemonVersionDetail]): The version-specific details describing this
             Pokémon's possession of the item.
     """
 
     pokemon: NamedAPIResource
-    version_details: list[_ItemHolderPokemonVersionDetail]
+    version_details: list[ItemHolderPokemonVersionDetail]
 
 
 @dataclass(frozen=True)
-class _ItemHolderPokemonVersionDetail:
+class ItemHolderPokemonVersionDetail:
     """Represent version-specific details about an item held by a Pokémon.
 
     Attributes:
@@ -105,7 +105,7 @@ class _ItemHolderPokemonVersionDetail:
 
 
 @dataclass(frozen=True)
-class _ItemPrice:
+class ItemPrice:
     """Represent an item's purchase and sell prices for a version group.
 
     Attributes:

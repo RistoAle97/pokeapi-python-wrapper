@@ -15,6 +15,6 @@ hide:
     options:
         members: false
 
-::: pypokeclient.models.berries.berry_flavors._FlavorBerryMap
+::: pypokeclient.models.berries.berry_flavors.FlavorBerryMap
     options:
         members: false

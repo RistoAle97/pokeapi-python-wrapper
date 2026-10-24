@@ -18,7 +18,7 @@ class BerryFlavor:
     Attributes:
         id (int): The unique identifier of the berry flavor.
         name (str): The name of the berry flavor.
-        berries (list[_FlavorBerryMap]): The berries associated with this flavor and the potency of the flavor for each
+        berries (list[FlavorBerryMap]): The berries associated with this flavor and the potency of the flavor for each
             berry.
         contest_type (NamedAPIResource): A reference to the contest type associated with this berry flavor.
         names (list[Name]): The names of this berry flavor in different languages.
@@ -26,13 +26,13 @@ class BerryFlavor:
 
     id: int
     name: str
-    berries: list[_FlavorBerryMap]
+    berries: list[FlavorBerryMap]
     contest_type: NamedAPIResource
     names: list[Name]
 
 
 @dataclass(frozen=True)
-class _FlavorBerryMap:
+class FlavorBerryMap:
     """Represent a berry's potency for a particular flavor.
 
     Attributes:

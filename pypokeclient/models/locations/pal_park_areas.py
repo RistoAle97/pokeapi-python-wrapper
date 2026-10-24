@@ -19,18 +19,18 @@ class PalParkArea:
         id (int): The unique identifier of the Pal Park area.
         name (str): The name of the Pal Park area.
         names (list[Name]): The localized names of this Pal Park area in different languages.
-        pokemon_encounters (list[_PalParkEncounterSpecies]): The Pokémon species that can be encountered in this area,
+        pokemon_encounters (list[PalParkEncounterSpecies]): The Pokémon species that can be encountered in this area,
             along with their encounter rates and base scores.
     """
 
     id: int
     name: str
     names: list[Name]
-    pokemon_encounters: list[_PalParkEncounterSpecies]
+    pokemon_encounters: list[PalParkEncounterSpecies]
 
 
 @dataclass(frozen=True)
-class _PalParkEncounterSpecies:
+class PalParkEncounterSpecies:
     """Represent a Pokémon species encountered in a Pal Park area.
 
     Attributes:
