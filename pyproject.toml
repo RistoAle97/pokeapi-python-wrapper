@@ -1,13 +1,13 @@
 [project]
 name = "pypokeclient"
-version = "2.4.0"
+version = "3.0.0"
 description = "Synchronous and asynchronous clients to interact with PokéAPI"
 readme = "README.md"
 requires-python = ">=3.12"
 license = "MIT"
 license-files = ["LICENSE"]
 authors = [{ name = "Alessandro Ristori", email = "aleristori97@gmail.com" }]
-keywords = ["pokeapi", "pokemon-api"]
+keywords = ["pokeapi", "pokeapi-wrapper", "pokemon-api"]
 classifiers = [
   "Development Status :: 5 - Production/Stable",
   "License :: OSI Approved :: MIT License",
@@ -18,7 +18,6 @@ classifiers = [
   "Programming Language :: Python :: 3.15",
 ]
 dependencies = [
-  "hishel[httpx]>=1.0.0",
   "httpx2[http2]>=2.2.0",
   "pydantic>=2.11.7",
 ]
@@ -28,6 +27,11 @@ Documentation = "https://ristoale97.github.io/pokeapi-python-wrapper/"
 Homepage = "https://github.com/RistoAle97/pokeapi-python-wrapper"
 Issues = "https://github.com/RistoAle97/pokeapi-python-wrapper/issues"
 Repository = "https://github.com/RistoAle97/pokeapi-python-wrapper"
+
+[project.optional-dependencies]
+cache = [
+  "hishel[httpx2]>=1.4.0",
+]
 
 [dependency-groups]
 dev = [
@@ -73,6 +77,9 @@ select = [
   "TID",  # flake8-tidy-imports
   "UP",  # pyupgrade
 ]
+
+[tool.ruff.lint.per-file-ignores]
+"pypokeclient/models/**/*.py" = ["D"]
 
 [tool.ruff.lint.pydocstyle]
 convention = "google"

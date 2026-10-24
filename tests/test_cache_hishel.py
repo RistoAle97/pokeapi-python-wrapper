@@ -1,6 +1,6 @@
 from pathlib import Path
 
-from hishel.httpx import SyncCacheClient
+from hishel.httpx2 import SyncCacheClient
 from hishel import SyncSqliteStorage
 from pypokeclient import Client
 

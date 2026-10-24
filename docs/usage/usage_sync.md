@@ -13,13 +13,13 @@ from pypokeclient import Client
 with Client() as sync_client:
     pokemon = sync_client.get_pokemon("fuecoco")
 ```
-Behind the scenes, the client uses an `httpx.Client` object to perform the requests, as such you can define your own custom HTTP client
+Behind the scenes, the client uses an `httpx2.Client` object to perform the requests, as such you can define your own custom HTTP client
 ```python
-import httpx
+import httpx2
 from pypokeclient import Client
 
 # Let's say I want to use HTTP/2
-http_client = httpx.Client(http2=True)
+http_client = httpx2.Client(http2=True)
 with Client(http_client) as sync_client:
     pokemon = sync_client.get_pokemon("fuecoco")
 ```
@@ -33,7 +33,7 @@ Caching is done by leveraging the [hishel](https://hishel.com/) package, as such
 import logging
 
 from hishel import SyncSqliteStorage
-from hishel.httpx import SyncCacheClient
+from hishel.httpx2 import SyncCacheClient
 from pypokeclient import Client
 
 # Set up the logger
@@ -43,7 +43,7 @@ console_handler = logging.StreamHandler()
 console_handler.setFormatter(logging.Formatter("%(levelname)s - %(message)s"))
 logger.addHandler(console_handler)
 
-# Note that hishel.SyncCacheClient is a subclass of httpx.Client
+# Note that hishel.SyncCacheClient is a subclass of httpx2.Client
 http_client = SyncCacheClient(
     storage=SyncSqliteStorage(database_path="pypokeclient_cache.db"),
     base_url="https://pokeapi.co/api/v2/",

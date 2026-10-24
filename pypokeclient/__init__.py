@@ -1,4 +1,4 @@
-"""Wrapper for PokéAPI."""
+"""Python wrapper for PokéAPI."""
 #      ____        ____       _         ____ _ _            _
 #     |  _ \ _   _|  _ \ ___ | | _____ / ___| (_) ___ _ __ | |_
 #     | |_) | | | | |_) / _ \| |/ / _ \ |   | | |/ _ \ '_ \| __|
@@ -6,8 +6,8 @@
 #     |_|    \__, |_|   \___/|_|\_\___|\____|_|_|\___|_| |_|\__|
 #            |___/
 
-from ._api import ENDPOINTS
 from .async_client import AsyncClient
+from .models import ENDPOINTS
 from .sync_client import Client
 
 __all__ = ["ENDPOINTS", "AsyncClient", "Client"]

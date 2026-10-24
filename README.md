@@ -73,7 +73,7 @@ asyncio.run(fetch_data())
 If you want to build your own client, including the caching mechanism, while still benefiting from Pydantic dataclasses, you can use the data models directly.
 ```python
 import requests
-from pypokeclient._api import Pokemon
+from pypokeclient.models import Pokemon
 
 resp = requests.get("https://pokeapi.co/api/v2/pokemon/fuecoco")
 pokemon = Pokemon(**resp.json())
@@ -87,7 +87,7 @@ pokemon = Pokemon(**resp.json())
 import logging
 
 from hishel import SyncSqliteStorage
-from hishel.httpx import SyncCacheClient
+from hishel.2 import SyncCacheClient
 from pypokeclient import Client
 
 # Set up the logger

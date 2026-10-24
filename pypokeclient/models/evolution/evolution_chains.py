@@ -1,0 +1,64 @@
+"""Evolution Chains endpoint."""
+
+from __future__ import annotations
+
+from pydantic.dataclasses import dataclass
+
+from pypokeclient.models.common_models import NamedAPIResource
+
+
+@dataclass(frozen=True)
+class EvolutionChain:
+    id: int
+    baby_trigger_item: NamedAPIResource | None
+    chain: ChainLink
+
+
+@dataclass(frozen=True)
+class ChainLink:
+    is_baby: bool
+    species: NamedAPIResource
+    evolution_details: list[EvolutionDetail]
+    evolves_to: list[ChainLink]
+
+
+@dataclass(frozen=True)
+class EvolutionDetail:
+    version_group: NamedAPIResource | None
+    is_default: bool
+    item: NamedAPIResource | None
+    trigger: NamedAPIResource
+    gender: int | None
+    held_item: NamedAPIResource | None
+    known_move: NamedAPIResource | None
+    known_move_type: NamedAPIResource | None
+    location: NamedAPIResource | None
+    min_level: int | None
+    min_happiness: int | None
+    min_beauty: int | None
+    min_affection: int | None
+    near_special_rock: bool
+    needs_multiplayer: bool
+    needs_overworld_rain: bool
+    party_species: NamedAPIResource | None
+    party_type: NamedAPIResource | None
+    relative_physical_stats: int | None
+    time_of_day: str
+    trade_species: NamedAPIResource | None
+    turn_upside_down: bool
+    region: NamedAPIResource | None
+    required_pokemon_form: NamedAPIResource | None
+    evolved_pokemon_form: NamedAPIResource | None
+    used_move: NamedAPIResource | None
+    min_move_count: int | None
+    min_steps: int | None
+    min_damage_taken: int | None
+    allowed_natures: NamedAPIResource | None
+    condition_expression: EvolutionConditionExpression | None
+
+
+@dataclass(frozen=True)
+class EvolutionConditionExpression:
+    expression: str
+    percentage_chance: float | None
+    variables: list[NamedAPIResource]
