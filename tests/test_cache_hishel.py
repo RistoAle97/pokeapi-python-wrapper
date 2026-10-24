@@ -6,7 +6,10 @@ from pypokeclient import Client
 
 
 def test_cache_hit():
-    cached_client = SyncCacheClient(storage=SyncSqliteStorage(database_path=".cache/hishel/test_pypokeclient.db"))
+    cached_client = SyncCacheClient(
+        storage=SyncSqliteStorage(database_path=".cache/hishel/test_pypokeclient_pytest.db"),
+        base_url="https://pokeapi.co/api/v2/",
+    )
     with Client(cached_client) as client:
         response = client._api_request("https://pokeapi.co/api/v2/pokemon/fuecoco")
         cached_response = client._api_request("https://pokeapi.co/api/v2/pokemon/fuecoco")
