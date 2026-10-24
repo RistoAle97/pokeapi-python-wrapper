@@ -3,10 +3,14 @@ hide:
     - toc
 ---
 
-```console
-https://pokeapi.co/api/v2/encounter-method/{id or name}/
-```
+# Encounter conditions
 
-::: pypokeclient.models.encounters.encounter_methods
+**`GET https://pokeapi.co/api/v2/encounter-method/{id or name}/`**
+
+**[Official PokéAPI documentation](https://pokeapi.co/docs/v2#encounter-methods)**
+
+---
+
+::: pypokeclient.models.encounters.encounter_methods.EncounterMethod
     options:
-        separate_signature: false
+        members: false
