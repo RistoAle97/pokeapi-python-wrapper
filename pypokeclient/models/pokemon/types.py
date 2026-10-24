@@ -14,7 +14,7 @@ class Type:
     Types determine the elemental properties of Pokémon and moves, including their damage effectiveness against other
     types.
 
-    This model corresponds to the `/api/v2/type/{id or name}/` endpoint.
+    This model corresponds to the `https://pokeapi.co/api/v2/type/{id or name}/` endpoint.
 
     Attributes:
         id (int): The unique identifier of the type.

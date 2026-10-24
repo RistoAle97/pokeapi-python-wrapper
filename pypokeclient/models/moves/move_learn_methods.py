@@ -12,7 +12,7 @@ class MoveLearnMethod:
     Move learn methods describe how Pokémon learn moves, such as by leveling up, using a machine, breeding, or being
     taught by a move tutor.
 
-    This model corresponds to the `/api/v2/move-learn-method/{id or name}/` endpoint.
+    This model corresponds to the `https://pokeapi.co/api/v2/move-learn-method/{id or name}/` endpoint.
 
     Attributes:
         id (int): The unique identifier of the move learn method.

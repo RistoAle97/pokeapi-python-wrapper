@@ -11,7 +11,7 @@ class BerryFirmness:
 
     Berry firmnesses classify berries according to how soft or hard they are.
 
-    This model corresponds to the `/api/v2/berry-firmness/{id or name}/` endpoint.
+    This model corresponds to the `https://pokeapi.co/api/v2/berry-firmness/{id or name}/` endpoint.
 
     Attributes:
         id (int): The unique identifier of the berry firmness.

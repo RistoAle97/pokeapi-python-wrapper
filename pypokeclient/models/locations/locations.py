@@ -12,7 +12,7 @@ class Location:
     Locations represent places that can be visited in the Pokémon games, such as cities and routes, and belong to
     regions of the Pokémon world.
 
-    This model corresponds to the `/api/v2/location/{id or name}/` endpoint.
+    This model corresponds to the `https://pokeapi.co/api/v2/location/{id or name}/` endpoint.
 
     Attributes:
         id (int): The unique identifier of the location.

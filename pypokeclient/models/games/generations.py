@@ -11,7 +11,7 @@ class Generation:
 
     Generations group Pokémon games according to the Pokémon, moves, abilities, and types available in each generation.
 
-    This model corresponds to the `/api/v2/generation/{id or name}/` endpoint.
+    This model corresponds to the `https://pokeapi.co/api/v2/generation/{id or name}/` endpoint.
 
     Attributes:
         id (int): The unique identifier of the generation.

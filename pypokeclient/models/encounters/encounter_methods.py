@@ -12,7 +12,7 @@ class EncounterMethod:
     Encounter methods describe how players can encounter wild Pokémon, such as walking through tall grass or exploring
     a cave.
 
-    This model corresponds to the `/api/v2/encounter-method/{id or name}/` endpoint.
+    This model corresponds to the `https://pokeapi.co/api/v2/encounter-method/{id or name}/` endpoint.
 
     Attributes:
         id (int): The unique identifier of the encounter method.

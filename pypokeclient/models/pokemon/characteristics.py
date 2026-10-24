@@ -12,7 +12,7 @@ class Characteristic:
     Characteristics indicate the stat with the highest individual value (IV) of a Pokémon. Each characteristic is
     determined by the remainder of that IV divided by 5.
 
-    This model corresponds to the `/api/v2/characteristic/{id}/` endpoint.
+    This model corresponds to the `https://pokeapi.co/api/v2/characteristic/{id}/` endpoint.
 
     Attributes:
         id (int): The unique identifier of the characteristic.

@@ -12,7 +12,7 @@ class VersionGroup:
     Version groups categorize closely related Pokémon game versions and group information about their generations,
     regions, Pokédexes, and move-learning methods.
 
-    This model corresponds to the `/api/v2/version-group/{id or name}/` endpoint.
+    This model corresponds to the `https://pokeapi.co/api/v2/version-group/{id or name}/` endpoint.
 
     Attributes:
         id (int): The unique identifier of the version group.

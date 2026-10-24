@@ -14,7 +14,7 @@ class EvolutionChain:
     Evolution chains describe the evolutionary family tree of a Pokémon species, including the possible evolutions and
     the conditions required for each evolutionary transition.
 
-    This model corresponds to the `/api/v2/evolution-chain/{id}/` endpoint.
+    This model corresponds to the `https://pokeapi.co/api/v2/evolution-chain/{id}/` endpoint.
 
     Attributes:
         id (int): The unique identifier of the evolution chain.

@@ -14,7 +14,7 @@ class Pokedex:
     Pokédexes catalogue Pokémon species and assign each species an entry number. They may cover an entire region, a
     portion of a region, or the National Pokédex.
 
-    This model corresponds to the `/api/v2/pokedex/{id or name}/` endpoint.
+    This model corresponds to the `https://pokeapi.co/api/v2/pokedex/{id or name}/` endpoint.
 
     Attributes:
         id (int): The unique identifier of the Pokédex.

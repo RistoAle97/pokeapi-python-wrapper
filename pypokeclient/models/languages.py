@@ -11,7 +11,7 @@ class Language:
 
     Languages identify the languages used to translate resource names, descriptions, and other text throughout the API.
 
-    This model corresponds to the `/api/v2/language/{id or name}/` endpoint.
+    This model corresponds to the `https://pokeapi.co/api/v2/language/{id or name}/` endpoint.
 
     Attributes:
         id (int): The unique identifier of the language.

@@ -11,7 +11,7 @@ class ItemAttribute:
 
     Item attributes describe particular properties of items, such as whether they can be used in battle or consumed.
 
-    This model corresponds to the `/api/v2/item-attribute/{id or name}/` endpoint.
+    This model corresponds to the `https://pokeapi.co/api/v2/item-attribute/{id or name}/` endpoint.
 
     Attributes:
         id (int): The unique identifier of the item attribute.

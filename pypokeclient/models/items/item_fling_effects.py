@@ -11,7 +11,7 @@ class ItemFlingEffect:
 
     Item fling effects describe the effects produced when the move Fling is used with different items.
 
-    This model corresponds to the `/api/v2/item-fling-effect/{id or name}/` endpoint.
+    This model corresponds to the `https://pokeapi.co/api/v2/item-fling-effect/{id or name}/` endpoint.
 
     Attributes:
         id (int): The unique identifier of the item fling effect.

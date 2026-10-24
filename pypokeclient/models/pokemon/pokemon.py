@@ -14,7 +14,7 @@ class Pokemon:
     Pokémon are individual creatures that belong to a Pokémon species. Different varieties of a species can have
     different stats, abilities, types, and forms.
 
-    This model corresponds to the `/api/v2/pokemon/{id or name}/` endpoint.
+    This model corresponds to the `https://pokeapi.co/api/v2/pokemon/{id or name}/` endpoint.
 
     Attributes:
         id (int): The unique identifier of the Pokémon.

@@ -12,7 +12,7 @@ class EncounterConditionValue:
     Encounter condition values represent the possible states of an encounter condition that affect which Pokémon can
     appear in the wild, such as whether it is day or night.
 
-    This model corresponds to the `/api/v2/encounter-condition-value/{id or name}/` endpoint.
+    This model corresponds to the `https://pokeapi.co/api/v2/encounter-condition-value/{id or name}/` endpoint.
 
     Attributes:
         id (int): The unique identifier of the encounter condition value.

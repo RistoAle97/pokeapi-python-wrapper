@@ -11,7 +11,7 @@ class EncounterCondition:
 
     Encounter conditions affect which Pokémon can appear in the wild, for example, depending on the time of day.
 
-    This model corresponds to the `/api/v2/encounter-condition/{id or name}/` endpoint.
+    This model corresponds to the `https://pokeapi.co/api/v2/encounter-condition/{id or name}/` endpoint.
 
     Attributes:
         id (int): The unique identifier of the encounter condition.

@@ -11,7 +11,7 @@ class Version:
 
     Versions represent individual releases of the Pokémon games.
 
-    This model corresponds to the `/api/v2/version/{id or name}/` endpoint.
+    This model corresponds to the `https://pokeapi.co/api/v2/version/{id or name}/` endpoint.
 
     Attributes:
         id (int): The unique identifier of the version.

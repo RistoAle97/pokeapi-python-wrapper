@@ -12,7 +12,7 @@ class PokemonColor:
     Pokémon colors are used to sort Pokémon species in the Pokédex according to the color that is most apparent or
     covers most of their bodies.
 
-    This model corresponds to the `/api/v2/pokemon-color/{id or name}/` endpoint.
+    This model corresponds to the `https://pokeapi.co/api/v2/pokemon-color/{id or name}/` endpoint.
 
     Attributes:
         id (int): The unique identifier of the Pokémon color.

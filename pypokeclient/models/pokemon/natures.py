@@ -14,7 +14,7 @@ class Nature:
     Natures influence Pokémon stat growth and determine their preferences for certain flavors. They also affect move
     selection in the Battle Palace and Battle Tent.
 
-    This model corresponds to the `/api/v2/nature/{id or name}/` endpoint.
+    This model corresponds to the `https://pokeapi.co/api/v2/nature/{id or name}/` endpoint.
 
     Attributes:
         id (int): The unique identifier of the nature.

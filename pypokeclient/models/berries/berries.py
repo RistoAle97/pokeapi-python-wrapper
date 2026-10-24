@@ -14,7 +14,7 @@ class Berry:
     Berries are small fruits that can restore HP, cure status conditions,
     enhance stats, or negate damage when consumed by Pokémon.
 
-    This model corresponds to the `/api/v2/berry/{id or name}/` endpoint.
+    This model corresponds to the `https://pokeapi.co/api/v2/berry/{id or name}/` endpoint.
 
     Attributes:
         id (int): The unique identifier of the berry.

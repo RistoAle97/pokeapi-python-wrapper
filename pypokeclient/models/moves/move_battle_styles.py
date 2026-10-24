@@ -12,7 +12,7 @@ class MoveBattleStyle:
     Move battle styles describe how moves are used in the Battle Palace, where Pokémon choose moves according to their
     nature.
 
-    This model corresponds to the `/api/v2/move-battle-style/{id or name}/` endpoint.
+    This model corresponds to the `https://pokeapi.co/api/v2/move-battle-style/{id or name}/` endpoint.
 
     Attributes:
         id (int): The unique identifier of the move battle style.

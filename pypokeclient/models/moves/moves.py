@@ -15,7 +15,7 @@ class Move:
     Moves are actions that Pokémon can use in battle and, in some cases, outside battle. They have properties that
     determine their accuracy, power, effects, targets, and availability across game versions.
 
-    This model corresponds to the `/api/v2/move/{id or name}/` endpoint.
+    This model corresponds to the `https://pokeapi.co/api/v2/move/{id or name}/` endpoint.
 
     Attributes:
         id (int): The unique identifier of the move.

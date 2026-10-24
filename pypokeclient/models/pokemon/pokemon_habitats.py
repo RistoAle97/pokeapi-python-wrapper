@@ -12,7 +12,7 @@ class PokemonHabitat:
     Habitats describe the types of terrain where Pokémon can be found and may also identify areas associated with rare
     or legendary Pokémon.
 
-    This model corresponds to the `/api/v2/pokemon-habitat/{id or name}/` endpoint.
+    This model corresponds to the `https://pokeapi.co/api/v2/pokemon-habitat/{id or name}/` endpoint.
 
     Attributes:
         id (int): The unique identifier of the Pokémon habitat.

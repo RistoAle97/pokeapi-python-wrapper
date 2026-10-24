@@ -14,7 +14,7 @@ class Stat:
     Stats determine certain aspects of Pokémon performance in battle. Their values grow as Pokémon gain levels and can
     be temporarily altered by battle effects.
 
-    This model corresponds to the `/api/v2/stat/{id or name}/` endpoint.
+    This model corresponds to the `https://pokeapi.co/api/v2/stat/{id or name}/` endpoint.
 
     Attributes:
         id (int): The unique identifier of the stat.

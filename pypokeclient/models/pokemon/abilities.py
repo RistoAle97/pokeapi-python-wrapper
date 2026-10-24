@@ -14,7 +14,7 @@ class Ability:
     Abilities provide passive effects for Pokémon in battle or in the overworld. Each Pokémon can have one ability at a
     time.
 
-    This model corresponds to the `/api/v2/ability/{id or name}/` endpoint.
+    This model corresponds to the `https://pokeapi.co/api/v2/ability/{id or name}/` endpoint.
 
     Attributes:
         id (int): The unique identifier of the ability.

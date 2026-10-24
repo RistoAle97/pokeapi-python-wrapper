@@ -14,7 +14,7 @@ class Gender:
     Genders describe the sex categories of Pokémon, which can affect breeding, visual differences, and certain
     evolutionary paths.
 
-    This model corresponds to the `/api/v2/gender/{id or name}/` endpoint.
+    This model corresponds to the `https://pokeapi.co/api/v2/gender/{id or name}/` endpoint.
 
     Attributes:
         id (int): The unique identifier of the gender.

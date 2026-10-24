@@ -13,7 +13,7 @@ class BerryFlavor:
 
     Flavors determine whether a Pokémon benefits or suffers from eating a berry based on its nature.
 
-    This model corresponds to the `/api/v2/berry-flavor/{id or name}/` endpoint.
+    This model corresponds to the `https://pokeapi.co/api/v2/berry-flavor/{id or name}/` endpoint.
 
     Attributes:
         id (int): The unique identifier of the berry flavor.

@@ -11,7 +11,7 @@ class ContestEffect:
 
     Contest effects describe how moves influence appeal and affect opponents during Pokémon Contests.
 
-    This model corresponds to the `/api/v2/contest-effect/{id}/` endpoint.
+    This model corresponds to the `https://pokeapi.co/api/v2/contest-effect/{id}/` endpoint.
 
     Attributes:
         id (int): The unique identifier of the contest effect.

@@ -14,7 +14,7 @@ class GrowthRate:
     Growth rates determine how quickly Pokémon gain experience and level up. Each growth rate defines a formula for
     calculating the experience required to reach each level.
 
-    This model corresponds to the `/api/v2/growth-rate/{id or name}/` endpoint.
+    This model corresponds to the `https://pokeapi.co/api/v2/growth-rate/{id or name}/` endpoint.
 
     Attributes:
         id (int): The unique identifier of the growth rate.

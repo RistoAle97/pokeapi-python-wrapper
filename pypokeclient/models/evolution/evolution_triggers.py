@@ -12,7 +12,7 @@ class EvolutionTrigger:
     Evolution triggers describe the events that cause Pokémon to evolve, such as leveling up, using an item, or
     trading.
 
-    This model corresponds to the `/api/v2/evolution-trigger/{id or name}/` endpoint.
+    This model corresponds to the `https://pokeapi.co/api/v2/evolution-trigger/{id or name}/` endpoint.
 
     Attributes:
         id (int): The unique identifier of the evolution trigger.

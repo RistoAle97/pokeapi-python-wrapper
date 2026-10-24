@@ -14,7 +14,7 @@ class PokemonSpecies:
     Pokémon species define shared characteristics of Pokémon and their varieties, including breeding compatibility,
     evolution, growth, and Pokédex information.
 
-    This model corresponds to the `/api/v2/pokemon-species/{id or name}/` endpoint.
+    This model corresponds to the `https://pokeapi.co/api/v2/pokemon-species/{id or name}/` endpoint.
 
     Attributes:
         id (int): The unique identifier of the Pokémon species.

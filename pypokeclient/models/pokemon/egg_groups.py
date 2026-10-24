@@ -12,7 +12,7 @@ class EggGroup:
     Egg groups classify Pokémon species according to their breeding compatibility. A Pokémon species may belong to one
     or two egg groups.
 
-    This model corresponds to the `/api/v2/egg-group/{id or name}/` endpoint.
+    This model corresponds to the `https://pokeapi.co/api/v2/egg-group/{id or name}/` endpoint.
 
     Attributes:
         id (int): The unique identifier of the egg group.

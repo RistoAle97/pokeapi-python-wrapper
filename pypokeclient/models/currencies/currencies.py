@@ -12,7 +12,7 @@ class Currency:
     Currencies are forms of money used throughout the Pokémon games to purchase items and services and participate in
     various game mechanics.
 
-    This model corresponds to the `/api/v2/currency/{id or name}/` endpoint.
+    This model corresponds to the `https://pokeapi.co/api/v2/currency/{id or name}/` endpoint.
 
     Attributes:
         id (int): The unique identifier of the currency.

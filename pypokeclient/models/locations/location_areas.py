@@ -14,7 +14,7 @@ class LocationArea:
     Location areas represent sections of locations, such as floors in a building or cave. Each area defines the Pokémon
     that can be encountered there and the methods used to encounter them.
 
-    This model corresponds to the `/api/v2/location-area/{id or name}/` endpoint.
+    This model corresponds to the `https://pokeapi.co/api/v2/location-area/{id or name}/` endpoint.
 
     Attributes:
         id (int): The unique identifier of the location area.

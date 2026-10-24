@@ -11,7 +11,7 @@ class ItemPocket:
 
     Item pockets organize categories of items in a player's bag.
 
-    This model corresponds to the `/api/v2/item-pocket/{id or name}/` endpoint.
+    This model corresponds to the `https://pokeapi.co/api/v2/item-pocket/{id or name}/` endpoint.
 
     Attributes:
         id (int): The unique identifier of the item pocket.

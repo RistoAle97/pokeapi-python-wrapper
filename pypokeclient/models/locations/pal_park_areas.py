@@ -13,7 +13,7 @@ class PalParkArea:
 
     Pal Park areas group Pokémon encounters according to specific habitats used in the Pal Park feature.
 
-    This model corresponds to the `/api/v2/pal-park-area/{id or name}/` endpoint.
+    This model corresponds to the `https://pokeapi.co/api/v2/pal-park-area/{id or name}/` endpoint.
 
     Attributes:
         id (int): The unique identifier of the Pal Park area.

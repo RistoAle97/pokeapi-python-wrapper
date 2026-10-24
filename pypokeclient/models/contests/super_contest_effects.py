@@ -11,7 +11,7 @@ class SuperContestEffect:
 
     Super contest effects describe the effects of moves when used in Super Contests.
 
-    This model corresponds to the `/api/v2/super-contest-effect/{id}/` endpoint.
+    This model corresponds to the `https://pokeapi.co/api/v2/super-contest-effect/{id}/` endpoint.
 
     Attributes:
         id (int): The unique identifier of the super contest effect.

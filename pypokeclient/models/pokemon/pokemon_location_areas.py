@@ -12,7 +12,7 @@ class LocationAreaEncounter:
     Location area encounters describe where a Pokémon can be encountered and the conditions under which encounters may
     occur in different game versions.
 
-    This model is returned by the `/api/v2/pokemon/{id or name}/encounters/` endpoint.
+    This model is returned by the `https://pokeapi.co/api/v2/pokemon/{id or name}/encounters/` endpoint.
 
     Attributes:
         location_area (NamedAPIResource): The location area where the Pokémon can be encountered.

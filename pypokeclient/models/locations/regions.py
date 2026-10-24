@@ -12,7 +12,7 @@ class Region:
     Regions are organized areas of the Pokémon world. They group locations and are associated with Pokémon species,
     Pokédexes, and game versions.
 
-    This model corresponds to the `/api/v2/region/{id or name}/` endpoint.
+    This model corresponds to the `https://pokeapi.co/api/v2/region/{id or name}/` endpoint.
 
     Attributes:
         id (int): The unique identifier of the region.

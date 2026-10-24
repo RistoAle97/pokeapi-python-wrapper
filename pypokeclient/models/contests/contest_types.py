@@ -14,7 +14,7 @@ class ContestType:
     Contest types categorize Pokémon Contests according to the condition judged, such as Cool, Beauty, Cute, Smart, or
     Tough. Each contest type corresponds to a berry flavor.
 
-    This model corresponds to the `/api/v2/contest-type/{id or name}/` endpoint.
+    This model corresponds to the `https://pokeapi.co/api/v2/contest-type/{id or name}/` endpoint.
 
     Attributes:
         id (int): The unique identifier of the contest type.

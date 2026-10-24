@@ -13,7 +13,7 @@ class PokemonShape:
 
     Pokémon shapes classify species by their physical silhouettes and are used to sort Pokémon in the Pokédex.
 
-    This model corresponds to the `/api/v2/pokemon-shape/{id or name}/` endpoint.
+    This model corresponds to the `https://pokeapi.co/api/v2/pokemon-shape/{id or name}/` endpoint.
 
     Attributes:
         id (int): The unique identifier of the Pokémon shape.

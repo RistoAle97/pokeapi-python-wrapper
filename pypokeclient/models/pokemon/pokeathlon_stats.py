@@ -13,7 +13,7 @@ class PokeathlonStat:
 
     Pokéathlon stats measure different aspects of a Pokémon's performance in Pokéathlon competitions.
 
-    This model corresponds to the `/api/v2/pokeathlon-stat/{id or name}/` endpoint.
+    This model corresponds to the `https://pokeapi.co/api/v2/pokeathlon-stat/{id or name}/` endpoint.
 
     Attributes:
         id (int): The unique identifier of the Pokéathlon stat.

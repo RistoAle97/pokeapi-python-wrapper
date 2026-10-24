@@ -12,7 +12,7 @@ class MoveTarget:
     Move targets describe the entities or areas that moves can affect during battle, such as a specific Pokémon, all
     opposing Pokémon, the battlefield, or another move.
 
-    This model corresponds to the `/api/v2/move-target/{id or name}/` endpoint.
+    This model corresponds to the `https://pokeapi.co/api/v2/move-target/{id or name}/` endpoint.
 
     Attributes:
         id (int): The unique identifier of the move target.

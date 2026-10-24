@@ -12,7 +12,7 @@ class MoveDamageClass:
     Move damage classes categorize moves as physical, special, or status, indicating whether they deal physical damage,
     special damage, or no direct damage.
 
-    This model corresponds to the `/api/v2/move-damage-class/{id or name}/` endpoint.
+    This model corresponds to the `https://pokeapi.co/api/v2/move-damage-class/{id or name}/` endpoint.
 
     Attributes:
         id (int): The unique identifier of the move damage class.

@@ -14,7 +14,7 @@ class PokemonForm:
     Pokémon forms represent visually distinct forms of Pokémon, along with their types, sprites, and associated game
     versions.
 
-    This model corresponds to the `/api/v2/pokemon-form/{id or name}/` endpoint.
+    This model corresponds to the `https://pokeapi.co/api/v2/pokemon-form/{id or name}/` endpoint.
 
     Attributes:
         id (int): The unique identifier of the Pokémon form.

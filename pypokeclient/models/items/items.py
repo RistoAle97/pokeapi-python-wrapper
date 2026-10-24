@@ -22,7 +22,7 @@ class Item:
     Items are objects that players can collect, store in their bag, and use throughout the Pokémon games for purposes
     such as healing Pokémon, catching wild Pokémon, powering up Pokémon, and accessing new areas.
 
-    This model corresponds to the `/api/v2/item/{id or name}/` endpoint.
+    This model corresponds to the `https://pokeapi.co/api/v2/item/{id or name}/` endpoint.
 
     Attributes:
         id (int): The unique identifier of the item.

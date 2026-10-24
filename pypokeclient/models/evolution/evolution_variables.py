@@ -14,7 +14,7 @@ class EvolutionVariable:
     Evolution variables represent parameters used in boolean expressions for form-branching evolutions. They can
     describe values stored on a Pokémon or inputs provided by the player during an evolution.
 
-    This model corresponds to the `/api/v2/evolution-variable/{id or name}/` endpoint.
+    This model corresponds to the `https://pokeapi.co/api/v2/evolution-variable/{id or name}/` endpoint.
 
     Attributes:
         id (int): The unique identifier of the evolution variable.
