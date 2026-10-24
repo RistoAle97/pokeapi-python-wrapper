@@ -4,10 +4,9 @@ import logging
 from types import TracebackType
 
 import httpx2
-from hishel.httpx import AsyncCacheClient
 from pydantic import validate_call
 
-from . import _api
+from . import models
 
 logger = logging.getLogger(__name__.split(".")[0])
 
@@ -20,7 +19,7 @@ class AsyncClient:
 
         Args:
             http_client (httpx2.AsyncClient): an `httpx2.AsyncClient` used to send request to the API. Please note that
-                `hishel.AsyncCacheClient` is a subclass of `httpx.AsyncClient` so you can pass an instance of that
+                `hishel.AsyncCacheClient` is a subclass of `httpx2.AsyncClient` so you can pass an instance of that
                 class if you want to cache the responses.
         """
         self._owns_http_client = False
@@ -30,13 +29,7 @@ class AsyncClient:
         else:
             self._http_client = http_client
 
-        if isinstance(self._http_client, AsyncCacheClient):
-            logger.debug(
-                f"The asynchronous client is ready and using the cache at "
-                f"'{self._http_client._transport.storage.database_path}'."
-            )
-        else:
-            logger.debug("The asynchronous client is ready without using any cache.")
+        logger.debug("Asynchronous client initialized.")
 
     # ===========================================
     # Context manager methods
@@ -79,7 +72,7 @@ class AsyncClient:
             url (str): the url to which the request will be sent.
 
         Returns:
-            httpx.Response: the non-parsed response from the API.
+            httpx2.Response: the non-parsed response from the API.
         """
         response = await self._http_client.get(url)
         response.raise_for_status()
@@ -102,7 +95,7 @@ class AsyncClient:
     @validate_call
     async def get_resource_list(
         self, endpoint: str, limit: int = 20, offset: int = 0
-    ) -> _api.NamedAPIResourceList | _api.APIResourceList:
+    ) -> models.NamedAPIResourceList | models.APIResourceList:
         """Get a list of resource data.
 
         Args:
@@ -120,21 +113,20 @@ class AsyncClient:
         if offset < 0:
             raise ValueError("offset must be non-negative")
 
-        if endpoint in _api.UNNAMED_ENDPOINTS:
-            return await self._get_resource(endpoint, f"?limit={limit}&offset={offset}", _api.APIResourceList)
-        elif endpoint in _api.NAMED_ENDPOINTS:
-            return await self._get_resource(endpoint, f"?limit={limit}&offset={offset}", _api.NamedAPIResourceList)
+        if endpoint in models.UNNAMED_ENDPOINTS:
+            return await self._get_resource(endpoint, f"?limit={limit}&offset={offset}", models.APIResourceList)
+        elif endpoint in models.NAMED_ENDPOINTS:
+            return await self._get_resource(endpoint, f"?limit={limit}&offset={offset}", models.NamedAPIResourceList)
         else:
             raise ValueError(
-                f"Unknown endpoint: {endpoint!r}.\n"
-                f"Supported endpoints: {', '.join(sorted(_api.UNNAMED_ENDPOINTS | _api.NAMED_ENDPOINTS))}"
+                f"Unknown endpoint: {endpoint!r}.\nSupported endpoints: {', '.join(sorted(models.ENDPOINTS))}"
             )
 
     # ===========================================
     # Berries group
     # ===========================================
     @validate_call
-    async def get_berry(self, key: int | str) -> _api.Berry:
+    async def get_berry(self, key: int | str) -> models.Berry:
         """Get data about a berry.
 
         Args:
@@ -143,10 +135,10 @@ class AsyncClient:
         Returns:
             Berry: the parsed response from the API.
         """
-        return await self._get_resource("berry", key, _api.Berry)
+        return await self._get_resource("berry", key, models.Berry)
 
     @validate_call
-    async def get_berry_firmness(self, key: int | str) -> _api.BerryFirmness:
+    async def get_berry_firmness(self, key: int | str) -> models.BerryFirmness:
         """Get data about a berry firmness.
 
         Args:
@@ -155,10 +147,10 @@ class AsyncClient:
         Returns:
             BerryFirmness: the parsed response from the API.
         """
-        return await self._get_resource("berry-firmness", key, _api.BerryFirmness)
+        return await self._get_resource("berry-firmness", key, models.BerryFirmness)
 
     @validate_call
-    async def get_berry_flavor(self, key: int | str) -> _api.BerryFlavor:
+    async def get_berry_flavor(self, key: int | str) -> models.BerryFlavor:
         """Get data about a berry flavor.
 
         Args:
@@ -167,13 +159,13 @@ class AsyncClient:
         Returns:
             BerryFlavor: the parsed response from the API.
         """
-        return await self._get_resource("berry-flavor", key, _api.BerryFlavor)
+        return await self._get_resource("berry-flavor", key, models.BerryFlavor)
 
     # ===========================================
     # Contests group
     # ===========================================
     @validate_call
-    async def get_contest_type(self, key: int | str) -> _api.ContestType:
+    async def get_contest_type(self, key: int | str) -> models.ContestType:
         """Get data about a contest type.
 
         Args:
@@ -182,10 +174,10 @@ class AsyncClient:
         Returns:
             ContestType: the parsed response from the API.
         """
-        return await self._get_resource("contest-type", key, _api.ContestType)
+        return await self._get_resource("contest-type", key, models.ContestType)
 
     @validate_call
-    async def get_contest_effect(self, key: int) -> _api.ContestEffect:
+    async def get_contest_effect(self, key: int) -> models.ContestEffect:
         """Get data about a contest effect.
 
         Args:
@@ -194,10 +186,10 @@ class AsyncClient:
         Returns:
             ContestEffect: the parsed response from the API.
         """
-        return await self._get_resource("contest-effect", key, _api.ContestEffect)
+        return await self._get_resource("contest-effect", key, models.ContestEffect)
 
     @validate_call
-    async def get_super_contest_effect(self, key: int) -> _api.SuperContestEffect:
+    async def get_super_contest_effect(self, key: int) -> models.SuperContestEffect:
         """Get data about a super contest effect.
 
         Args:
@@ -206,13 +198,13 @@ class AsyncClient:
         Returns:
             SuperContestEffect: the parsed response from the API.
         """
-        return await self._get_resource("super-contest-effect", key, _api.SuperContestEffect)
+        return await self._get_resource("super-contest-effect", key, models.SuperContestEffect)
 
     # ===========================================
     # Currencies group
     # ===========================================
     @validate_call
-    async def get_currency(self, key: int | str) -> _api.Currency:
+    async def get_currency(self, key: int | str) -> models.Currency:
         """Get data about a currency.
 
         Args:
@@ -221,13 +213,13 @@ class AsyncClient:
         Returns:
             Currency: the parsed response from the API.
         """
-        return await self._get_resource("currency", key, _api.Currency)
+        return await self._get_resource("currency", key, models.Currency)
 
     # ===========================================
     # Encounters group
     # ===========================================
     @validate_call
-    async def get_encounter_method(self, key: int | str) -> _api.EncounterMethod:
+    async def get_encounter_method(self, key: int | str) -> models.EncounterMethod:
         """Get data about an encounter method.
 
         Args:
@@ -236,10 +228,10 @@ class AsyncClient:
         Returns:
             EncounterMethod: the parsed response from the API.
         """
-        return await self._get_resource("encounter-method", key, _api.EncounterMethod)
+        return await self._get_resource("encounter-method", key, models.EncounterMethod)
 
     @validate_call
-    async def get_encounter_condition(self, key: int | str) -> _api.EncounterCondition:
+    async def get_encounter_condition(self, key: int | str) -> models.EncounterCondition:
         """Get data about an encounter condition.
 
         Args:
@@ -248,10 +240,10 @@ class AsyncClient:
         Returns:
             EncounterCondition: the parsed response from the API.
         """
-        return await self._get_resource("encounter-condition", key, _api.EncounterCondition)
+        return await self._get_resource("encounter-condition", key, models.EncounterCondition)
 
     @validate_call
-    async def get_encounter_condition_value(self, key: int | str) -> _api.EncounterConditionValue:
+    async def get_encounter_condition_value(self, key: int | str) -> models.EncounterConditionValue:
         """Get data about an encounter condition value.
 
         Args:
@@ -260,13 +252,13 @@ class AsyncClient:
         Returns:
             EncounterConditionValue: the parsed response from the API.
         """
-        return await self._get_resource("encounter-condition-value", key, _api.EncounterConditionValue)
+        return await self._get_resource("encounter-condition-value", key, models.EncounterConditionValue)
 
     # ===========================================
     # Evolution group
     # ===========================================
     @validate_call
-    async def get_evolution_chain(self, key: int) -> _api.EvolutionChain:
+    async def get_evolution_chain(self, key: int) -> models.EvolutionChain:
         """Get data about an evolution chain.
 
         Args:
@@ -275,10 +267,10 @@ class AsyncClient:
         Returns:
             EvolutionChain: the parsed response from the API.
         """
-        return await self._get_resource("evolution-chain", key, _api.EvolutionChain)
+        return await self._get_resource("evolution-chain", key, models.EvolutionChain)
 
     @validate_call
-    async def get_evolution_trigger(self, key: int | str) -> _api.EvolutionTrigger:
+    async def get_evolution_trigger(self, key: int | str) -> models.EvolutionTrigger:
         """Get data about an evolution trigger.
 
         Args:
@@ -287,10 +279,10 @@ class AsyncClient:
         Returns:
             EvolutionTrigger: the parsed response from the API.
         """
-        return await self._get_resource("evolution-trigger", key, _api.EvolutionTrigger)
+        return await self._get_resource("evolution-trigger", key, models.EvolutionTrigger)
 
     @validate_call
-    async def get_evolution_variable(self, key: int | str) -> _api.EvolutionVariable:
+    async def get_evolution_variable(self, key: int | str) -> models.EvolutionVariable:
         """Get data about an evolution variable.
 
         Args:
@@ -299,13 +291,13 @@ class AsyncClient:
         Returns:
             EvolutionVariable: the parsed response from the API.
         """
-        return await self._get_resource("evolution-variable", key, _api.EvolutionVariable)
+        return await self._get_resource("evolution-variable", key, models.EvolutionVariable)
 
     # ===========================================
     # Games group
     # ===========================================
     @validate_call
-    async def get_generation(self, key: int | str) -> _api.Generation:
+    async def get_generation(self, key: int | str) -> models.Generation:
         """Get data about a generation.
 
         Args:
@@ -314,10 +306,10 @@ class AsyncClient:
         Returns:
             Generation: the parsed response from the API.
         """
-        return await self._get_resource("generation", key, _api.Generation)
+        return await self._get_resource("generation", key, models.Generation)
 
     @validate_call
-    async def get_pokedex(self, key: int | str) -> _api.Pokedex:
+    async def get_pokedex(self, key: int | str) -> models.Pokedex:
         """Get data about a Pokédex.
 
         Args:
@@ -326,10 +318,10 @@ class AsyncClient:
         Returns:
             Pokedex: the parsed response from the API.
         """
-        return await self._get_resource("pokedex", key, _api.Pokedex)
+        return await self._get_resource("pokedex", key, models.Pokedex)
 
     @validate_call
-    async def get_version_group(self, key: int | str) -> _api.VersionGroup:
+    async def get_version_group(self, key: int | str) -> models.VersionGroup:
         """Get data about a version group.
 
         Args:
@@ -338,10 +330,10 @@ class AsyncClient:
         Returns:
             VersionGroup: the parsed response from the API.
         """
-        return await self._get_resource("version-group", key, _api.VersionGroup)
+        return await self._get_resource("version-group", key, models.VersionGroup)
 
     @validate_call
-    async def get_version(self, key: int | str) -> _api.Version:
+    async def get_version(self, key: int | str) -> models.Version:
         """Get data about a version.
 
         Args:
@@ -350,13 +342,13 @@ class AsyncClient:
         Returns:
             Version: the parsed response from the API.
         """
-        return await self._get_resource("version", key, _api.Version)
+        return await self._get_resource("version", key, models.Version)
 
     # ===========================================
     # Items group
     # ===========================================
     @validate_call
-    async def get_item(self, key: int | str) -> _api.Item:
+    async def get_item(self, key: int | str) -> models.Item:
         """Get data about an item.
 
         Args:
@@ -365,10 +357,10 @@ class AsyncClient:
         Returns:
             Item: the parsed response from the API.
         """
-        return await self._get_resource("item", key, _api.Item)
+        return await self._get_resource("item", key, models.Item)
 
     @validate_call
-    async def get_item_attribute(self, key: int | str) -> _api.ItemAttribute:
+    async def get_item_attribute(self, key: int | str) -> models.ItemAttribute:
         """Get data about an item attribute.
 
         Args:
@@ -377,10 +369,10 @@ class AsyncClient:
         Returns:
             ItemAttribute: the parsed response from the API.
         """
-        return await self._get_resource("item-attribute", key, _api.ItemAttribute)
+        return await self._get_resource("item-attribute", key, models.ItemAttribute)
 
     @validate_call
-    async def get_item_category(self, key: int | str) -> _api.ItemCategory:
+    async def get_item_category(self, key: int | str) -> models.ItemCategory:
         """Get data about an item category.
 
         Args:
@@ -389,10 +381,10 @@ class AsyncClient:
         Returns:
             ItemCategory: the parsed response from the API.
         """
-        return await self._get_resource("item-category", key, _api.ItemCategory)
+        return await self._get_resource("item-category", key, models.ItemCategory)
 
     @validate_call
-    async def get_item_fling_effect(self, key: int | str) -> _api.ItemFlingEffect:
+    async def get_item_fling_effect(self, key: int | str) -> models.ItemFlingEffect:
         """Get data about an item fling effect.
 
         Args:
@@ -401,10 +393,10 @@ class AsyncClient:
         Returns:
             ItemFlingEffect: the parsed response from the API.
         """
-        return await self._get_resource("item-fling-effect", key, _api.ItemFlingEffect)
+        return await self._get_resource("item-fling-effect", key, models.ItemFlingEffect)
 
     @validate_call
-    async def get_item_pocket(self, key: int | str) -> _api.ItemPocket:
+    async def get_item_pocket(self, key: int | str) -> models.ItemPocket:
         """Get data about an item pocket.
 
         Args:
@@ -413,13 +405,13 @@ class AsyncClient:
         Returns:
             ItemPocket: the parsed response from the API.
         """
-        return await self._get_resource("item-pocket", key, _api.ItemPocket)
+        return await self._get_resource("item-pocket", key, models.ItemPocket)
 
     # ===========================================
     # Locations group
     # ===========================================
     @validate_call
-    async def get_location(self, key: int | str) -> _api.Location:
+    async def get_location(self, key: int | str) -> models.Location:
         """Get data about a location.
 
         Args:
@@ -428,10 +420,10 @@ class AsyncClient:
         Returns:
             Location: the parsed response from the API.
         """
-        return await self._get_resource("location", key, _api.Location)
+        return await self._get_resource("location", key, models.Location)
 
     @validate_call
-    async def get_location_area(self, key: int | str) -> _api.LocationArea:
+    async def get_location_area(self, key: int | str) -> models.LocationArea:
         """Get data about a location area.
 
         Args:
@@ -440,10 +432,10 @@ class AsyncClient:
         Returns:
             LocationArea: the parsed response from the API.
         """
-        return await self._get_resource("location-area", key, _api.LocationArea)
+        return await self._get_resource("location-area", key, models.LocationArea)
 
     @validate_call
-    async def get_pal_park_area(self, key: int | str) -> _api.PalParkArea:
+    async def get_pal_park_area(self, key: int | str) -> models.PalParkArea:
         """Get data about a Pal Park area.
 
         Args:
@@ -452,10 +444,10 @@ class AsyncClient:
         Returns:
             PalParkArea: the parsed response from the API.
         """
-        return await self._get_resource("pal-park-area", key, _api.PalParkArea)
+        return await self._get_resource("pal-park-area", key, models.PalParkArea)
 
     @validate_call
-    async def get_region(self, key: int | str) -> _api.Region:
+    async def get_region(self, key: int | str) -> models.Region:
         """Get data about a region.
 
         Args:
@@ -464,13 +456,13 @@ class AsyncClient:
         Returns:
             Region: the parsed response from the API.
         """
-        return await self._get_resource("region", key, _api.Region)
+        return await self._get_resource("region", key, models.Region)
 
     # ===========================================
     # Machines group
     # ===========================================
     @validate_call
-    async def get_machine(self, key: int) -> _api.Machine:
+    async def get_machine(self, key: int) -> models.Machine:
         """Get data about a machine.
 
         Args:
@@ -479,13 +471,13 @@ class AsyncClient:
         Returns:
             Machine: the parsed response from the API.
         """
-        return await self._get_resource("machine", key, _api.Machine)
+        return await self._get_resource("machine", key, models.Machine)
 
     # ===========================================
     # Moves group
     # ===========================================
     @validate_call
-    async def get_move(self, key: int | str) -> _api.Move:
+    async def get_move(self, key: int | str) -> models.Move:
         """Get data about a move.
 
         Args:
@@ -494,10 +486,10 @@ class AsyncClient:
         Returns:
             Move: the parsed response from the API.
         """
-        return await self._get_resource("move", key, _api.Move)
+        return await self._get_resource("move", key, models.Move)
 
     @validate_call
-    async def get_move_ailment(self, key: int | str) -> _api.MoveAilment:
+    async def get_move_ailment(self, key: int | str) -> models.MoveAilment:
         """Get data about a move ailment.
 
         Args:
@@ -506,10 +498,10 @@ class AsyncClient:
         Returns:
             MoveAilment: the parsed response from the API.
         """
-        return await self._get_resource("move-ailment", key, _api.MoveAilment)
+        return await self._get_resource("move-ailment", key, models.MoveAilment)
 
     @validate_call
-    async def get_move_battle_style(self, key: int | str) -> _api.MoveBattleStyle:
+    async def get_move_battle_style(self, key: int | str) -> models.MoveBattleStyle:
         """Get data about a move battle style.
 
         Args:
@@ -518,10 +510,10 @@ class AsyncClient:
         Returns:
             MoveBattleStyle: the parsed response from the API.
         """
-        return await self._get_resource("move-battle-style", key, _api.MoveBattleStyle)
+        return await self._get_resource("move-battle-style", key, models.MoveBattleStyle)
 
     @validate_call
-    async def get_move_category(self, key: int | str) -> _api.MoveCategory:
+    async def get_move_category(self, key: int | str) -> models.MoveCategory:
         """Get data about a move category.
 
         Args:
@@ -530,10 +522,10 @@ class AsyncClient:
         Returns:
             MoveCategory: the parsed response from the API.
         """
-        return await self._get_resource("move-category", key, _api.MoveCategory)
+        return await self._get_resource("move-category", key, models.MoveCategory)
 
     @validate_call
-    async def get_damage_class(self, key: int | str) -> _api.MoveDamageClass:
+    async def get_damage_class(self, key: int | str) -> models.MoveDamageClass:
         """Get data about a move damage class.
 
         Args:
@@ -542,10 +534,10 @@ class AsyncClient:
         Returns:
             MoveDamageClass: the parsed response from the API.
         """
-        return await self._get_resource("move-damage-class", key, _api.MoveDamageClass)
+        return await self._get_resource("move-damage-class", key, models.MoveDamageClass)
 
     @validate_call
-    async def get_move_learn_method(self, key: int | str) -> _api.MoveLearnMethod:
+    async def get_move_learn_method(self, key: int | str) -> models.MoveLearnMethod:
         """Get data about a move learn method.
 
         Args:
@@ -554,10 +546,10 @@ class AsyncClient:
         Returns:
             MoveLearnMethod: the parsed response from the API.
         """
-        return await self._get_resource("move-learn-method", key, _api.MoveLearnMethod)
+        return await self._get_resource("move-learn-method", key, models.MoveLearnMethod)
 
     @validate_call
-    async def get_move_target(self, key: int | str) -> _api.MoveTarget:
+    async def get_move_target(self, key: int | str) -> models.MoveTarget:
         """Get data about a move target.
 
         Args:
@@ -566,13 +558,13 @@ class AsyncClient:
         Returns:
             MoveTarget: the parsed response from the API.
         """
-        return await self._get_resource("move-target", key, _api.MoveTarget)
+        return await self._get_resource("move-target", key, models.MoveTarget)
 
     # ===========================================
     # Pokémon group
     # ===========================================
     @validate_call
-    async def get_ability(self, key: int | str) -> _api.Ability:
+    async def get_ability(self, key: int | str) -> models.Ability:
         """Get data about an ability.
 
         Args:
@@ -581,10 +573,10 @@ class AsyncClient:
         Returns:
             Ability: the parsed response from the API.
         """
-        return await self._get_resource("ability", key, _api.Ability)
+        return await self._get_resource("ability", key, models.Ability)
 
     @validate_call
-    async def get_characteristic(self, key: int) -> _api.Characteristic:
+    async def get_characteristic(self, key: int) -> models.Characteristic:
         """Get data about a characteristic.
 
         Args:
@@ -593,10 +585,10 @@ class AsyncClient:
         Returns:
             Characteristic: the parsed response from the API.
         """
-        return await self._get_resource("characteristic", key, _api.Characteristic)
+        return await self._get_resource("characteristic", key, models.Characteristic)
 
     @validate_call
-    async def get_egg_group(self, key: int | str) -> _api.EggGroup:
+    async def get_egg_group(self, key: int | str) -> models.EggGroup:
         """Get data about an egg group.
 
         Args:
@@ -605,10 +597,10 @@ class AsyncClient:
         Returns:
             EggGroup: the parsed response from the API.
         """
-        return await self._get_resource("egg-group", key, _api.EggGroup)
+        return await self._get_resource("egg-group", key, models.EggGroup)
 
     @validate_call
-    async def get_gender(self, key: int | str) -> _api.Gender:
+    async def get_gender(self, key: int | str) -> models.Gender:
         """Get data about a gender.
 
         Args:
@@ -617,10 +609,10 @@ class AsyncClient:
         Returns:
             Gender: the parsed response from the API.
         """
-        return await self._get_resource("gender", key, _api.Gender)
+        return await self._get_resource("gender", key, models.Gender)
 
     @validate_call
-    async def get_growth_rate(self, key: int | str) -> _api.GrowthRate:
+    async def get_growth_rate(self, key: int | str) -> models.GrowthRate:
         """Get data about a growth rate.
 
         Args:
@@ -629,10 +621,10 @@ class AsyncClient:
         Returns:
             GrowthRate: the parsed response from the API.
         """
-        return await self._get_resource("growth-rate", key, _api.GrowthRate)
+        return await self._get_resource("growth-rate", key, models.GrowthRate)
 
     @validate_call
-    async def get_nature(self, key: int | str) -> _api.Nature:
+    async def get_nature(self, key: int | str) -> models.Nature:
         """Get data about a nature.
 
         Args:
@@ -641,10 +633,10 @@ class AsyncClient:
         Returns:
             Nature: the parsed response from the API.
         """
-        return await self._get_resource("nature", key, _api.Nature)
+        return await self._get_resource("nature", key, models.Nature)
 
     @validate_call
-    async def get_pokeathlon_stat(self, key: int | str) -> _api.PokeathlonStat:
+    async def get_pokeathlon_stat(self, key: int | str) -> models.PokeathlonStat:
         """Get data about a Pokéathlon stat.
 
         Args:
@@ -653,10 +645,10 @@ class AsyncClient:
         Returns:
             PokeathlonStat: the parsed response from the API.
         """
-        return await self._get_resource("pokeathlon-stat", key, _api.PokeathlonStat)
+        return await self._get_resource("pokeathlon-stat", key, models.PokeathlonStat)
 
     @validate_call
-    async def get_pokemon(self, key: int | str) -> _api.Pokemon:
+    async def get_pokemon(self, key: int | str) -> models.Pokemon:
         """Get data about a pokémon.
 
         Args:
@@ -665,10 +657,10 @@ class AsyncClient:
         Returns:
             Pokemon: the parsed response from the API.
         """
-        return await self._get_resource("pokemon", key, _api.Pokemon)
+        return await self._get_resource("pokemon", key, models.Pokemon)
 
     @validate_call
-    async def get_pokemon_location_area_encounters(self, key: int | str) -> list[_api.LocationAreaEncounter]:
+    async def get_pokemon_location_area_encounters(self, key: int | str) -> list[models.LocationAreaEncounter]:
         """Get data about a Pokémon's encounters in a location area.
 
         Args:
@@ -677,10 +669,10 @@ class AsyncClient:
         Returns:
             list[LocationAreaEncounter]: the parsed response from the API.
         """
-        return await self._get_resources(f"pokemon/{key}/encounters", "", _api.LocationAreaEncounter)
+        return await self._get_resources(f"pokemon/{key}/encounters", "", models.LocationAreaEncounter)
 
     @validate_call
-    async def get_pokemon_color(self, key: int | str) -> _api.PokemonColor:
+    async def get_pokemon_color(self, key: int | str) -> models.PokemonColor:
         """Get data about a Pokémon color.
 
         Args:
@@ -689,10 +681,10 @@ class AsyncClient:
         Returns:
             PokemonColor: the parsed response from the API.
         """
-        return await self._get_resource("pokemon-color", key, _api.PokemonColor)
+        return await self._get_resource("pokemon-color", key, models.PokemonColor)
 
     @validate_call
-    async def get_pokemon_form(self, key: int | str) -> _api.PokemonForm:
+    async def get_pokemon_form(self, key: int | str) -> models.PokemonForm:
         """Get data about a Pokémon form.
 
         Args:
@@ -701,10 +693,10 @@ class AsyncClient:
         Returns:
             PokemonForm: the parsed response from the API.
         """
-        return await self._get_resource("pokemon-form", key, _api.PokemonForm)
+        return await self._get_resource("pokemon-form", key, models.PokemonForm)
 
     @validate_call
-    async def get_pokemon_habitat(self, key: int | str) -> _api.PokemonHabitat:
+    async def get_pokemon_habitat(self, key: int | str) -> models.PokemonHabitat:
         """Get data about a Pokémon habitat.
 
         Args:
@@ -713,10 +705,10 @@ class AsyncClient:
         Returns:
             PokemonHabitat: the parsed response from the API.
         """
-        return await self._get_resource("pokemon-habitat", key, _api.PokemonHabitat)
+        return await self._get_resource("pokemon-habitat", key, models.PokemonHabitat)
 
     @validate_call
-    async def get_pokemon_shape(self, key: int | str) -> _api.PokemonShape:
+    async def get_pokemon_shape(self, key: int | str) -> models.PokemonShape:
         """Get data about a Pokémon shape.
 
         Args:
@@ -725,10 +717,10 @@ class AsyncClient:
         Returns:
             PokemonShape: the parsed response from the API.
         """
-        return await self._get_resource("pokemon-shape", key, _api.PokemonShape)
+        return await self._get_resource("pokemon-shape", key, models.PokemonShape)
 
     @validate_call
-    async def get_pokemon_species(self, key: int | str) -> _api.PokemonSpecies:
+    async def get_pokemon_species(self, key: int | str) -> models.PokemonSpecies:
         """Get data about a Pokémon species.
 
         Args:
@@ -737,10 +729,10 @@ class AsyncClient:
         Returns:
             PokemonSpecies: the parsed response from the API.
         """
-        return await self._get_resource("pokemon-species", key, _api.PokemonSpecies)
+        return await self._get_resource("pokemon-species", key, models.PokemonSpecies)
 
     @validate_call
-    async def get_stat(self, key: int | str) -> _api.Stat:
+    async def get_stat(self, key: int | str) -> models.Stat:
         """Get data about a stat.
 
         Args:
@@ -749,10 +741,10 @@ class AsyncClient:
         Returns:
             Stat: the parsed response from the API.
         """
-        return await self._get_resource("stat", key, _api.Stat)
+        return await self._get_resource("stat", key, models.Stat)
 
     @validate_call
-    async def get_type(self, key: int | str) -> _api.Type:
+    async def get_type(self, key: int | str) -> models.Type:
         """Get data about a type.
 
         Args:
@@ -761,13 +753,13 @@ class AsyncClient:
         Returns:
             Type: the parsed response from the API.
         """
-        return await self._get_resource("type", key, _api.Type)
+        return await self._get_resource("type", key, models.Type)
 
     # ===========================================
     # Utility group
     # ===========================================
     @validate_call
-    async def get_language(self, key: int | str) -> _api.Language:
+    async def get_language(self, key: int | str) -> models.Language:
         """Get info about a language.
 
         Args:
@@ -776,13 +768,13 @@ class AsyncClient:
         Returns:
             Language: the parsed response from the API.
         """
-        return await self._get_resource("language", key, _api.Language)
+        return await self._get_resource("language", key, models.Language)
 
     # ===========================================
     # Sprites
     # ===========================================
     @validate_call
-    async def get_sprite(self, url: str) -> _api.Sprite:
+    async def get_sprite(self, url: str) -> models.Sprite:
         """Get a sprite from an url.
 
         Args:
@@ -792,4 +784,4 @@ class AsyncClient:
             Sprite: a Sprite object useful to save the image.
         """
         response = await self._api_request(url)
-        return _api.Sprite(url, response.content)
+        return models.Sprite(url, response.content)

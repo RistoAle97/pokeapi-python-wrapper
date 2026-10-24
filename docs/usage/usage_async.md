@@ -1,3 +1,8 @@
+---
+tags:
+    - Asynchronous
+---
+
 ## :material-hammer-wrench: Simple usage
 The asynchronous client is represented by the `AsyncClient` class which uses aiohttp under the hood for performing every request to PokéAPI. Using the client is straightforward and simple
 ```python
@@ -30,13 +35,13 @@ async def fetch_data():
 
 pokemon = asyncio.run(fetch_data())
 ```
-Behind the scenes, the client uses an `httpx.AsyncClient` object to perform the requests, as such you can define your own custom HTTP client
+Behind the scenes, the client uses an `httpx2.AsyncClient` object to perform the requests, as such you can define your own custom HTTP client
 ```python
-import httpx
+import httpx2
 from pypokeclient import AsyncClient
 
 # Let's say I want to use HTTP/2
-http_client = httpx.AsyncClient(http2=True)
+http_client = httpx2.AsyncClient(http2=True)
 with AsyncClient(http_client) as async_client:
     pokemon = await async_client.get_pokemon("fuecoco")
 ```
@@ -50,7 +55,7 @@ Caching is done by leveraging the [hishel](https://hishel.com/) package, as such
 import logging
 
 from hishel import AsyncSqliteStorage
-from hishel.httpx import AsyncCacheClient
+from hishel.httpx2 import AsyncCacheClient
 from pypokeclient import AsyncClient
 
 

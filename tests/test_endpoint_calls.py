@@ -88,9 +88,9 @@ def test_endpoint_returns_data(method_name, key):
     assert (hasattr(result, "id") or hasattr(result, "name"))
 
 
-def test_get_pokemon_location_area():
+def test_get_pokemon_location_area_encounters():
     with Client() as client:
-        result = client.get_pokemon_location_area(1)
+        result = client.get_pokemon_location_area_encounters(1)
 
     assert isinstance(result, list)
 
@@ -127,11 +127,11 @@ async def test_sync_async_same_response(method_name, key):
 
 
 @pytest.mark.asyncio
-async def test_sync_async_same_pokemon_location_area():
+async def test_sync_async_same_pokemon_location_area_encounters():
     with Client() as sync_client:
-        sync_location_area = sync_client.get_pokemon_location_area(1)
+        sync_location_area = sync_client.get_pokemon_location_area_encounters(1)
 
     async with AsyncClient() as async_client:
-        async_location_area = await async_client.get_pokemon_location_area(1)
+        async_location_area = await async_client.get_pokemon_location_area_encounters(1)
 
     assert sync_location_area == async_location_area

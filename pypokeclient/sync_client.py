@@ -4,10 +4,9 @@ import logging
 from types import TracebackType
 
 import httpx2
-from hishel.httpx import SyncCacheClient
 from pydantic import validate_call
 
-from . import _api
+from . import models
 
 logger = logging.getLogger(__name__.split(".")[0])
 
@@ -20,7 +19,7 @@ class Client:
 
         Args:
             http_client (httpx2.Client): an `httpx2.Client` used to send request to the API. Please note that
-                `hishel.SyncCacheClient` is a subclass of `httpx.Client` so you can pass an instance of that class
+                `hishel.SyncCacheClient` is a subclass of `httpx2.Client` so you can pass an instance of that class
                 if you want to cache the responses.
         """
         self._owns_http_client = False
@@ -30,10 +29,7 @@ class Client:
         else:
             self._http_client = http_client
 
-        if isinstance(self._http_client, SyncCacheClient):
-            logger.debug("The synchronous client is ready and using the cache.")
-        else:
-            logger.debug("The synchronous client is ready without using any cache.")
+        logger.debug("Synchronous client initialized.")
 
     # ===========================================
     # Context manager methods
@@ -99,7 +95,7 @@ class Client:
     @validate_call
     def get_resource_list(
         self, endpoint: str, limit: int = 20, offset: int = 0
-    ) -> _api.NamedAPIResourceList | _api.APIResourceList:
+    ) -> models.NamedAPIResourceList | models.APIResourceList:
         """Get a list of resource data.
 
         Args:
@@ -117,21 +113,20 @@ class Client:
         if offset < 0:
             raise ValueError("offset must be non-negative")
 
-        if endpoint in _api.UNNAMED_ENDPOINTS:
-            return self._get_resource(endpoint, f"?limit={limit}&offset={offset}", _api.APIResourceList)
-        elif endpoint in _api.NAMED_ENDPOINTS:
-            return self._get_resource(endpoint, f"?limit={limit}&offset={offset}", _api.NamedAPIResourceList)
+        if endpoint in models.UNNAMED_ENDPOINTS:
+            return self._get_resource(endpoint, f"?limit={limit}&offset={offset}", models.APIResourceList)
+        elif endpoint in models.NAMED_ENDPOINTS:
+            return self._get_resource(endpoint, f"?limit={limit}&offset={offset}", models.NamedAPIResourceList)
         else:
             raise ValueError(
-                f"Unknown endpoint: {endpoint!r}.\n"
-                f"Supported endpoints: {', '.join(sorted(_api.UNNAMED_ENDPOINTS | _api.NAMED_ENDPOINTS))}"
+                f"Unknown endpoint: {endpoint!r}.\nSupported endpoints: {', '.join(sorted(models.ENDPOINTS))}"
             )
 
     # ===========================================
     # Berries group
     # ===========================================
     @validate_call
-    def get_berry(self, key: int | str) -> _api.Berry:
+    def get_berry(self, key: int | str) -> models.Berry:
         """Get data about a berry.
 
         Args:
@@ -140,10 +135,10 @@ class Client:
         Returns:
             Berry: the parsed response from the API.
         """
-        return self._get_resource("berry", key, _api.Berry)
+        return self._get_resource("berry", key, models.Berry)
 
     @validate_call
-    def get_berry_firmness(self, key: int | str) -> _api.BerryFirmness:
+    def get_berry_firmness(self, key: int | str) -> models.BerryFirmness:
         """Get data about a berry firmness.
 
         Args:
@@ -152,10 +147,10 @@ class Client:
         Returns:
             BerryFirmness: the parsed response from the API.
         """
-        return self._get_resource("berry-firmness", key, _api.BerryFirmness)
+        return self._get_resource("berry-firmness", key, models.BerryFirmness)
 
     @validate_call
-    def get_berry_flavor(self, key: int | str) -> _api.BerryFlavor:
+    def get_berry_flavor(self, key: int | str) -> models.BerryFlavor:
         """Get data about a berry flavor.
 
         Args:
@@ -164,13 +159,13 @@ class Client:
         Returns:
             BerryFlavor: the parsed response from the API.
         """
-        return self._get_resource("berry-flavor", key, _api.BerryFlavor)
+        return self._get_resource("berry-flavor", key, models.BerryFlavor)
 
     # ===========================================
     # Contests group
     # ===========================================
     @validate_call
-    def get_contest_type(self, key: int | str) -> _api.ContestType:
+    def get_contest_type(self, key: int | str) -> models.ContestType:
         """Get data about a contest type.
 
         Args:
@@ -179,10 +174,10 @@ class Client:
         Returns:
             ContestType: the parsed response from the API.
         """
-        return self._get_resource("contest-type", key, _api.ContestType)
+        return self._get_resource("contest-type", key, models.ContestType)
 
     @validate_call
-    def get_contest_effect(self, key: int) -> _api.ContestEffect:
+    def get_contest_effect(self, key: int) -> models.ContestEffect:
         """Get data about a contest effect.
 
         Args:
@@ -191,10 +186,10 @@ class Client:
         Returns:
             ContestEffect: the parsed response from the API.
         """
-        return self._get_resource("contest-effect", key, _api.ContestEffect)
+        return self._get_resource("contest-effect", key, models.ContestEffect)
 
     @validate_call
-    def get_super_contest_effect(self, key: int) -> _api.SuperContestEffect:
+    def get_super_contest_effect(self, key: int) -> models.SuperContestEffect:
         """Get data about a super contest effect.
 
         Args:
@@ -203,13 +198,13 @@ class Client:
         Returns:
             SuperContestEffect: the parsed response from the API.
         """
-        return self._get_resource("super-contest-effect", key, _api.SuperContestEffect)
+        return self._get_resource("super-contest-effect", key, models.SuperContestEffect)
 
     # ===========================================
     # Currencies group
     # ===========================================
     @validate_call
-    def get_currency(self, key: int | str) -> _api.Currency:
+    def get_currency(self, key: int | str) -> models.Currency:
         """Get data about a currency.
 
         Args:
@@ -218,13 +213,13 @@ class Client:
         Returns:
             Currency: the parsed response from the API.
         """
-        return self._get_resource("currency", key, _api.Currency)
+        return self._get_resource("currency", key, models.Currency)
 
     # ===========================================
     # Encounters group
     # ===========================================
     @validate_call
-    def get_encounter_method(self, key: int | str) -> _api.EncounterMethod:
+    def get_encounter_method(self, key: int | str) -> models.EncounterMethod:
         """Get data about an encounter method.
 
         Args:
@@ -233,10 +228,10 @@ class Client:
         Returns:
             EncounterMethod: the parsed response from the API.
         """
-        return self._get_resource("encounter-method", key, _api.EncounterMethod)
+        return self._get_resource("encounter-method", key, models.EncounterMethod)
 
     @validate_call
-    def get_encounter_condition(self, key: int | str) -> _api.EncounterCondition:
+    def get_encounter_condition(self, key: int | str) -> models.EncounterCondition:
         """Get data about an encounter condition.
 
         Args:
@@ -245,10 +240,10 @@ class Client:
         Returns:
             EncounterCondition: the parsed response from the API.
         """
-        return self._get_resource("encounter-condition", key, _api.EncounterCondition)
+        return self._get_resource("encounter-condition", key, models.EncounterCondition)
 
     @validate_call
-    def get_encounter_condition_value(self, key: int | str) -> _api.EncounterConditionValue:
+    def get_encounter_condition_value(self, key: int | str) -> models.EncounterConditionValue:
         """Get data about an encounter condition value.
 
         Args:
@@ -257,13 +252,13 @@ class Client:
         Returns:
             EncounterConditionValue: the parsed response from the API.
         """
-        return self._get_resource("encounter-condition-value", key, _api.EncounterConditionValue)
+        return self._get_resource("encounter-condition-value", key, models.EncounterConditionValue)
 
     # ===========================================
     # Evolution group
     # ===========================================
     @validate_call
-    def get_evolution_chain(self, key: int) -> _api.EvolutionChain:
+    def get_evolution_chain(self, key: int) -> models.EvolutionChain:
         """Get data about an evolution chain.
 
         Args:
@@ -272,10 +267,10 @@ class Client:
         Returns:
             EvolutionChain: the parsed response from the API.
         """
-        return self._get_resource("evolution-chain", key, _api.EvolutionChain)
+        return self._get_resource("evolution-chain", key, models.EvolutionChain)
 
     @validate_call
-    def get_evolution_trigger(self, key: int | str) -> _api.EvolutionTrigger:
+    def get_evolution_trigger(self, key: int | str) -> models.EvolutionTrigger:
         """Get data about an evolution trigger.
 
         Args:
@@ -284,10 +279,10 @@ class Client:
         Returns:
             EvolutionTrigger: the parsed response from the API.
         """
-        return self._get_resource("evolution-trigger", key, _api.EvolutionTrigger)
+        return self._get_resource("evolution-trigger", key, models.EvolutionTrigger)
 
     @validate_call
-    def get_evolution_variable(self, key: int | str) -> _api.EvolutionVariable:
+    def get_evolution_variable(self, key: int | str) -> models.EvolutionVariable:
         """Get data about an evolution variable.
 
         Args:
@@ -296,13 +291,13 @@ class Client:
         Returns:
             EvolutionVariable: the parsed response from the API.
         """
-        return self._get_resource("evolution-variable", key, _api.EvolutionVariable)
+        return self._get_resource("evolution-variable", key, models.EvolutionVariable)
 
     # ===========================================
     # Games group
     # ===========================================
     @validate_call
-    def get_generation(self, key: int | str) -> _api.Generation:
+    def get_generation(self, key: int | str) -> models.Generation:
         """Get data about a generation.
 
         Args:
@@ -311,10 +306,10 @@ class Client:
         Returns:
             Generation: the parsed response from the API.
         """
-        return self._get_resource("generation", key, _api.Generation)
+        return self._get_resource("generation", key, models.Generation)
 
     @validate_call
-    def get_pokedex(self, key: int | str) -> _api.Pokedex:
+    def get_pokedex(self, key: int | str) -> models.Pokedex:
         """Get data about a Pokédex.
 
         Args:
@@ -323,10 +318,10 @@ class Client:
         Returns:
             Pokedex: the parsed response from the API.
         """
-        return self._get_resource("pokedex", key, _api.Pokedex)
+        return self._get_resource("pokedex", key, models.Pokedex)
 
     @validate_call
-    def get_version_group(self, key: int | str) -> _api.VersionGroup:
+    def get_version_group(self, key: int | str) -> models.VersionGroup:
         """Get data about a version group.
 
         Args:
@@ -335,10 +330,10 @@ class Client:
         Returns:
             VersionGroup: the parsed response from the API.
         """
-        return self._get_resource("version-group", key, _api.VersionGroup)
+        return self._get_resource("version-group", key, models.VersionGroup)
 
     @validate_call
-    def get_version(self, key: int | str) -> _api.Version:
+    def get_version(self, key: int | str) -> models.Version:
         """Get data about a version.
 
         Args:
@@ -347,13 +342,13 @@ class Client:
         Returns:
             Version: the parsed response from the API.
         """
-        return self._get_resource("version", key, _api.Version)
+        return self._get_resource("version", key, models.Version)
 
     # ===========================================
     # Items group
     # ===========================================
     @validate_call
-    def get_item(self, key: int | str) -> _api.Item:
+    def get_item(self, key: int | str) -> models.Item:
         """Get data about an item.
 
         Args:
@@ -362,10 +357,10 @@ class Client:
         Returns:
             Item: the parsed response from the API.
         """
-        return self._get_resource("item", key, _api.Item)
+        return self._get_resource("item", key, models.Item)
 
     @validate_call
-    def get_item_attribute(self, key: int | str) -> _api.ItemAttribute:
+    def get_item_attribute(self, key: int | str) -> models.ItemAttribute:
         """Get data about an item attribute.
 
         Args:
@@ -374,10 +369,10 @@ class Client:
         Returns:
             ItemAttribute: the parsed response from the API.
         """
-        return self._get_resource("item-attribute", key, _api.ItemAttribute)
+        return self._get_resource("item-attribute", key, models.ItemAttribute)
 
     @validate_call
-    def get_item_category(self, key: int | str) -> _api.ItemCategory:
+    def get_item_category(self, key: int | str) -> models.ItemCategory:
         """Get data about an item category.
 
         Args:
@@ -386,10 +381,10 @@ class Client:
         Returns:
             ItemCategory: the parsed response from the API.
         """
-        return self._get_resource("item-category", key, _api.ItemCategory)
+        return self._get_resource("item-category", key, models.ItemCategory)
 
     @validate_call
-    def get_item_fling_effect(self, key: int | str) -> _api.ItemFlingEffect:
+    def get_item_fling_effect(self, key: int | str) -> models.ItemFlingEffect:
         """Get data about an item fling effect.
 
         Args:
@@ -398,10 +393,10 @@ class Client:
         Returns:
             ItemFlingEffect: the parsed response from the API.
         """
-        return self._get_resource("item-fling-effect", key, _api.ItemFlingEffect)
+        return self._get_resource("item-fling-effect", key, models.ItemFlingEffect)
 
     @validate_call
-    def get_item_pocket(self, key: int | str) -> _api.ItemPocket:
+    def get_item_pocket(self, key: int | str) -> models.ItemPocket:
         """Get data about an item pocket.
 
         Args:
@@ -410,13 +405,13 @@ class Client:
         Returns:
             ItemPocket: the parsed response from the API.
         """
-        return self._get_resource("item-pocket", key, _api.ItemPocket)
+        return self._get_resource("item-pocket", key, models.ItemPocket)
 
     # ===========================================
     # Locations group
     # ===========================================
     @validate_call
-    def get_location(self, key: int | str) -> _api.Location:
+    def get_location(self, key: int | str) -> models.Location:
         """Get data about a location.
 
         Args:
@@ -425,10 +420,10 @@ class Client:
         Returns:
             Location: the parsed response from the API.
         """
-        return self._get_resource("location", key, _api.Location)
+        return self._get_resource("location", key, models.Location)
 
     @validate_call
-    def get_location_area(self, key: int | str) -> _api.LocationArea:
+    def get_location_area(self, key: int | str) -> models.LocationArea:
         """Get data about a location area.
 
         Args:
@@ -437,10 +432,10 @@ class Client:
         Returns:
             LocationArea: the parsed response from the API.
         """
-        return self._get_resource("location-area", key, _api.LocationArea)
+        return self._get_resource("location-area", key, models.LocationArea)
 
     @validate_call
-    def get_pal_park_area(self, key: int | str) -> _api.PalParkArea:
+    def get_pal_park_area(self, key: int | str) -> models.PalParkArea:
         """Get data about a Pal Park area.
 
         Args:
@@ -449,10 +444,10 @@ class Client:
         Returns:
             PalParkArea: the parsed response from the API.
         """
-        return self._get_resource("pal-park-area", key, _api.PalParkArea)
+        return self._get_resource("pal-park-area", key, models.PalParkArea)
 
     @validate_call
-    def get_region(self, key: int | str) -> _api.Region:
+    def get_region(self, key: int | str) -> models.Region:
         """Get data about a region.
 
         Args:
@@ -461,13 +456,13 @@ class Client:
         Returns:
             Region: the parsed response from the API.
         """
-        return self._get_resource("region", key, _api.Region)
+        return self._get_resource("region", key, models.Region)
 
     # ===========================================
     # Machines group
     # ===========================================
     @validate_call
-    def get_machine(self, key: int) -> _api.Machine:
+    def get_machine(self, key: int) -> models.Machine:
         """Get data about a machine.
 
         Args:
@@ -476,13 +471,13 @@ class Client:
         Returns:
             Machine: the parsed response from the API.
         """
-        return self._get_resource("machine", key, _api.Machine)
+        return self._get_resource("machine", key, models.Machine)
 
     # ===========================================
     # Moves group
     # ===========================================
     @validate_call
-    def get_move(self, key: int | str) -> _api.Move:
+    def get_move(self, key: int | str) -> models.Move:
         """Get data about a move.
 
         Args:
@@ -491,10 +486,10 @@ class Client:
         Returns:
             Move: the parsed response from the API.
         """
-        return self._get_resource("move", key, _api.Move)
+        return self._get_resource("move", key, models.Move)
 
     @validate_call
-    def get_move_ailment(self, key: int | str) -> _api.MoveAilment:
+    def get_move_ailment(self, key: int | str) -> models.MoveAilment:
         """Get data about a move ailment.
 
         Args:
@@ -503,10 +498,10 @@ class Client:
         Returns:
             MoveAilment: the parsed response from the API.
         """
-        return self._get_resource("move-ailment", key, _api.MoveAilment)
+        return self._get_resource("move-ailment", key, models.MoveAilment)
 
     @validate_call
-    def get_move_battle_style(self, key: int | str) -> _api.MoveBattleStyle:
+    def get_move_battle_style(self, key: int | str) -> models.MoveBattleStyle:
         """Get data about a move battle style.
 
         Args:
@@ -515,10 +510,10 @@ class Client:
         Returns:
             MoveBattleStyle: the parsed response from the API.
         """
-        return self._get_resource("move-battle-style", key, _api.MoveBattleStyle)
+        return self._get_resource("move-battle-style", key, models.MoveBattleStyle)
 
     @validate_call
-    def get_move_category(self, key: int | str) -> _api.MoveCategory:
+    def get_move_category(self, key: int | str) -> models.MoveCategory:
         """Get data about a move category.
 
         Args:
@@ -527,10 +522,10 @@ class Client:
         Returns:
             MoveCategory: the parsed response from the API.
         """
-        return self._get_resource("move-category", key, _api.MoveCategory)
+        return self._get_resource("move-category", key, models.MoveCategory)
 
     @validate_call
-    def get_damage_class(self, key: int | str) -> _api.MoveDamageClass:
+    def get_damage_class(self, key: int | str) -> models.MoveDamageClass:
         """Get data about a move damage class.
 
         Args:
@@ -539,10 +534,10 @@ class Client:
         Returns:
             MoveDamageClass: the parsed response from the API.
         """
-        return self._get_resource("move-damage-class", key, _api.MoveDamageClass)
+        return self._get_resource("move-damage-class", key, models.MoveDamageClass)
 
     @validate_call
-    def get_move_learn_method(self, key: int | str) -> _api.MoveLearnMethod:
+    def get_move_learn_method(self, key: int | str) -> models.MoveLearnMethod:
         """Get data about a move learn method.
 
         Args:
@@ -551,10 +546,10 @@ class Client:
         Returns:
             MoveLearnMethod: the parsed response from the API.
         """
-        return self._get_resource("move-learn-method", key, _api.MoveLearnMethod)
+        return self._get_resource("move-learn-method", key, models.MoveLearnMethod)
 
     @validate_call
-    def get_move_target(self, key: int | str) -> _api.MoveTarget:
+    def get_move_target(self, key: int | str) -> models.MoveTarget:
         """Get data about a move target.
 
         Args:
@@ -563,13 +558,13 @@ class Client:
         Returns:
             MoveTarget: the parsed response from the API.
         """
-        return self._get_resource("move-target", key, _api.MoveTarget)
+        return self._get_resource("move-target", key, models.MoveTarget)
 
     # ===========================================
     # Pokémon group
     # ===========================================
     @validate_call
-    def get_ability(self, key: int | str) -> _api.Ability:
+    def get_ability(self, key: int | str) -> models.Ability:
         """Get data about an ability.
 
         Args:
@@ -578,10 +573,10 @@ class Client:
         Returns:
             Ability: the parsed response from the API.
         """
-        return self._get_resource("ability", key, _api.Ability)
+        return self._get_resource("ability", key, models.Ability)
 
     @validate_call
-    def get_characteristic(self, key: int) -> _api.Characteristic:
+    def get_characteristic(self, key: int) -> models.Characteristic:
         """Get data about a characteristic.
 
         Args:
@@ -590,10 +585,10 @@ class Client:
         Returns:
             Characteristic: the parsed response from the API.
         """
-        return self._get_resource("characteristic", key, _api.Characteristic)
+        return self._get_resource("characteristic", key, models.Characteristic)
 
     @validate_call
-    def get_egg_group(self, key: int | str) -> _api.EggGroup:
+    def get_egg_group(self, key: int | str) -> models.EggGroup:
         """Get data about an egg group.
 
         Args:
@@ -602,10 +597,10 @@ class Client:
         Returns:
             EggGroup: the parsed response from the API.
         """
-        return self._get_resource("egg-group", key, _api.EggGroup)
+        return self._get_resource("egg-group", key, models.EggGroup)
 
     @validate_call
-    def get_gender(self, key: int | str) -> _api.Gender:
+    def get_gender(self, key: int | str) -> models.Gender:
         """Get data about a gender.
 
         Args:
@@ -614,10 +609,10 @@ class Client:
         Returns:
             Gender: the parsed response from the API.
         """
-        return self._get_resource("gender", key, _api.Gender)
+        return self._get_resource("gender", key, models.Gender)
 
     @validate_call
-    def get_growth_rate(self, key: int | str) -> _api.GrowthRate:
+    def get_growth_rate(self, key: int | str) -> models.GrowthRate:
         """Get data about a growth rate.
 
         Args:
@@ -626,10 +621,10 @@ class Client:
         Returns:
             GrowthRate: the parsed response from the API.
         """
-        return self._get_resource("growth-rate", key, _api.GrowthRate)
+        return self._get_resource("growth-rate", key, models.GrowthRate)
 
     @validate_call
-    def get_nature(self, key: int | str) -> _api.Nature:
+    def get_nature(self, key: int | str) -> models.Nature:
         """Get data about a nature.
 
         Args:
@@ -638,10 +633,10 @@ class Client:
         Returns:
             Nature: the parsed response from the API.
         """
-        return self._get_resource("nature", key, _api.Nature)
+        return self._get_resource("nature", key, models.Nature)
 
     @validate_call
-    def get_pokeathlon_stat(self, key: int | str) -> _api.PokeathlonStat:
+    def get_pokeathlon_stat(self, key: int | str) -> models.PokeathlonStat:
         """Get data about a Pokéathlon stat.
 
         Args:
@@ -650,10 +645,10 @@ class Client:
         Returns:
             PokeathlonStat: the parsed response from the API.
         """
-        return self._get_resource("pokeathlon-stat", key, _api.PokeathlonStat)
+        return self._get_resource("pokeathlon-stat", key, models.PokeathlonStat)
 
     @validate_call
-    def get_pokemon(self, key: int | str) -> _api.Pokemon:
+    def get_pokemon(self, key: int | str) -> models.Pokemon:
         """Get data about a pokémon.
 
         Args:
@@ -662,10 +657,10 @@ class Client:
         Returns:
             Pokemon: the parsed response from the API.
         """
-        return self._get_resource("pokemon", key, _api.Pokemon)
+        return self._get_resource("pokemon", key, models.Pokemon)
 
     @validate_call
-    def get_pokemon_location_area_encounters(self, key: int | str) -> list[_api.LocationAreaEncounter]:
+    def get_pokemon_location_area_encounters(self, key: int | str) -> list[models.LocationAreaEncounter]:
         """Get data about a Pokémon's encounters in a location area.
 
         Args:
@@ -674,10 +669,10 @@ class Client:
         Returns:
             list[LocationAreaEncounter]: the parsed response from the API.
         """
-        return self._get_resources(f"pokemon/{key}/encounters", "", _api.LocationAreaEncounter)
+        return self._get_resources(f"pokemon/{key}/encounters", "", models.LocationAreaEncounter)
 
     @validate_call
-    def get_pokemon_color(self, key: int | str) -> _api.PokemonColor:
+    def get_pokemon_color(self, key: int | str) -> models.PokemonColor:
         """Get data about a Pokémon color.
 
         Args:
@@ -686,10 +681,10 @@ class Client:
         Returns:
             PokemonColor: the parsed response from the API.
         """
-        return self._get_resource("pokemon-color", key, _api.PokemonColor)
+        return self._get_resource("pokemon-color", key, models.PokemonColor)
 
     @validate_call
-    def get_pokemon_form(self, key: int | str) -> _api.PokemonForm:
+    def get_pokemon_form(self, key: int | str) -> models.PokemonForm:
         """Get data about a Pokémon form.
 
         Args:
@@ -698,10 +693,10 @@ class Client:
         Returns:
             PokemonForm: the parsed response from the API.
         """
-        return self._get_resource("pokemon-form", key, _api.PokemonForm)
+        return self._get_resource("pokemon-form", key, models.PokemonForm)
 
     @validate_call
-    def get_pokemon_habitat(self, key: int | str) -> _api.PokemonHabitat:
+    def get_pokemon_habitat(self, key: int | str) -> models.PokemonHabitat:
         """Get data about a Pokémon habitat.
 
         Args:
@@ -710,10 +705,10 @@ class Client:
         Returns:
             PokemonHabitat: the parsed response from the API.
         """
-        return self._get_resource("pokemon-habitat", key, _api.PokemonHabitat)
+        return self._get_resource("pokemon-habitat", key, models.PokemonHabitat)
 
     @validate_call
-    def get_pokemon_shape(self, key: int | str) -> _api.PokemonShape:
+    def get_pokemon_shape(self, key: int | str) -> models.PokemonShape:
         """Get data about a Pokémon shape.
 
         Args:
@@ -722,10 +717,10 @@ class Client:
         Returns:
             PokemonShape: the parsed response from the API.
         """
-        return self._get_resource("pokemon-shape", key, _api.PokemonShape)
+        return self._get_resource("pokemon-shape", key, models.PokemonShape)
 
     @validate_call
-    def get_pokemon_species(self, key: int | str) -> _api.PokemonSpecies:
+    def get_pokemon_species(self, key: int | str) -> models.PokemonSpecies:
         """Get data about a Pokémon species.
 
         Args:
@@ -734,10 +729,10 @@ class Client:
         Returns:
             PokemonSpecies: the parsed response from the API.
         """
-        return self._get_resource("pokemon-species", key, _api.PokemonSpecies)
+        return self._get_resource("pokemon-species", key, models.PokemonSpecies)
 
     @validate_call
-    def get_stat(self, key: int | str) -> _api.Stat:
+    def get_stat(self, key: int | str) -> models.Stat:
         """Get data about a stat.
 
         Args:
@@ -746,10 +741,10 @@ class Client:
         Returns:
             Stat: the parsed response from the API.
         """
-        return self._get_resource("stat", key, _api.Stat)
+        return self._get_resource("stat", key, models.Stat)
 
     @validate_call
-    def get_type(self, key: int | str) -> _api.Type:
+    def get_type(self, key: int | str) -> models.Type:
         """Get data about a type.
 
         Args:
@@ -758,13 +753,13 @@ class Client:
         Returns:
             Type: the parsed response from the API.
         """
-        return self._get_resource("type", key, _api.Type)
+        return self._get_resource("type", key, models.Type)
 
     # ===========================================
     # Utility group
     # ===========================================
     @validate_call
-    def get_language(self, key: int | str) -> _api.Language:
+    def get_language(self, key: int | str) -> models.Language:
         """Get info about a language.
 
         Args:
@@ -773,13 +768,13 @@ class Client:
         Returns:
             Language: the parsed response from the API.
         """
-        return self._get_resource("language", key, _api.Language)
+        return self._get_resource("language", key, models.Language)
 
     # ===========================================
     # Sprites
     # ===========================================
     @validate_call
-    def get_sprite(self, url: str) -> _api.Sprite:
+    def get_sprite(self, url: str) -> models.Sprite:
         """Get a sprite from an url.
 
         Args:
@@ -789,4 +784,4 @@ class Client:
             Sprite: a Sprite object useful to save the image.
         """
         response = self._api_request(url)
-        return _api.Sprite(url, response.content)
+        return models.Sprite(url, response.content)
