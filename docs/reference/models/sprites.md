@@ -3,6 +3,6 @@ hide:
     - toc
 ---
 
-::: pypokeclient.models.sprites
+::: pypokeclient.models.sprites.Sprite
     options:
-        separate_signature: false
+        members: false
