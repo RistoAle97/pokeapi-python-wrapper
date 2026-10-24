@@ -241,5 +241,5 @@ inherited_members = true
 show_docstring_attributes = true
 show_if_no_docstring = true
 show_source = true
-show_root_full_path = true
+show_root_full_path = false
 show_root_heading = true

@@ -3,10 +3,18 @@ hide:
     - toc
 ---
 
-```console
-https://pokeapi.co/api/v2/pokemon-shape/{id or name}/
-```
+# Pokémon shapes
 
-::: pypokeclient.models.pokemon.pokemon_shapes
+**`GET https://pokeapi.co/api/v2/pokemon-shape/{id or name}/`**
+
+**[Official PokéAPI documentation](https://pokeapi.co/docs/v2#pokemon-shapes)**
+
+---
+
+::: pypokeclient.models.pokemon.pokemon_shapes.PokemonShape
     options:
-        separate_signature: false
+        members: false
+
+::: pypokeclient.models.pokemon.pokemon_shapes.AwesomeName
+    options:
+        members: false

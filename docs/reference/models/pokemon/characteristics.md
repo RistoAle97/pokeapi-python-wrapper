@@ -3,10 +3,14 @@ hide:
     - toc
 ---
 
-```console
-https://pokeapi.co/api/v2/characteristic/{id}/
-```
+# Characteristics
 
-::: pypokeclient.models.pokemon.characteristics
+**`GET https://pokeapi.co/api/v2/characteristic/{id or name}/`**
+
+**[Official PokéAPI documentation](https://pokeapi.co/docs/v2#characteristics)**
+
+---
+
+::: pypokeclient.models.pokemon.characteristics.Characteristic
     options:
-        separate_signature: false
+        members: false

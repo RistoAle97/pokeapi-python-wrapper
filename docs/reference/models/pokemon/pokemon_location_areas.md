@@ -3,10 +3,14 @@ hide:
     - toc
 ---
 
-```console
-https://pokeapi.co/api/v2/pokemon/{id or name}/encounters
-```
+# Pokémon location areas
 
-::: pypokeclient.models.pokemon.pokemon_location_areas
+**`GET https://pokeapi.co/api/v2/pokemon/{id or name}/encounters/`**
+
+**[Official PokéAPI documentation](https://pokeapi.co/docs/v2#pokemon-location-areas)**
+
+---
+
+::: pypokeclient.models.pokemon.pokemon_location_areas.LocationAreaEncounter
     options:
-        separate_signature: false
+        members: false

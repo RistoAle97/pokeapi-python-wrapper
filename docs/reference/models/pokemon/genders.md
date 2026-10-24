@@ -3,10 +3,18 @@ hide:
     - toc
 ---
 
-```console
-https://pokeapi.co/api/v2/gender/{id or name}/
-```
+# Genders
 
-::: pypokeclient.models.pokemon.genders
+**`GET https://pokeapi.co/api/v2/gender/{id or name}/`**
+
+**[Official PokéAPI documentation](https://pokeapi.co/docs/v2#genders)**
+
+---
+
+::: pypokeclient.models.pokemon.genders.Gender
     options:
-        separate_signature: false
+        members: false
+
+::: pypokeclient.models.pokemon.genders.PokemonSpeciesGender
+    options:
+        members: false

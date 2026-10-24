@@ -78,9 +78,6 @@ select = [
   "UP",  # pyupgrade
 ]
 
-[tool.ruff.lint.per-file-ignores]
-"pypokeclient/models/**/*.py" = ["D"]
-
 [tool.ruff.lint.pydocstyle]
 convention = "google"
 

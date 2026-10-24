@@ -3,10 +3,22 @@ hide:
     - toc
 ---
 
-```console
-https://pokeapi.co/api/v2/pokeathlon-stat/{id or name}/
-```
+# Pokéathlon stats
 
-::: pypokeclient.models.pokemon.pokeathlon_stats
+**`GET https://pokeapi.co/api/v2/pokeathlon-stat/{id or name}/`**
+
+**[Official PokéAPI documentation](https://pokeapi.co/docs/v2#pokeathlon-stats)**
+
+---
+
+::: pypokeclient.models.pokemon.pokeathlon_stats.PokeathlonStat
     options:
-        separate_signature: false
+        members: false
+
+::: pypokeclient.models.pokemon.pokeathlon_stats.NaturePokeathlonStatAffectSets
+    options:
+        members: false
+
+::: pypokeclient.models.pokemon.pokeathlon_stats.NaturePokeathlonStatAffect
+    options:
+        members: false

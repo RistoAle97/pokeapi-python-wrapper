@@ -3,10 +3,26 @@ hide:
     - toc
 ---
 
-```console
-https://pokeapi.co/api/v2/stat/{id or name}/
-```
+# Stats
 
-::: pypokeclient.models.pokemon.stats
+**`GET https://pokeapi.co/api/v2/stat/{id or name}/`**
+
+**[Official PokéAPI documentation](https://pokeapi.co/docs/v2#stats)**
+
+---
+
+::: pypokeclient.models.pokemon.stats.Stat
     options:
-        separate_signature: false
+      members: false
+
+::: pypokeclient.models.pokemon.stats.MoveStatAffectSets
+    options:
+      members: false
+
+::: pypokeclient.models.pokemon.stats.MoveStatAffect
+    options:
+      members: false
+
+::: pypokeclient.models.pokemon.stats.NatureStatAffectSets
+    options:
+      members: false

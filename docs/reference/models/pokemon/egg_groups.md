@@ -3,10 +3,14 @@ hide:
     - toc
 ---
 
-```console
-https://pokeapi.co/api/v2/egg-group/{id or name}/
-```
+# Egg groups
 
-::: pypokeclient.models.pokemon.egg_groups
+**`GET https://pokeapi.co/api/v2/egg-group/{id or name}/`**
+
+**[Official PokéAPI documentation](https://pokeapi.co/docs/v2#egg-groups)**
+
+---
+
+::: pypokeclient.models.pokemon.egg_groups.EggGroup
     options:
-        separate_signature: false
+        members: false
