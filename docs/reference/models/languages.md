@@ -3,10 +3,14 @@ hide:
     - toc
 ---
 
-```console
-https://pokeapi.co/api/v2/language/{id or name}/
-```
+# Languages
 
-::: pypokeclient.models.languages
+**`GET https://pokeapi.co/api/v2/language/{id or name}/`**
+
+**[Official PokéAPI documentation](https://pokeapi.co/docs/v2#languages)**
+
+---
+
+::: pypokeclient.models.languages.Language
     options:
-        separate_signature: false
+        members: false
