@@ -80,7 +80,10 @@ pokemon = Pokemon(**resp.json())
 ```
 
 ## 💾 Caching the results
-
+First, install the cache optional dependencies
+```bash
+uv add pypokeclient[cache]
+```
 >[!IMPORTANT]
 >Please refer to the [hishel](https://hishel.com/) documentation for more details about the caching system.
 ```python
