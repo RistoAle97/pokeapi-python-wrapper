@@ -3,10 +3,14 @@ hide:
     - toc
 ---
 
-```console
-https://pokeapi.co/api/v2/machine/{id}/
-```
+# Machines
 
-::: pypokeclient.models.machines.machines
+**`GET https://pokeapi.co/api/v2/machine/{id}/`**
+
+**[Official PokéAPI documentation](https://pokeapi.co/docs/v2#machines)**
+
+---
+
+::: pypokeclient.models.machines.machines.Machine
     options:
-        separate_signature: false
+        members: false
