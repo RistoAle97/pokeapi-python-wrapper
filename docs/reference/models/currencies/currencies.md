@@ -3,10 +3,14 @@ hide:
     - toc
 ---
 
-# Currencies endpoint dataclasses
+# Currencies
 
-```console
-https://pokeapi.co/api/v2/currency/{id or name}/
-```
+**`GET https://pokeapi.co/api/v2/currency/{id or name}/`**
 
-::: pypokeclient.models.currencies.currencies
+**[Official PokéAPI documentation](https://pokeapi.co/docs/v2#currencies)**
+
+---
+
+::: pypokeclient.models.currencies.currencies.Currency
+    options:
+        members: false
