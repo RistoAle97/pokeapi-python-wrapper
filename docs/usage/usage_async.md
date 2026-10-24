@@ -55,7 +55,10 @@ from pypokeclient import AsyncClient
 
 
 async def fetch_data():
-    http_client = AsyncCacheClient(storage=AsyncSqliteStorage(database_path="pypokeclient_cache.db"))
+    http_client = AsyncCacheClient(
+        storage=AsyncSqliteStorage(database_path="pypokeclient_cache.db"),
+        base_url="https://pokeapi.co/api/v2/",
+    )
     async with AsyncClient(http_client) as async_client:
         # Not in the cache, the response will be saved inside of it
         pokemon = await async_client.get_pokemon("fuecoco")
@@ -68,7 +71,7 @@ async def fetch_data():
 
 # Set up the logger
 logger = logging.getLogger("pypokeclient")
-logger.setLevel(logging.INFO)
+logger.setLevel(logging.DEBUG)
 console_handler = logging.StreamHandler()
 console_handler.setFormatter(logging.Formatter("%(levelname)s - %(message)s"))
 logger.addHandler(console_handler)
@@ -79,8 +82,8 @@ pokemon = asyncio.run(fetch_data())
 
 In the logs you can clearly see that the second response was cached
 ```
-INFO - The asynchronous client is ready and using the cache at '.cache\hishel\pypokeclient_cache.db'.
-INFO - [200] Request to https://pokeapi.co/api/v2/pokemon/fuecoco.
-INFO - [200] Cached request to https://pokeapi.co/api/v2/pokemon/fuecoco.
-INFO - Closed session for the asynchronous client.
+DEBUG - The asynchronous client is ready and using the cache at '.cache\hishel\pypokeclient_cache.db'.
+DEBUG - [200] Request to https://pokeapi.co/api/v2/pokemon/fuecoco.
+DEBUG - [200] Cached request to https://pokeapi.co/api/v2/pokemon/fuecoco.
+DEBUG - Closed session for the asynchronous client.
 ```

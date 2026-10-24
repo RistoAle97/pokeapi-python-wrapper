@@ -38,13 +38,16 @@ from pypokeclient import Client
 
 # Set up the logger
 logger = logging.getLogger("pypokeclient")
-logger.setLevel(logging.INFO)
+logger.setLevel(logging.DEBUG)
 console_handler = logging.StreamHandler()
 console_handler.setFormatter(logging.Formatter("%(levelname)s - %(message)s"))
 logger.addHandler(console_handler)
 
 # Note that hishel.SyncCacheClient is a subclass of httpx.Client
-http_client = SyncCacheClient(storage=SyncSqliteStorage(database_path="pypokeclient_cache.db"))
+http_client = SyncCacheClient(
+    storage=SyncSqliteStorage(database_path="pypokeclient_cache.db"),
+    base_url="https://pokeapi.co/api/v2/",
+)
 with Client(http_client) as sync_client:
     # Not in the cache, the response will be saved inside of it
     pokemon = sync_client.get_pokemon("fuecoco")
@@ -55,8 +58,8 @@ with Client(http_client) as sync_client:
 
 In the logs you can clearly see that the second response was cached
 ```
-INFO - The synchronous client is ready and using the cache at '.cache\hishel\pypokeclient_cache.db'.
-INFO - [200] Request to https://pokeapi.co/api/v2/pokemon/fuecoco.
-INFO - [200] Cached request to https://pokeapi.co/api/v2/pokemon/fuecoco.
-INFO - Closed session for the synchronous client.
+DEBUG - The synchronous client is ready and using the cache at '.cache\hishel\pypokeclient_cache.db'.
+DEBUG - [200] Request to https://pokeapi.co/api/v2/pokemon/fuecoco.
+DEBUG - [200] Cached request to https://pokeapi.co/api/v2/pokemon/fuecoco.
+DEBUG - Closed session for the synchronous client.
 ```

@@ -117,12 +117,12 @@ with Client(http_client) as sync_client:
 ```
 The output will be
 ```
-pypokeclient - INFO - The synchronous client is ready and using the cache at .cache\hishel\pypokeclient_cache.db'.
-pypokeclient - INFO - [200] Request to https://pokeapi.co/api/v2/pokemon/fuecoco.
-pypokeclient - INFO - [200] Cached request to https://pokeapi.co/api/v2/pokemon/fuecoco.
-pypokeclient - INFO - [200] Request to https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/909.png.
-pypokeclient - INFO - [200] Cached request to https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/909.png.
-pypokeclient - INFO - Closed session for the synchronous client.
+pypokeclient - DEBUG - The synchronous client is ready and using the cache at .cache\hishel\pypokeclient_cache.db'.
+pypokeclient - DEBUG - [200] Request to https://pokeapi.co/api/v2/pokemon/fuecoco.
+pypokeclient - DEBUG - [200] Cached request to https://pokeapi.co/api/v2/pokemon/fuecoco.
+pypokeclient - DEBUG - [200] Request to https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/909.png.
+pypokeclient - DEBUG - [200] Cached request to https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/909.png.
+pypokeclient - DEBUG - Closed session for the synchronous client.
 ```
 
 ## 📝 License
