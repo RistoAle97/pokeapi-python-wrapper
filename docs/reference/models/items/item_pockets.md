@@ -3,10 +3,14 @@ hide:
     - toc
 ---
 
-```console
-https://pokeapi.co/api/v2/item-pocket/{id or name}/
-```
+# Item categories
 
-::: pypokeclient.models.items.item_pockets
+**`GET https://pokeapi.co/api/v2/item-pocket/{id or name}/`**
+
+**[Official PokéAPI documentation](https://pokeapi.co/docs/v2#item-pockets)**
+
+---
+
+::: pypokeclient.models.items.item_pockets.ItemPocket
     options:
-        separate_signature: false
+        members: false

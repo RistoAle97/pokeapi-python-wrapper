@@ -3,10 +3,14 @@ hide:
     - toc
 ---
 
-```console
-https://pokeapi.co/api/v2/item-fling-effect/{id or name}/
-```
+# Item fling effects
 
-::: pypokeclient.models.items.item_fling_effects
+**`GET https://pokeapi.co/api/v2/item-fling-effect/{id or name}/`**
+
+**[Official PokéAPI documentation](https://pokeapi.co/docs/v2#item-fling-effects)**
+
+---
+
+::: pypokeclient.models.items.item_fling_effects.ItemFlingEffect
     options:
-        separate_signature: false
+        members: false

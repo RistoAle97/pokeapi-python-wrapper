@@ -3,7 +3,7 @@ hide:
     - toc
 ---
 
-# Version groups
+# Version
 
 **`GET https://pokeapi.co/api/v2/version/{id or name}/`**
 
