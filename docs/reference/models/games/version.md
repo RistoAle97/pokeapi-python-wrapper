@@ -3,10 +3,14 @@ hide:
     - toc
 ---
 
-```console
-https://pokeapi.co/api/v2/version/{id or name}/
-```
+# Version groups
 
-::: pypokeclient.models.games.version
+**`GET https://pokeapi.co/api/v2/version/{id or name}/`**
+
+**[Official PokéAPI documentation](https://pokeapi.co/docs/v2#version)**
+
+---
+
+::: pypokeclient.models.games.version.Version
     options:
-        separate_signature: false
+        members: false
