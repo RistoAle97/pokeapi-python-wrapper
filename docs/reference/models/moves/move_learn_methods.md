@@ -3,10 +3,14 @@ hide:
     - toc
 ---
 
-```console
-https://pokeapi.co/api/v2/move-learn-method/{id or name}/
-```
+# Move learn methods
 
-::: pypokeclient.models.moves.move_learn_methods
+**`GET https://pokeapi.co/api/v2/move-learn-method/{id or name}/`**
+
+**[Official PokéAPI documentation](https://pokeapi.co/docs/v2#move-learn-methods)**
+
+---
+
+::: pypokeclient.models.moves.move_learn_methods.MoveLearnMethod
     options:
-        separate_signature: false
+        members: false

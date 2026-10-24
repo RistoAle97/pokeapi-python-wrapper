@@ -3,10 +3,14 @@ hide:
     - toc
 ---
 
-```console
-https://pokeapi.co/api/v2/move-target/{id or name}/
-```
+# Move targets
 
-::: pypokeclient.models.moves.move_targets
+**`GET https://pokeapi.co/api/v2/move-target/{id or name}/`**
+
+**[Official PokéAPI documentation](https://pokeapi.co/docs/v2#move-targets)**
+
+---
+
+::: pypokeclient.models.moves.move_targets.MoveTarget
     options:
-        separate_signature: false
+        members: false

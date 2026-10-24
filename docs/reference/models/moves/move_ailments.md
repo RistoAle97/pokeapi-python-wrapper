@@ -3,10 +3,14 @@ hide:
     - toc
 ---
 
-```console
-https://pokeapi.co/api/v2/move-ailment/{id or name}/
-```
+# Move ailment
 
-::: pypokeclient.models.moves.move_ailments
+**`GET https://pokeapi.co/api/v2/move-ailment/{id or name}/`**
+
+**[Official PokéAPI documentation](https://pokeapi.co/docs/v2#move-ailments)**
+
+---
+
+::: pypokeclient.models.moves.move_ailments.MoveAilment
     options:
-        separate_signature: false
+        members: false
