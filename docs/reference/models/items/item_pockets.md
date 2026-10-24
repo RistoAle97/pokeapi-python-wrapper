@@ -3,7 +3,7 @@ hide:
     - toc
 ---
 
-# Item categories
+# Item pockets
 
 **`GET https://pokeapi.co/api/v2/item-pocket/{id or name}/`**
 

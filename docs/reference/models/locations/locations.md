@@ -3,10 +3,14 @@ hide:
     - toc
 ---
 
-```console
-https://pokeapi.co/api/v2/location/{id or name}/
-```
+# Locations
 
-::: pypokeclient.models.locations.locations
+**`GET https://pokeapi.co/api/v2/location/{id or name}/`**
+
+**[Official PokéAPI documentation](https://pokeapi.co/docs/v2#locations)**
+
+---
+
+::: pypokeclient.models.locations.locations.Location
     options:
-        separate_signature: false
+        members: false
