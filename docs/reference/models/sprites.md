@@ -1,10 +1,9 @@
 ---
 hide:
     - toc
+tags:
+    - Models
+    - Utility
 ---
 
-# Sprites
-
 ::: pypokeclient.models.sprites.Sprite
-    options:
-        members: false

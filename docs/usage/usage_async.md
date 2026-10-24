@@ -1,3 +1,8 @@
+---
+tags:
+    - Asynchronous
+---
+
 ## :material-hammer-wrench: Simple usage
 The asynchronous client is represented by the `AsyncClient` class which uses aiohttp under the hood for performing every request to PokéAPI. Using the client is straightforward and simple
 ```python

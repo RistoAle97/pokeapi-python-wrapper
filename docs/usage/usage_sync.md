@@ -1,3 +1,8 @@
+---
+tags:
+    - Synchronous
+---
+
 ## :material-hammer-wrench: Simple usage
 The synchronous client is represented by the `Client` class which uses requests under the hood for performing every request to PokéAPI. Using the client is straightforward and simple
 ```python

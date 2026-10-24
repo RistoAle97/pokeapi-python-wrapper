@@ -19,7 +19,6 @@ nav = [
     { "Client" = "reference/sync_client.md" },
     { "AsyncClient" = "reference/async_client.md" },
     { "Models" = [
-      # "reference/models/index.md",
       { "Resource Lists" = "reference/models/resource_lists.md" },
       { "Berries" = [
         { "Berries" = "reference/models/berries/berries.md" },
@@ -128,13 +127,33 @@ features = [
 [project.theme.icon]
 repo = "fontawesome/brands/github"
 
+[project.theme.icon.tag]
+default = "lucide/hash"
+usage = "lucide/book-open"
+async = "lucide/zap"
+sync = "lucide/refresh-cw"
+reference = "lucide/book-marked"
+models = "lucide/box"
+berries = "lucide/leaf"
+contests = "lucide/trophy"
+currencies = "lucide/coins"
+encounters = "lucide/footprints"
+evolution = "lucide/dna"
+games = "lucide/gamepad-2"
+items = "lucide/backpack"
+locations = "lucide/map"
+machines = "lucide/disc-3"
+moves = "lucide/swords"
+pokemon = "lucide/paw-print"
+utility = "lucide/wrench"
+
 # Palette toggle for automatic mode
 [[project.theme.palette]]
 media = "(prefers-color-scheme)"
 toggle.icon = "lucide/sun-moon"
 toggle.name = "Switch to light mode"
-primary = "deep purple"
-accent = "deep purple"
+primary = "purple"
+accent = "purple"
 
 # Palette toggle for light mode
 [[project.theme.palette]]
@@ -142,8 +161,8 @@ media = "(prefers-color-scheme: light)"
 scheme = "default"
 toggle.icon = "lucide/sun"
 toggle.name = "Switch to dark mode"
-primary = "deep purple"
-accent = "deep purple"
+primary = "purple"
+accent = "purple"
 
 # Palette toggle for dark mode
 [[project.theme.palette]]
@@ -151,8 +170,8 @@ media = "(prefers-color-scheme: dark)"
 scheme = "slate"
 toggle.icon = "lucide/moon"
 toggle.name = "Switch to system preference"
-primary = "deep purple"
-accent = "deep purple"
+primary = "purple"
+accent = "purple"
 
 [[project.extra.social]]
 icon = "fontawesome/brands/python"
@@ -173,8 +192,45 @@ name = "Author's LinkedIn profile"
 Usage = "usage"
 Asynchronous = "async"
 Synchronous = "sync"
-Reference = "ref"
+Reference = "reference"
 Models = "models"
+Berries = "berries"
+Contests = "contests"
+Currencies = "currencies"
+Encounters = "encounters"
+Evolution = "evolution"
+Games = "games"
+Items = "items"
+Locations = "locations"
+Machines = "machines"
+Moves = "moves"
+Pokemon = "pokemon"
+Utility = "utility"
+
+[project.plugins.tags]
+
+[project.plugins.mkdocstrings.handlers.python]
+# inventories = ["https://docs.python.org/3/objects.inv"]
+paths = ["src"]
+
+[project.plugins.mkdocstrings.handlers.python.options]
+# annotations_path = "source"
+docstring_options = { "ignore_init_summary" = true }
+docstring_style = "google"
+extensions = ["griffe_typingdoc", "griffe_inherited_docstrings"]
+line_length = 120
+members = false
+members_order = "source"
+merge_init_into_class = true
+inherited_members = true
+show_docstring_attributes = true
+show_if_no_docstring = true
+show_labels = false
+show_source = false
+show_root_full_path = false
+show_root_heading = true
+show_symbol_type_heading = true
+show_symbol_type_toc = true
 
 [project.markdown_extensions.abbr]
 
@@ -224,22 +280,3 @@ alternate_style = true
 custom_checkbox = true
 
 [project.markdown_extensions.pymdownx.tilde]
-
-[project.plugins.mkdocstrings.handlers.python]
-# inventories = ["https://docs.python.org/3/objects.inv"]
-paths = ["src"]
-
-[project.plugins.mkdocstrings.handlers.python.options]
-# annotations_path = "source"
-docstring_options = { "ignore_init_summary" = true }
-docstring_style = "google"
-extensions = ["griffe_typingdoc", "griffe_inherited_docstrings"]
-line_length = 120
-members_order = "source"
-merge_init_into_class = true
-inherited_members = true
-show_docstring_attributes = true
-show_if_no_docstring = true
-show_source = true
-show_root_full_path = false
-show_root_heading = true
