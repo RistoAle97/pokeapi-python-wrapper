@@ -3,9 +3,11 @@ hide:
     - toc
 ---
 
-```console
-https://pokeapi.co/api/v2/{endpoint}/
-```
+# Resource lists
+
+**`GET https://pokeapi.co/api/v2/{endpoint}/`**
+
+**[Official PokéAPI documentation](https://pokeapi.co/docs/v2#resource-listspagination-section)**
 
 !!! tip "Endpoint list"
     To see the list of available endpoints
@@ -16,6 +18,12 @@ https://pokeapi.co/api/v2/{endpoint}/
     print(ENDPOINTS)
     ```
 
-::: pypokeclient.models.resource_lists
+---
+
+::: pypokeclient.models.resource_lists.NamedAPIResourceList
     options:
-        separate_signature: false
+        members: false
+
+::: pypokeclient.models.resource_lists.APIResourceList
+    options:
+        members: false
