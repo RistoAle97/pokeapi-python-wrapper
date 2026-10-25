@@ -83,3 +83,6 @@ convention = "google"
 
 [tool.ruff.format]
 docstring-code-format = true
+
+[tool.tombi.format.rules]
+line-width = 120
