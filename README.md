@@ -90,7 +90,7 @@ uv add pypokeclient[cache]
 import logging
 
 from hishel import SyncSqliteStorage
-from hishel.2 import SyncCacheClient
+from hishel.httpx2 import SyncCacheClient
 from pypokeclient import Client
 
 # Set up the logger
