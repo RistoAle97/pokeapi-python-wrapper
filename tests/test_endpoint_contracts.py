@@ -68,7 +68,7 @@ def test_resource_endpoint_mapping(method_name: str, expected_endpoint: str):
 def test_pokemon_location_area_endpoint():
     client = Client()
     client._get_resources = MagicMock(return_value=[])
-    client.get_pokemon_location_area("fuecoco")
+    client.get_pokemon_location_area_encounters("fuecoco")
     client._get_resources.assert_called_once()
     endpoint = client._get_resources.call_args.args[0]
     assert endpoint == "pokemon/fuecoco/encounters"
