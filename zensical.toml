@@ -13,6 +13,7 @@ nav = [
     "usage/index.md",
     { "Synchronous" = "usage/usage_sync.md" },
     { "Asynchronous" = "usage/usage_async.md" },
+    { "No Client" = "usage/no_client.md" },
   ] },
   { "Reference" = [
     "reference/index.md",

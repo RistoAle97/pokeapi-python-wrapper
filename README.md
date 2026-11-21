@@ -70,12 +70,13 @@ asyncio.run(fetch_data())
 ```
 
 ### No client
-If you want to build your own client, including the caching mechanism, while still benefiting from Pydantic dataclasses, you can use the data models directly.
+If you prefer to build your own API client, including your own caching mechanism, you can still take advantage of Pydantic validation and data models provided by pypokeclient.
 ```python
 import requests
 from pypokeclient.models import Pokemon
 
 resp = requests.get("https://pokeapi.co/api/v2/pokemon/fuecoco")
+resp.raise_for_status()
 pokemon = Pokemon(**resp.json())
 ```
 
